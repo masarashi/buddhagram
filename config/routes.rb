@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'static_pages#home'
 
+  root 'posts#index'
+
+  devise_for :users
+  resources :posts
 end
