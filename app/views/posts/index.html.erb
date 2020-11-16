@@ -1,0 +1,7 @@
+<ul>
+  <% @posts.each do |post| %>
+    <li><%= post.user.email %>：<%= post.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to '投稿する', new_post_path %>
