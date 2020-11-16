@@ -10,6 +10,22 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'トップ', root_path %>
+      <% if user_signed_in? %>
+        <% if false %>
+        <strong><%= link_to current_user.username, pages_show_path %></strong>
+        <% end %>
+        <%= link_to 'プロフィール変更', edit_user_registration_path %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'サインアップ', new_user_registration_path %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>
