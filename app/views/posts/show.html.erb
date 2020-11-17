@@ -1,0 +1,24 @@
+<div>
+  <%= @post.user.email %>
+</div>
+
+<div>
+  <%= @post.content %>
+</div>
+
+<%= form_for [@post, @comment], local: true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit 'コメント' %>
+<% end %>
+
+<hr>
+<% @post.comments.each do |comment| %>
+  <div>
+    <%= comment.user.email %>
+  </div>
+  <div>
+    <%= comment.content %>
+    <%= comment.created_at %>
+  </div>
+  <hr>
+<% end %>

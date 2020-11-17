@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -13,14 +14,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @post = @user.posts.build(post_params)
+    @post = Post.new(post_params)
     if @post.save
-      flash[:info] = '投稿しました'
+      flash[:notice] = '投稿しました'
       redirect_to posts_path
     else
       render 'new'
     end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
   end
 
   def update
@@ -42,6 +46,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content).merge(user_id: current_user.id)
   end
 end

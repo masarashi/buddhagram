@@ -1,7 +1,16 @@
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= post.user.email %>：<%= post.content %></li>
-  <% end %>
-</ul>
-
 <%= link_to '投稿する', new_post_path %>
+
+<div>
+  <hr>
+  <% @posts.each do |post| %>
+    <div>
+      <%= post.user.email %>
+    </div>
+    <div>
+      <%= post.content %>
+      <%= post.created_at %>
+    </div>
+    <%= link_to 'コメントする', post %>
+    <hr>
+  <% end %>
+</div>
