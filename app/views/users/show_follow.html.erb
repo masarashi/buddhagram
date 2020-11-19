@@ -1,0 +1,35 @@
+<div>
+  <aside>
+    <section>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>投稿数：</b> <%= @user.posts.count %></span>
+    </section>
+    <section>
+      <% @user ||= current_user %>
+      <div>
+        <a href="<%= following_user_path(@user) %>">
+          <strong id="following">
+            <%= @user.following.count %>
+          </strong>
+          following
+        </a>
+        <a href="<%= followers_user_path(@user) %>">
+          <strong id="followers">
+            <%= @user.followers.count %>
+          </strong>
+          followers
+        </a>
+      </div>
+    </section>
+  </aside>
+  <div>
+    <% if @users.any? %>
+      <div>
+        <% @users.each do |user| %>
+          <%= link_to user.name, user %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
