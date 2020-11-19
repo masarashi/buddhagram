@@ -1,6 +1,27 @@
 <div>
-  <%= current_user.name %>
+  <%= @user.name %>
 </div>
+
 <div>
-  <%= current_user.profile %>
+  <%= @user.profile %>
+</div>
+
+<div>
+  <%= render 'follow_form' if user_signed_in? %>
+</div>
+
+<% @user ||= current_user %>
+<div>
+  <a href="<%= following_user_path(@user) %>">
+    <strong id="following">
+      <%= @user.following.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers">
+      <%= @user.followers.count %>
+    </strong>
+    followers
+  </a>
 </div>
