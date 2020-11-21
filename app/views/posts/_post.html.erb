@@ -2,27 +2,23 @@
   <div>
     <%= link_to post.user.name, post.user %>
   </div>
+
   <div>
     <%= post.content %>
+  </div>
+
+  <div>
     <%= post.created_at %>
   </div>
+
   <div>
-    <p>いいねの数：<%= post.likes_count(post) %></p>
+    <%= render partial: 'likes/like', locals: { post: post } %>
   </div>
-  <div>
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(post) %>
-        <%= link_to 'いいねを取り消す', post_like_path(post, post.likes), method: :delete, remote: true %>
-      <% else %>
-        <%= link_to 'いいね', post_likes_path(post), method: :post, remote: true %>
-      <% end %>
-    <% end %>
-    <p>いいねしたユーザ：
-      <% post.liked_users.each do |user| %>
-        <%= link_to user.name, user %>
-      <% end %>
-    </p>
-  </div>
-  <%= link_to 'コメント', post %>
+
+  <% if user_signed_in? %>
+    <div>
+      <%= link_to 'コメント', post %>
+    </div>
+  <% end %>
 </li>
 <hr>
