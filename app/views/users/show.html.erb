@@ -6,9 +6,11 @@
   <%= @user.profile %>
 </div>
 
-<div>
-  <%= link_to 'プロフィール変更', edit_user_registration_path %>
-</div>
+<% if @user == current_user %>
+  <div>
+    <%= link_to 'プロフィール変更', edit_user_registration_path %>
+  </div>
+<% end %>
 
 <div>
   <%= render 'relationships/follow_form' if user_signed_in? %>
