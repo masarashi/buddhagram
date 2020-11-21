@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     get '/timeline', to: 'users#timeline'
   end
 
-  # get '/:id/timeline', to: 'users#timeline'
-
   resources :posts do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]

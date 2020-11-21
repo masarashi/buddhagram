@@ -1,5 +1,13 @@
-<%= link_to '投稿する', new_post_path %>
+<% if user_signed_in? %>
+  <%= link_to '投稿する', new_post_path %>
+<% end %>
 
-<ol>
-  <%= render 'feed' if user_signed_in? %>
-</ol>
+<div>
+  <ol>
+    <% if user_signed_in? %>
+      <% if @feed_items.any? %>
+        <%= render @feed_items %>
+      <% end %>
+    <% end %>  
+  </ol>
+</div>
