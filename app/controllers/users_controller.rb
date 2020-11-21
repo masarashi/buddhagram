@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @feed_items = @user.feed
   end
 
   def following
@@ -13,5 +14,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers
     render 'show_follow'
+  end
+
+  def timeline
+    @user = User.find(params[:user_id])
+    @feed_items = @user.feed
   end
 end
