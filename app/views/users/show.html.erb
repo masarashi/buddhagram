@@ -7,6 +7,10 @@
 </div>
 
 <div>
+  <%= link_to 'プロフィール変更', edit_user_registration_path %>
+</div>
+
+<div>
   <%= render 'follow_form' if user_signed_in? %>
 </div>
 
@@ -25,3 +29,8 @@
     followers
   </a>
 </div>
+
+<%# フォローした人と自分の投稿を表示 %>
+<ol>
+  <%= render 'feed' if user_signed_in? %>
+</ol>

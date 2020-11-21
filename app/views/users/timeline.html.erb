@@ -1,0 +1,5 @@
+<%= link_to '投稿する', new_post_path %>
+
+<ol>
+  <%= render 'feed' if user_signed_in? %>
+</ol>
