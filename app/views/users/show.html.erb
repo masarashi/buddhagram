@@ -1,3 +1,5 @@
+<h1>ユーザー情報</h1>
+
 <div>
   <%= @user.name %>
 </div>
@@ -18,6 +20,7 @@
 
 <% @user ||= current_user %>
 <div>
+  <span><b>投稿数：</b><%= @user.posts.count %></span>
   <a href="<%= following_user_path(@user) %>">
     <strong id="following">
       <%= @user.following.count %>
@@ -30,4 +33,10 @@
     </strong>
     followers
   </a>
+</div>
+
+<h2>投稿一覧</h2>
+
+<div>
+  <%= render partial: 'users/post', collection: @posts %>
 </div>
