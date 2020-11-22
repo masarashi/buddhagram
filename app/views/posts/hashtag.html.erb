@@ -1,0 +1,11 @@
+<h1>#<%= @hashtag.name %></h1>
+
+<div>
+  投稿<%= @posts_count %>件
+</div>
+
+<div>
+  <% @posts.each do |post| %>
+    <%= link_to post.content, post %>
+  <% end %>
+</div>

@@ -4,7 +4,10 @@
   </div>
 
   <div>
-    <%= post.content %>
+    <!-- 正規表現に合致する箇所を空欄にする -->
+    <%#= simple_format(post.content.gsub!(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, "")) %>
+    <%#= post.content %>
+    <%= render_with_hashtags(post.content) %>
   </div>
 
   <div>

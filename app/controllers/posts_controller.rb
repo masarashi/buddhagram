@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(shop_params)
+    if @post.update(post_params)
       flash[:success] = '更新しました'
       redirect_to @post
     else
@@ -42,6 +42,12 @@ class PostsController < ApplicationController
     Post.find(params[:id]).destroy
     flash[:success] = '削除しました'
     redirect_to posts_path
+  end
+
+  def hashtag
+    @hashtag = Hashtag.find_by(name: params[:name])
+    @posts = @hashtag.posts
+    @posts_count = @posts.count
   end
 
   private

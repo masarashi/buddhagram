@@ -1,10 +1,12 @@
 <div>
-  <%= @post.user.email %>
+  <%= link_to @post.user.name, @post.user %>
 </div>
 
 <div>
-  <%= @post.content %>
+  <%= render_with_hashtags(@post.content) %>
 </div>
+
+<%= link_to '編集', edit_post_path %>
 
 <%= form_for [@post, @comment], local: true do |f| %>
   <%= f.text_field :content %>
@@ -14,10 +16,12 @@
 <hr>
 <% @post.comments.each do |comment| %>
   <div>
-    <%= comment.user.name %>
+    <%= link_to comment.user.name, comment.user %>
   </div>
   <div>
     <%= comment.content %>
+  </div>
+  <div>
     <%= comment.created_at %>
   </div>
   <hr>
