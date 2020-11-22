@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  get '/post/hashtag/:name', to: 'posts#hashtag'
+
   resources :relationships, only: [:create, :destroy]
 end
