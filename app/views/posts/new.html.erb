@@ -1,5 +1,9 @@
 <%= form_with model: @post, local: true do |f| %>
   <div class='form-group'>
+    <%= f.label :images, class: 'd-none' %>
+    <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
+  </div>
+  <div class='form-group'>
     <%= f.label :content, class: 'd-none' %>
     <%= f.text_area :content, class: 'form-control', rows: '10' %>
   </div>

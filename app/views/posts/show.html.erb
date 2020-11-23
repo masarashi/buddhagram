@@ -3,6 +3,11 @@
     <%= link_to @post.user.name, @post.user %>
   </div>
   <div>
+    <% @post.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+  </div>
+  <div>
     <%= render_with_hashtags(@post.content) %>
   </div>
   <div>

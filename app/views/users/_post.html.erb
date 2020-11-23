@@ -1,5 +1,9 @@
 <li>
-  <div class='border rounded mb-3 p-3'>
-    <%= link_to post.content, post %>
+  <div class='border rounded mb-5'>
+    <%= link_to post do %>
+      <% post.images.each do |image| %>
+        <%= image_tag image %>
+      <% end %>
+    <% end %>
   </div>
 </li>
