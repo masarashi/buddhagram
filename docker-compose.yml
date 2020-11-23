@@ -17,11 +17,24 @@ services:
       - gem-data:/usr/local/bundle
     ports:
       - "3000:3000"
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
     depends_on:
       - db
     stdin_open: true
     tty: true
     command: bundle exec rails server -b 0.0.0.0
+  webpacker:
+    build: .
+    environment:
+      - NODE_ENV=development
+      - RAILS_ENV=development
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/buddhagram
+    ports:
+      - '127.0.0.1:3035:3035'
 volumes:
   mysql-data:
     driver: local
