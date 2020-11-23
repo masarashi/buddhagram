@@ -6,9 +6,9 @@ class Post < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :hashtags, through: :taggings
 
-  def likes_count(post)
-    likes.count
-  end
+  # def likes_count(post)
+  #   likes.count
+  # end
 
   after_create do
     #1 controller側でcreateしたTweetを取得

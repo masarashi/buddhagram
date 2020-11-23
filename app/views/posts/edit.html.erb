@@ -1,9 +1,9 @@
 <%= form_with model: @post, local: true do |f| %>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
+  <div class='form-group'>
+    <%= f.label :content, class: 'd-none' %>
+    <%= f.text_area :content, class: 'form-control', rows: '10' %>
   </div>
   <div>
-    <%= f.submit '更新' %>
+    <%= f.submit '更新', class: 'btn btn-light' %>
   </div>
 <% end %>
