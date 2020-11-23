@@ -1,27 +1,46 @@
-<li>
-  <div>
-    <%= link_to post.user.name, post.user %>
-  </div>
-
-  <div>
-    <!-- 正規表現に合致する箇所を空欄にする -->
-    <%#= simple_format(post.content.gsub!(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, "")) %>
-    <%#= post.content %>
-    <%= render_with_hashtags(post.content) %>
-  </div>
-
-  <div>
-    <%= post.created_at %>
-  </div>
-
-  <div>
-    <%= render partial: 'likes/like', locals: { post: post } %>
-  </div>
-
-  <% if user_signed_in? %>
+<li class='mb-3'>
+  <div class='border rounded p-3'>
     <div>
-      <%= link_to 'コメント', post %>
+      <%= link_to post.user.name, post.user %>
     </div>
-  <% end %>
+
+    <div class='d-flex'>
+      <div>
+        <%= render partial: 'likes/like', locals: { post: post } %>
+      </div>
+      <div class='ml-2'>
+        <% if user_signed_in? %>
+          <div>
+            <%= link_to post do %>
+              <i class='far fa-comment fa-fw'></i>
+            <% end %>
+            <%#= post.comments.count %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <!-- 正規表現に合致する箇所を空欄にする -->
+      <%#= simple_format(post.content.gsub!(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, "")) %>
+      <%#= post.content %>
+      <%= render_with_hashtags(post.content) %>
+    </div>
+
+    <div>
+      <%= post.created_at %>
+    </div>
+
+    <% if false %>
+      <div>
+        <% if post.likes.any? %>
+          <p>いいねしたユーザ：
+            <% post.liked_users.each do |user| %>
+              <%= link_to user.name, user %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </li>
-<hr>

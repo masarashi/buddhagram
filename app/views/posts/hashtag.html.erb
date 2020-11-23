@@ -1,11 +1,13 @@
 <h1>#<%= @hashtag.name %></h1>
 
-<div>
+<div class='mt-5'>
   投稿<%= @posts_count %>件
 </div>
 
-<div>
-  <% @posts.each do |post| %>
-    <%= link_to post.content, post %>
-  <% end %>
+<hr>
+
+<div class='mt-5'>
+  <ul>
+    <%= render partial: 'users/post', collection: @posts %>
+  </ul>
 </div>

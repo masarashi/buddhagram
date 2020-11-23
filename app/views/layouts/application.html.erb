@@ -10,20 +10,55 @@
   </head>
 
   <body>
-    <nav>
-      <strong><%= link_to 'Buddhagram', root_path %></strong>
-      <% if user_signed_in? %>
-        <%= link_to 'タイムライン', user_timeline_path(current_user.id) %>
-        <%= link_to current_user.name, current_user %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+      <div class='container'>
+        <%= link_to root_path, class: 'navbar-brand' do %>
+          <i class='fas fa-spa'></i> <span style='font-family: fantasy'>Buddhagram</span>
+        <% end %>
+        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+          <ul class='navbar-nav mr-auto'>
+            <% if user_signed_in? %>
+              <li class='nav-item'>
+                <%= link_to 'タイムライン', user_timeline_path(current_user.id), class: 'nav-link' %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to '投稿する', new_post_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item dropdown'>
+                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  <%= current_user.name %>
+                </a>
+                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <%= link_to current_user, class: 'dropdown-item' do %>
+                    <i class='far fa-user-circle fa-fw mr-2'></i>プロフィール
+                  <% end %>
+                  <%= link_to edit_user_registration_path(current_user), class: 'dropdown-item' do %>
+                    <i class='fas fa-user-edit fa-fw mr-2'></i>プロフィール編集
+                  <% end %>
+                  <div class='dropdown-divider'></div>
+                  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                </div>
+              </li>
+            <% else %>
+              <li class='nav-item'>
+                <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link' %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <div class='container'>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+
+    <div class='container'>
+      <%= yield %>
+    </div>
   </body>
 </html>
