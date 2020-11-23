@@ -33,6 +33,7 @@ services:
     command: ./bin/webpack-dev-server
     volumes:
       - .:/buddhagram
+      - gem-data:/usr/local/bundle
     ports:
       - '127.0.0.1:3035:3035'
 volumes:
