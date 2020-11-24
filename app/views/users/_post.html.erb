@@ -1,9 +1,9 @@
-<li>
-  <div class='border rounded mb-5'>
+<div class="user_post__item">
+  <div class="user_post__item__figure">
     <%= link_to post do %>
       <% post.images.each do |image| %>
-        <%= image_tag image %>
+        <%= image_tag image, class: "user_post__item__image" %>
       <% end %>
     <% end %>
   </div>
-</li>
+</div>

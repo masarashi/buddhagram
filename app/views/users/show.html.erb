@@ -1,42 +1,40 @@
-<div class='d-flex'>
+<div class="d-flex">
   <div>
     <div>
       <strong><%= @user.name %></strong>
     </div>
   </div>
-  <div class='ml-5'>
+  <div class="ml-5">
     <% if @user == current_user %>
-      <%= link_to 'プロフィール編集', edit_user_registration_path, class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-sm btn-outline-secondary" %>
     <% end %>
-    <%= render 'relationships/follow_form' if user_signed_in? %>
+    <%= render "relationships/follow_form" if user_signed_in? %>
   </div>
 </div>
 
-<div class='mt-5'>
+<div class="mt-5">
   <%= @user.profile %>
 </div>
 
 <% @user ||= current_user %>
-<div class='d-flex mt-5'>
+<div class="d-flex mt-5">
   <div>
     投稿<%= @user.posts.count %>件
   </div>
-  <div class='ml-5'>
+  <div class="ml-5">
     <%= link_to following_user_path(@user) do %>
-      フォロー中<span id='following'><%= @user.following.count %>人
+      フォロー中<span id="following"><%= @user.following.count %>人
     <% end %>
   </div>
-  <div class='ml-5'>
+  <div class="ml-5">
     <%= link_to followers_user_path(@user) do %>
-      フォロワー<span id='followers'><%= @user.followers.count %></span>人
+      フォロワー<span id="followers"><%= @user.followers.count %></span>人
     <% end %>
   </div>
 </div>
 
 <hr>
 
-<div class='mt-5'>
-  <ul>
-    <%= render partial: 'users/post', collection: @posts %>
-  </ul>
+<div class="user_post">
+  <%= render partial: "users/post", collection: @posts %>
 </div>
