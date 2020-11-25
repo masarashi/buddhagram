@@ -48,4 +48,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ユーザ機能
 gem 'devise'
 # AWS S3
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
+# 画像処理
+gem 'image_processing'
+gem 'mini_magick'

@@ -5,12 +5,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+    <nav class='navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm'>
       <div class='container'>
         <%= link_to root_path, class: 'navbar-brand' do %>
           <i class='fas fa-spa'></i> <span style='font-family: fantasy'>Buddhagram</span>
@@ -19,7 +19,7 @@
           <span class='navbar-toggler-icon'></span>
         </button>
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul class='navbar-nav mr-auto'>
+          <ul class='navbar-nav ml-auto'>
             <% if user_signed_in? %>
               <li class='nav-item'>
                 <%= link_to 'タイムライン', user_timeline_path(current_user.id), class: 'nav-link' %>
@@ -29,7 +29,7 @@
               </li>
               <li class='nav-item dropdown'>
                 <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                  <%= current_user.name %>
+                  <%= image_tag current_user.image.variant(resize_to_fit: [40, 40]), class: "user__icon" %>
                 </a>
                 <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                   <%= link_to current_user, class: 'dropdown-item' do %>
@@ -64,7 +64,7 @@
       <% end %>
     </div>
 
-    <div class='container mt-5'>
+    <div class='container mt-3'>
       <%= yield %>
     </div>
   </body>
