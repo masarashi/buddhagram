@@ -5,10 +5,10 @@
     </div>
 
     <% if post.images.attached? %>
-      <div>
+      <div class="post__figure">
         <% post.images.each do |image| %>
           <%= link_to post do %>
-            <%= image_tag image, class: "post__image"%>
+            <%= image_tag display_image(image), class: "post__image"%>
           <% end %>
         <% end %>
       </div>

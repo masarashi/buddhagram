@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_one_attached :image
 
   def already_liked?(post)
     likes.exists?(post_id: post.id)
@@ -34,5 +35,9 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def profile_image
+    image.variant(resize_to_fit: [180, 180])
   end
 end
