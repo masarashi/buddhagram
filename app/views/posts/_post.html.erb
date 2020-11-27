@@ -1,55 +1,74 @@
-<li class="mb-3">
-  <div class="post border">
-    <div class="post__header">
-      <%= link_to post.user.name, post.user %>
-    </div>
+<div class="post border">
+  <div class="post__header">
+    <%= link_to post.user do %>
+      <% if post.user.image.attached? %>
+        <%= image_tag user_icon(post.user.image), class: "user__icon" %>
+      <% else %>
+        <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+      <% end %>
+      <%= post.user.name %>
+    <% end %>
+  </div>
 
-    <% if post.images.attached? %>
-      <div class="post__figure">
-        <% post.images.each do |image| %>
-          <%= link_to post do %>
-            <%= image_tag display_image(image), class: "post__image"%>
-          <% end %>
+  <% if post.images.attached? %>
+    <div class="post__figure">
+      <% post.images.each do |image| %>
+        <%= link_to post do %>
+          <%= image_tag post_image(image), class: "post__image"%>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="post__body">
+    <div class="post__action d-flex">
+      <div>
+        <%= render partial: "likes/like", locals: { post: post } %>
+      </div>
+      <div class="ml-2">
+        <% if user_signed_in? %>
+          <div>
+            <%= link_to post do %>
+              <i class="far fa-comment fa-fw"></i>
+            <% end %>
+            <%#= post.comments.count %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
 
-    <div class="post__body">
-      <div class="post__action d-flex">
+    <div class="post__copy">
+      <strong><%= link_to post.user.name, post.user %></strong>
+      <%= render_with_hashtags(post.content) %>
+    </div>
+
+    <div class="post__comment">
+      <% post.comments.each do |comment| %>
         <div>
-          <%= render partial: "likes/like", locals: { post: post } %>
-        </div>
-        <div class="ml-2">
-          <% if user_signed_in? %>
-            <div>
-              <%= link_to post do %>
-                <i class="far fa-comment fa-fw"></i>
-              <% end %>
-              <%#= post.comments.count %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="post__copy">
-        <%= render_with_hashtags(post.content) %>
-      </div>
-
-      <div class="post__time">
-        <%= post.created_at %>
-      </div>
-
-      <% if false %>
-        <div>
-          <% if post.likes.any? %>
-            <p>いいねしたユーザ：
-              <% post.liked_users.each do |user| %>
-                <%= link_to user.name, user %>
-              <% end %>
-            </p>
-          <% end %>
+          <div>
+            <%= link_to comment.user do %>
+              <strong><%= comment.user.name %></strong>
+            <% end %>
+            <%= comment.content %>
+          </div>
         </div>
       <% end %>
     </div>
+
+    <div class="post__time">
+      <%= post.created_at %>
+    </div>
+
+    <% if false %>
+      <div>
+        <% if post.likes.any? %>
+          <p>いいねしたユーザ：
+            <% post.liked_users.each do |user| %>
+              <%= link_to user.name, user %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-</li>
+</div>

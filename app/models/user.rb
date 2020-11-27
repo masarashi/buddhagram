@@ -36,8 +36,4 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-
-  def profile_image
-    image.variant(resize_to_fit: [180, 180])
-  end
 end

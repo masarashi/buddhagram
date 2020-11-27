@@ -1,51 +1,165 @@
-<div>
-  <div>
-    <%= link_to @post.user.name, @post.user %>
-  </div>
-  <div>
-    <% @post.images.each do |image| %>
-      <%= image_tag image %>
-    <% end %>
-  </div>
-  <div>
-    <%= render_with_hashtags(@post.content) %>
-  </div>
-  <div>
-    <%= @post.created_at %>
-  </div>
-</div>
+<!-- 投稿内容表示 -->
 
-<div class='mt-3'>
-  <% if @post.user == current_user %>
-    <%= link_to '編集', edit_post_path, class: 'btn btn-sm btn-outline-secondary' %>
-  <% end %>
-</div>
-
-<div class='mt-3 ml-3'>
-  <% @post.comments.each do |comment| %>
-    <div class='mt-3'>
-      <div>
-        <strong><%= link_to comment.user.name, comment.user %></strong>
-        <%= comment.content %>
-      </div>
-      <div>
-        <%= comment.created_at %>
-      </div>
+<div class="post__show border">
+  <% if false %>
+    <div class="post__show__header">
+      <%= link_to @post.user do %>
+        <% if @post.user.image.attached? %>
+          <%= image_tag user_icon(@post.user.image), class: "user__icon" %>
+        <% else %>
+          <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+        <% end %>
+        <%= @post.user.name %>
+      <% end %>
     </div>
   <% end %>
+
+  <div class="post__show__body">
+    <div class="post__show__left__side">
+      <% @post.images.each do |image| %>
+        <%= image_tag post_image(image), class: "post__image" %>
+      <% end %>
+    </div>
+
+    <div class="post__show__right__side">
+      <div class="post__show__username">
+        <%= link_to @post.user do %>
+          <% if @post.user.image.attached? %>
+            <%= image_tag user_icon(@post.user.image), class: "user__icon" %>
+          <% else %>
+            <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+          <% end %>
+        <% end %>
+        <%= link_to @post.user.name, @post.user %>
+      </div>
+
+      <div class="post__show__comment">
+        <div class="post__show__copy">
+          <div>
+            <%= render_with_hashtags(@post.content) %>
+          </div>
+          <div class="post__time">
+            <%= @post.created_at %>
+          </div>
+        </div>
+        <% @post.comments.each do |comment| %>
+          <div class="post__show__comment__body">
+            <div class="comment_username">
+              <%= link_to comment.user do %>
+                <% if comment.user.image.attached? %>
+                  <%= image_tag user_icon(comment.user.image), class: "user__icon" %>
+                <% else %>
+                  <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to comment.user.name, comment.user %>
+              <%= comment.content %><br>
+              <div class="comment__time">
+                <%= comment.created_at %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%= form_for [@post, @comment], local: true do |f| %>
+        <div class="post__show__comment__form">
+          <div class="form-group">
+            <%= f.label :content, class: "d-none" %>
+            <%= f.text_area :content, placeholder: "コメント", class: "form-control comment__textarea" %>
+          </div>
+          <div>
+            <%= f.submit "送信", class: "btn btn-sm btn-light comment__btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<hr>
+<div class="post__show__footer">
+  <% if @post.user == current_user %>
+    <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-outline-secondary" %>
+    <%= link_to "削除", @post, class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</div>
 
-<div class='mt-3'>
-  コメント
-  <%= form_for [@post, @comment], local: true do |f| %>
-    <div class='form-group'>
-      <%= f.label :content, class: 'd-none' %>
-      <%= f.text_area :content, class: 'form-control' %>
+
+<% if false %>
+
+  <div>
+    <div>
+      <%= link_to @post.user do %>
+        <% if @post.user.image.attached? %>
+          <%= image_tag user_icon(@post.user.image), class: "user__icon" %>
+        <% else %>
+          <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+        <% end %>
+        <%= @post.user.name %>
+      <% end %>
     </div>
     <div>
-      <%= f.submit '送信', class: 'btn btn-sm btn-light' %>
+      <% @post.images.each do |image| %>
+        <%= image_tag post_image(image), class: "post__image" %>
+      <% end %>
     </div>
-  <% end %>
-</div>
+    <div>
+      <%= render_with_hashtags(@post.content) %>
+    </div>
+    <div>
+      <%= @post.created_at %>
+    </div>
+  </div>
+
+  <!-- 投稿編集 -->
+
+  <div class="mt-3">
+    <% if @post.user == current_user %>
+      <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to "削除", @post, class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <!-- コメント表示 -->
+
+  <div>
+    <% @post.comments.each do |comment| %>
+      <div class="mt-3">
+        <div>
+          <%#= link_to comment.user.name, comment.user %>
+          <%= link_to comment.user do %>
+            <% if comment.user.image.attached? %>
+              <%= image_tag user_icon(comment.user.image), class: "user__icon" %>
+            <% else %>
+              <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+            <% end %>
+            <strong><%= comment.user.name %></strong>
+          <% end %>
+          <%= comment.content %>
+        </div>
+        <div>
+          <%= comment.created_at %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- コメントフォーム -->
+
+  <div class="mt-3">
+    <%= form_for [@post, @comment], local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :content, class: "d-none" %>
+        <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "送信", class: "btn btn-sm btn-light" %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
