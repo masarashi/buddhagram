@@ -29,7 +29,11 @@
               </li>
               <li class='nav-item dropdown'>
                 <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                  <%= image_tag current_user.image.variant(resize_to_fit: [40, 40]), class: "user__icon" %>
+                  <% if current_user.image.attached? %>
+                    <%= image_tag nav_user_icon(current_user.image), class: "nav__user__icon" %>
+                  <% else %>
+                    <%= image_pack_tag "user-icon.png", class: "nav__user__icon" %>
+                  <% end %>
                 </a>
                 <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                   <%= link_to current_user, class: 'dropdown-item' do %>

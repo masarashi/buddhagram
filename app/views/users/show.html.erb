@@ -1,7 +1,11 @@
 <div class="profile">
   <div class="profile__left__side">
     <div class="profile__figure">
-      <%= image_tag @user.profile_image, class: "profile__image" if @user.image.attached? %>
+      <% if @user.image.attached? %>
+        <%= image_tag profile_image(@user.image), class: "profile__image" %>
+      <% else %>
+        <%= image_pack_tag "user-icon.png", class: "profile__image" %>
+      <% end %>
     </div>
   </div>
   <div class="profile__right__side">
