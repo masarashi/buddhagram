@@ -44,7 +44,7 @@
         </div>
         <% @post.comments.each do |comment| %>
           <div class="post__show__comment__body">
-            <div class="comment_username">
+            <div class="comment_user__icon">
               <%= link_to comment.user do %>
                 <% if comment.user.image.attached? %>
                   <%= image_tag user_icon(comment.user.image), class: "user__icon" %>
@@ -54,7 +54,7 @@
               <% end %>
             </div>
             <div>
-              <%= link_to comment.user.name, comment.user %>
+              <%= link_to comment.user.name, comment.user, class: "comment_username" %>
               <%= comment.content %><br>
               <div class="comment__time">
                 <%= comment.created_at %>
