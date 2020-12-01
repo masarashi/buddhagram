@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :profile, length: { maximum: 256 }
+
   def already_liked?(post)
     likes.exists?(post_id: post.id)
   end

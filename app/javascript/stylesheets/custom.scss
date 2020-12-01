@@ -231,12 +231,17 @@ a.hashtag:hover {
   text-align: center;
 }
 
-.comment__username {
+.comment__user__icon {
   padding: 10px;
 }
 
+.comment__username {
+  // padding: 10px;
+  font-weight: bold;
+}
+
 .comment__time {
-  // margin-top: 5px;
+  margin-top: 5px;
   font-size: 0.8em;
   color: #a9a9a9;
 }
