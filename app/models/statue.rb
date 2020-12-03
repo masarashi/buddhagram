@@ -1,0 +1,2 @@
+class Statue < ApplicationRecord
+end
