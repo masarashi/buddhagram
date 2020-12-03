@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'maps/index'
   root 'posts#index'
 
   devise_for :users, controllers: {
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
   get '/post/hashtag/:name', to: 'posts#hashtag'
 
   resources :relationships, only: [:create, :destroy]
+  resources :maps, only: [:index]
 end
