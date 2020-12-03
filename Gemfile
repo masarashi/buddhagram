@@ -61,3 +61,5 @@ gem 'aws-sdk-s3', require: false
 # 画像処理
 gem 'image_processing'
 gem 'mini_magick'
+# Google Map
+gem 'geocoder'
