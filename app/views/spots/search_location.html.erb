@@ -1,0 +1,144 @@
+<% if false %>
+  <ul>
+    <% @locations.each do |location| %>
+      <li><%= location.name %>  <%= location.latitude %>  <%= location.longitude %></li>
+    <% end %>
+  </ul>
+
+  <%= @locations[0].name %>
+<% end %>
+
+<div id='map'></div>
+
+<script>
+  let map
+  let marker = [];
+  let infoWindow = [];
+  let markerData = gon.locations;
+
+  function initMap(){
+    
+    // 東京スカイツリー
+    LatLng = { lat: 35.6585, lng: 139.7486 };
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: LatLng,
+      zoom: 5,
+    });
+
+    // marker = new google.maps.Marker({
+    //   position: LatLng,
+    //   map: map
+    // });
+
+    for (var i = 0; i < markerData.length; i++) {
+      let id = markerData[i]['id']
+
+      // 各地点の緯度経度を算出
+      markerLatLng = new google.maps.LatLng({
+        lat: markerData[i]['latitude'],
+        lng: markerData[i]['longitude']
+      });
+
+      // 各地点のマーカーを作成
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
+
+      // 各地点の吹き出しを作成
+      infoWindow[i] = new google.maps.InfoWindow({
+        // 吹き出しの中身, 引数で各属性の配列と配列番号を渡す
+        content: `<a href='/spots/${ id }'>${ markerData[i]['name'] }</a>`
+      });
+
+      // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+  }
+
+  // マーカーをクリックしたら吹き出しを表示
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
+    });
+  }
+  // function markerEvent(i) {
+  //   marker[i].addListener('click', function () {
+  //     let id = markerData[i]['id']
+
+  //     infoWindow[i] = new google.maps.InfoWindow({
+  //       // <a>タグでリンクを作成
+  //       content: `<a href='/spots/${ id }'>${ markerData[i]['name'] }</a>`
+  //     });
+  //   });
+  // }
+
+  // 現在地取得処理
+  function getPosition() {
+    // 現在地を取得
+    navigator.geolocation.getCurrentPosition(
+      // 取得成功した場合
+      function(position) {
+          window.location.href = "/spots/search_location?latitude="+position.coords.latitude+"&longitude="+position.coords.longitude
+          // $.ajax({
+          //   url: "/shops/search_location",
+          //   type: "GET",
+          //   dataType: 'html',
+          //   data: {latitude : position.coords.latitude,
+          //         longitude : position.coords.longitude},
+          // });
+      },
+      // 取得失敗した場合
+      function(error) {
+        switch(error.code) {
+          case 1: //PERMISSION_DENIED
+            alert("位置情報の利用が許可されていません");
+            break;
+          case 2: //POSITION_UNAVAILABLE
+            alert("現在位置が取得できませんでした");
+            break;
+          case 3: //TIMEOUT
+            alert("タイムアウトになりました");
+            break;
+          default:
+            alert("その他のエラー(エラーコード:"+error.code+")");
+            break;
+        }
+      }
+    );
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.gmap[:api_key] %>&callback=initMap" async defer></script>
+
+<div>
+  <%= button_tag type: "button", onclick: "initMap();" do %>
+    現在地
+  <% end %>
+
+  <%= button_tag type: "button", onclick: "getPosition();" do %>
+    周辺1000kmを探す
+  <% end %>
+</div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>住所</th>
+        <th>現在地からの距離</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <td><%= link_to location.name, location %></td>
+          <td><%= location.prefecture %>県<%= location.city %><%= location.address1 %><%= location.address2 %></td>
+          <td>あ</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

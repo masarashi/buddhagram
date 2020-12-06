@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'maps/index'
   root 'posts#index'
 
   devise_for :users, controllers: {
@@ -25,4 +24,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :maps, only: [:index]
+
+  get 'spots/search_location'
+
+  resources :spots
 end

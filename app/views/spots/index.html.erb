@@ -1,0 +1,20 @@
+  <div>
+    <ul>
+      <% @spots.each do |spot| %>
+        <li><%= link_to spot.name, spot %></li>
+      <% end %>
+    </ul>
+  </div>
+
+<%= render 'map' %>
+
+<%= button_tag type: "button", onclick: "initMap();" do %>
+  現在地
+<% end %>
+
+<%= button_tag type: "button", onclick: "getPosition();" do %>
+  周辺1000kmを探す
+<% end %>
+
+<%# <button onclick="initMap();">現在地</button> %>
+<%# <button onclick="getPosition();">周辺1000kmを探す</button> %>
