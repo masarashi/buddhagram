@@ -17,8 +17,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :profile, length: { maximum: 256 }
 
-  def already_liked?(post)
-    likes.exists?(post_id: post.id)
+  def liked_by?(post_id)
+    likes.where(post_id: post_id).exists?
   end
 
   # ユーザーのステータスフィードを返す
