@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_102005) do
+ActiveRecord::Schema.define(version: 2020_12_03_100418) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -79,19 +79,16 @@ ActiveRecord::Schema.define(version: 2020_12_03_102005) do
 
   create_table "spots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "content"
-    t.string "zip", null: false
-    t.string "country", null: false
-    t.string "prefecture", null: false
-    t.string "city", null: false
-    t.string "address1", null: false
-    t.string "address2"
-    t.text "url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "country"
+    t.string "state"
+    t.text "address"
     t.float "latitude"
     t.float "longitude"
-    t.index ["name"], name: "index_spots_on_name", unique: true
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "address"], name: "index_spots_on_name_and_address", unique: true, using: :hash
+    t.index ["name"], name: "index_spots_on_name"
   end
 
   create_table "statues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

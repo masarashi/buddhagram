@@ -1,13 +1,3 @@
-<% if false %>
-  <ul>
-    <% @locations.each do |location| %>
-      <li><%= location.name %>  <%= location.latitude %>  <%= location.longitude %></li>
-    <% end %>
-  </ul>
-
-  <%= @locations[0].name %>
-<% end %>
-
 <div id='map'></div>
 
 <script>
@@ -19,42 +9,59 @@
   function initMap(){
     
     // 東京スカイツリー
-    LatLng = { lat: 35.6585, lng: 139.7486 };
+    // LatLng = { lat: 35.6585, lng: 139.7486 };
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: LatLng,
-      zoom: 5,
-    });
+    // map = new google.maps.Map(document.getElementById('map'), {
+    //   center: LatLng,
+    //   zoom: 5,
+    // });
 
     // marker = new google.maps.Marker({
     //   position: LatLng,
     //   map: map
     // });
 
-    for (var i = 0; i < markerData.length; i++) {
-      let id = markerData[i]['id']
+    // 位置情報を取得
+    navigator.geolocation.getCurrentPosition(function (position) {
 
-      // 各地点の緯度経度を算出
-      markerLatLng = new google.maps.LatLng({
-        lat: markerData[i]['latitude'],
-        lng: markerData[i]['longitude']
+      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      // 取得した位置情報を中心に表示
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: LatLng,
+        zoom: 5
       });
 
-      // 各地点のマーカーを作成
-      marker[i] = new google.maps.Marker({
-        position: markerLatLng,
+      marker = new google.maps.Marker({
+        position: LatLng,
         map: map
       });
 
-      // 各地点の吹き出しを作成
-      infoWindow[i] = new google.maps.InfoWindow({
-        // 吹き出しの中身, 引数で各属性の配列と配列番号を渡す
-        content: `<a href='/spots/${ id }'>${ markerData[i]['name'] }</a>`
-      });
+      for (var i = 0; i < markerData.length; i++) {
+        let id = markerData[i]['id']
 
-      // マーカーにクリックイベントを追加
-      markerEvent(i);
-    }
+        // 各地点の緯度経度を算出
+        markerLatLng = new google.maps.LatLng({
+          lat: markerData[i]['latitude'],
+          lng: markerData[i]['longitude']
+        });
+
+        // 各地点のマーカーを作成
+        marker[i] = new google.maps.Marker({
+          position: markerLatLng,
+          map: map
+        });
+
+        // 各地点の吹き出しを作成
+        infoWindow[i] = new google.maps.InfoWindow({
+          // 吹き出しの中身, 引数で各属性の配列と配列番号を渡す
+          content: `<a href='/spots/${ id }'>${ markerData[i]['name'] }</a>`
+        });
+
+        // マーカーにクリックイベントを追加
+        markerEvent(i);
+      }
+    });
   }
 
   // マーカーをクリックしたら吹き出しを表示
@@ -135,7 +142,7 @@
       <% @locations.each do |location| %>
         <tr>
           <td><%= link_to location.name, location %></td>
-          <td><%= location.prefecture %>県<%= location.city %><%= location.address1 %><%= location.address2 %></td>
+          <td><%= location.address %></td>
           <td>あ</td>
         </tr>
       <% end %>

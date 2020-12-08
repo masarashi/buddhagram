@@ -1,0 +1,28 @@
+<% if false %>
+
+  <%= form_with url: "/spots/get_address", local: true do |f| %>
+    <div class='form-group'>
+      <%= f.label :search_name %>
+      <%= f.text_area :search_name, class: 'form-control' %>
+    </div>
+    <div>
+      <%= f.submit '検索', class: 'btn btn-light' %>
+    </div>
+  <% end %>
+
+<% end %>
+
+<div>
+  <%= @name %>
+  <%= @address %>
+</div>
+
+<%= form_with model: @spot, local: true do |f| %>
+  <%= f.hidden_field :name, value: "#{@name}" %>
+  <%= f.hidden_field :country, value: "#{@country}" %>
+  <%= f.hidden_field :state, value: "#{@state}" %>
+  <%= f.hidden_field :address, value: "#{@address}" %>
+  <%= f.hidden_field :latitude, value: "#{@latitude}" %>
+  <%= f.hidden_field :longitude, value: "#{@longitude}" %>
+  <%= f.submit '登録する', class: 'btn btn-light' %>
+<% end %>
