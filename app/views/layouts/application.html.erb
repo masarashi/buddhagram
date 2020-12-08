@@ -22,7 +22,14 @@
         </button>
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul class='navbar-nav ml-auto'>
+            <!-- ログイン中のメニュー -->
             <% if user_signed_in? %>
+              <li class='nav-item'>
+                <%= link_to 'スポットを登録する', '/spots/get_address', class: 'nav-link' %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to 'スポットを探す', spots_path, class: 'nav-link' %>
+              </li>
               <li class='nav-item'>
                 <%= link_to 'タイムライン', user_timeline_path(current_user.id), class: 'nav-link' %>
               </li>
@@ -48,6 +55,7 @@
                   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
                 </div>
               </li>
+              <!-- 非ログイン時のメニュー -->
             <% else %>
               <li class='nav-item'>
                 <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link' %>

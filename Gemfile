@@ -64,3 +64,5 @@ gem 'mini_magick'
 # Google Map
 gem 'geocoder'
 gem 'gon'
+# 国際化
+gem 'rails-i18n', '~> 6.0.0'
