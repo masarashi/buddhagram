@@ -11,7 +11,7 @@
   <div class="profile__right__side">
     <div class="profile__button">
       <% if @user == current_user %>
-        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-sm btn-outline-secondary" %>
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-sm btn-secondary" %>
       <% end %>
       <%= render "relationships/follow_form" if user_signed_in? %>
     </div>

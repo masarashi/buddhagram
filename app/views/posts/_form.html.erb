@@ -1,0 +1,20 @@
+<%= form_with model: @post, local: true do |f| %>
+<%#= form_with url: post_path(@post), method: :post, local: true do |f| %>
+  <div class='form-group'>
+    <%= f.label :images, class: 'd-none' %>
+    <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :content, class: 'd-none' %>
+    <%= f.text_area :content, class: 'form-control', rows: '10' %>
+  </div>
+  <% if @spot.id.present? %>
+    <div class='form-group'>
+      <p>場所：<%= @spot.name %></p>
+      <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: 'form-control' %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.submit '投稿', class: 'btn btn-secondary' %>
+  </div>
+<% end %>

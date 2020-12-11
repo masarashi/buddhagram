@@ -1,0 +1,30 @@
+<div class="mt-5">
+  <p>地名で検索</p>
+  <%= form_with url: "/spots/search", method: :post do |f| %>
+    <div class="form-group">
+      <%#= f.label :地名を入力してください %>
+      <%= f.text_area :search_name, :placeholder => "地名を入力してください　例：平等院", class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "検索", class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+
+  <p class="mt-5">県で検索</p>
+  <%= form_with url: "/spots/search", method: :get do |f| %>
+    <div class="form-group">
+      <%#= f.label :県を入力してください %>
+      <%= f.text_area :search_state, :placeholder => "地名を入力してください　例：東京都", class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "検索", class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+
+  <h4 class="mt-5">検索結果</h4>
+  <div id="search_result">
+    <% unless @spots_search_result %>
+      <%= render "spots/search_result" %>
+    <% end %>
+  </div>
+</div>

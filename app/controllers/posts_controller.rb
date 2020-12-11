@@ -12,6 +12,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @spots_search_result = Spot.new
+    if params[:spot_id].present?
+      @spot = Spot.find(params[:spot_id])
+    else
+      @spot = Spot.new
+    end
   end
 
   def create
@@ -50,9 +56,14 @@ class PostsController < ApplicationController
     @posts_count = @posts.count
   end
 
+  # def add_spot
+  #   # binding.pry
+  #   @spot = Spot.find(params[:spot_id])
+  # end
+
   private
 
     def post_params
-      params.require(:post).permit(:content, :images).merge(user_id: current_user.id)
+      params.require(:post).permit(:content, :images, :spot_id).merge(user_id: current_user.id)
     end
 end

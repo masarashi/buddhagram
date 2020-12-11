@@ -1,0 +1,9 @@
+<div>
+  <% if @spots_search_result.blank? %>
+    <p>検索結果がありません</p>
+  <% else %>
+    <ol>
+      <%= render partial: 'spots/spot', collection: @spots_search_result %>
+    </ol>
+  <% end %>
+</div>

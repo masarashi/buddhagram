@@ -1,19 +1,6 @@
 <!-- 投稿内容表示 -->
 
 <div class="post__show border">
-  <% if false %>
-    <div class="post__show__header">
-      <%= link_to @post.user do %>
-        <% if @post.user.image.attached? %>
-          <%= image_tag user_icon(@post.user.image), class: "user__icon" %>
-        <% else %>
-          <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-        <% end %>
-        <%= @post.user.name %>
-      <% end %>
-    </div>
-  <% end %>
-
   <div class="post__show__body">
     <div class="post__show__left__side">
       <% @post.images.each do |image| %>
@@ -31,6 +18,7 @@
           <% end %>
         <% end %>
         <%= link_to @post.user.name, @post.user %>
+        【<%= link_to @post.spot.name, @post.spot %>】
       </div>
 
       <div class="post__show__comment">
@@ -71,7 +59,7 @@
             <%= f.text_area :content, placeholder: "コメント", class: "form-control comment__textarea" %>
           </div>
           <div>
-            <%= f.submit "送信", class: "btn btn-sm btn-light comment__btn" %>
+            <%= f.submit "送信", class: "btn btn-sm btn-secondary comment__btn" %>
           </div>
         </div>
       <% end %>
@@ -81,85 +69,7 @@
 
 <div class="post__show__footer">
   <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-outline-secondary" %>
+    <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-secondary" %>
     <%= link_to "削除", @post, class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
   <% end %>
 </div>
-
-
-<% if false %>
-
-  <div>
-    <div>
-      <%= link_to @post.user do %>
-        <% if @post.user.image.attached? %>
-          <%= image_tag user_icon(@post.user.image), class: "user__icon" %>
-        <% else %>
-          <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-        <% end %>
-        <%= @post.user.name %>
-      <% end %>
-    </div>
-    <div>
-      <% @post.images.each do |image| %>
-        <%= image_tag post_image(image), class: "post__image" %>
-      <% end %>
-    </div>
-    <div>
-      <%= render_with_hashtags(@post.content) %>
-    </div>
-    <div>
-      <%= @post.created_at %>
-    </div>
-  </div>
-
-  <!-- 投稿編集 -->
-
-  <div class="mt-3">
-    <% if @post.user == current_user %>
-      <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-outline-secondary" %>
-      <%= link_to "削除", @post, class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
-    <% end %>
-  </div>
-
-  <hr>
-
-  <!-- コメント表示 -->
-
-  <div>
-    <% @post.comments.each do |comment| %>
-      <div class="mt-3">
-        <div>
-          <%#= link_to comment.user.name, comment.user %>
-          <%= link_to comment.user do %>
-            <% if comment.user.image.attached? %>
-              <%= image_tag user_icon(comment.user.image), class: "user__icon" %>
-            <% else %>
-              <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-            <% end %>
-            <strong><%= comment.user.name %></strong>
-          <% end %>
-          <%= comment.content %>
-        </div>
-        <div>
-          <%= comment.created_at %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- コメントフォーム -->
-
-  <div class="mt-3">
-    <%= form_for [@post, @comment], local: true do |f| %>
-      <div class="form-group">
-        <%= f.label :content, class: "d-none" %>
-        <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
-      </div>
-      <div>
-        <%= f.submit "送信", class: "btn btn-sm btn-light" %>
-      </div>
-    <% end %>
-  </div>
-
-<% end %>

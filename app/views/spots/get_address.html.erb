@@ -1,35 +1,9 @@
-<% if false %>
-
-  <div>
-    <%= @name %>
-  </div>
-  <div>
-    <%= @state %>
-  </div>
-  <div>
-    <%= @address[1] %>
-  </div>
-  <div>
-    <%= @address[2] %>
-  </div>
-
-  <%= form_with model: @spot, local: true do |f| %>
-    <div class='form-group'>
-      <%= f.hidden_field :name, value: "#{@name}" %>
-    </div>
-    <div>
-      <%= f.submit '登録する', class: 'btn btn-light' %>
-    </div>
-  <% end %>
-
-<% end %>
-
 <%= form_with url: new_spot_path, method: :get, local: true do |f| %>
   <div class='form-group'>
-    <%= f.label :search_name %>
+    <%= f.label :地名を入力してください %>
     <%= f.text_area :search_name, class: 'form-control' %>
   </div>
   <div>
-    <%= f.submit '検索', class: 'btn btn-light' %>
+    <%= f.submit '検索', class: 'btn btn-secondary' %>
   </div>
 <% end %>
