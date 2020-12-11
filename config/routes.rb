@@ -20,11 +20,15 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  post 'posts/new', to: 'posts#new'
+
   get '/post/hashtag/:name', to: 'posts#hashtag'
+
   resources :relationships, only: [:create, :destroy]
   resources :maps, only: [:index]
 
   get '/spots/search_location'
   get '/spots/get_address', to: 'spots#get_address'
+  get '/spots/search', to: 'spots#search'
   resources :spots
 end
