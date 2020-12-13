@@ -13,11 +13,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @spots_search_result = Spot.new
-    if params[:spot_id].present?
-      @spot = Spot.find(params[:spot_id])
-    else
-      @spot = Spot.new
-    end
+    @spot = Spot.find(params[:spot_id]) if params[:spot_id].present?
   end
 
   def create
@@ -60,6 +56,15 @@ class PostsController < ApplicationController
   #   # binding.pry
   #   @spot = Spot.find(params[:spot_id])
   # end
+
+  def search
+    @spot = Spot.new
+    @search_keyword = params[:search_keyword]
+    @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+    # @name = params[:search_name]
+    # @state = params[:search_state]
+    # @spots_search_result = Spot.where(name: @name).or(Spot.where(state: @state))
+  end
 
   private
 

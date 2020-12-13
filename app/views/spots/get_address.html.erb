@@ -1,9 +1,9 @@
 <%= form_with url: new_spot_path, method: :get, local: true do |f| %>
   <div class='form-group'>
-    <%= f.label :地名を入力してください %>
+    <%#= f.label :地名を入力してください %>
     <%= f.text_area :search_name, class: 'form-control' %>
   </div>
   <div>
-    <%= f.submit '検索', class: 'btn btn-secondary' %>
+    <%= f.submit '検索', class: 'w-100 btn btn-secondary' %>
   </div>
 <% end %>

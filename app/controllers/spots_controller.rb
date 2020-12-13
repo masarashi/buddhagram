@@ -3,10 +3,10 @@ class SpotsController < ApplicationController
     @spots = Spot.all
     @spots_search_result = Spot.new
 
-    latitude = params[:latitude].to_f
-    longitude = params[:longitude].to_f
-    @locations = Spot.within_box(1000, latitude, longitude)
-    gon.locations = @locations
+    # latitude = params[:latitude].to_f
+    # longitude = params[:longitude].to_f
+    # @locations = Spot.within_box(1000, latitude, longitude)
+    # gon.locations = @locations
   end
 
   def show
@@ -39,17 +39,23 @@ class SpotsController < ApplicationController
   end
 
   def search_location
-    latitude = params[:latitude].to_f
-    longitude = params[:longitude].to_f
-    @locations = Spot.within_box(1000, latitude, longitude)
+    @latitude = params[:latitude].to_f
+    @longitude = params[:longitude].to_f
+    @current_location = Spot.new(name: "現在地", latitude: @latitude, longitude: @longitude)
+    @locations = @current_location.nearbys(200, units: :km)
     gon.locations = @locations
+
+    # Google Map
+    # @locations = Spot.within_box(200, @latitude, @longitude)
   end
 
   def search
     @spot = Spot.new
-    @name = params[:search_name]
-    @state = params[:search_state]
-    @spots_search_result = Spot.where(name: @name).or(Spot.where(state: @state))
+    @search_keyword = params[:search_keyword]
+    @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+    # @name = params[:search_name]
+    # @state = params[:search_state]
+    # @spots_search_result = Spot.where(name: @name).or(Spot.where(state: @state))
   end
 
   private

@@ -1,23 +1,25 @@
 <div id='map'></div>
 
 <!-- 検索ボタン -->
-<div>
-  <%= button_tag type: "button", onclick: "initMap();" do %>
-    現在地
-  <% end %>
-  <%= button_tag type: "button", onclick: "getPosition();" do %>
-    周辺1000kmを探す
-  <% end %>
-</div>
+<% if false %>
+  <div>
+    <%= button_tag type: "button", onclick: "initMap();" do %>
+      現在地
+    <% end %>
+    <%= button_tag type: "button", onclick: "getPosition();" do %>
+      周辺200kmを探す
+    <% end %>
+  </div>
+<% end %>
 
 <!-- 検索結果の表示 -->
-<div>
-  <table class="table">
+<div class="mt-5">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>名称</th>
         <th>住所</th>
-        <th>現在地からの距離</th>
+        <th>現在地からの距離（直線距離）</th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +27,7 @@
         <tr>
           <td><%= link_to location.name, location %></td>
           <td><%= location.address %></td>
-          <td>あ</td>
+          <td><%= location.distance_from(@current_location).round %> km</td>
         </tr>
       <% end %>
     </tbody>
@@ -48,7 +50,7 @@
       // 取得した現在地を中心に表示
       map = new google.maps.Map(document.getElementById('map'), {
         center: LatLng,
-        zoom: 5
+        zoom: 7
       });
 
       marker = new google.maps.Marker({

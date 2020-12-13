@@ -1,3 +1,4 @@
+<!--
 <div class="user__post__item">
   <div class="user__post__item__figure">
     <%= link_to post do %>
@@ -6,4 +7,15 @@
       <% end %>
     <% end %>
   </div>
+</div>
+-->
+
+<div class="col-4 user__post__item">
+  <%= link_to post do %>
+    <div class="user__post__item__figure">
+      <% post.images.each do |image| %>
+        <%= image_tag resize300(image), class: "user__post__item__image" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

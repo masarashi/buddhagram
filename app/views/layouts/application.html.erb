@@ -39,7 +39,7 @@
               <li class='nav-item dropdown'>
                 <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                   <% if current_user.image.attached? %>
-                    <%= image_tag nav_user_icon(current_user.image), class: "nav__user__icon" %>
+                    <%= image_tag resize20(current_user.image), class: "nav__user__icon" %>
                   <% else %>
                     <%= image_pack_tag "user-icon.png", class: "nav__user__icon" %>
                   <% end %>
