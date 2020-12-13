@@ -34,8 +34,6 @@
   }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.gmap[:api_key] %>&callback=initMap" async defer></script>
-
 <h4>この場所の投稿</h4>
 
 <% if @spot.posts.empty? %>
@@ -45,3 +43,5 @@
     <%= render partial: "users/post", collection: @spot.posts %>
   </div>
 <% end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.gmap[:api_key] %>&callback=initMap" async defer></script>

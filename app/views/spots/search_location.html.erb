@@ -25,7 +25,7 @@
     <tbody>
       <% @locations.each do |location| %>
         <tr>
-          <td><%= link_to location.name, location %></td>
+          <td><%= link_to location.name, location, data: { "turbolinks" => false } %></td>
           <td><%= location.address %></td>
           <td><%= location.distance_from(@current_location).round %> km</td>
         </tr>

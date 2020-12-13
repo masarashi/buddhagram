@@ -18,7 +18,7 @@
           <% end %>
         <% end %>
         <%= link_to @post.user.name, @post.user %>
-        <%= link_to @post.spot.name, @post.spot if @post.spot %>
+        <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false } if @post.spot %>
       </div>
 
       <div class="post__show__comment">
