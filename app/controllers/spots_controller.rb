@@ -10,7 +10,7 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.find(params[:id])
+    @spot = Spot.includes(posts: :images_attachments).find(params[:id])
   end
 
   def new
