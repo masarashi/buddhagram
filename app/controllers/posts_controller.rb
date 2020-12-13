@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    # @posts = Post.all.order(created_at: :desc)
+    @posts = Post.includes(:user, :spot, :images_attachments, :comments).order(created_at: :desc)
     @like = Like.new
   end
 
