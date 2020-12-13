@@ -1,19 +1,24 @@
-<div id="map"></div>
-
 <div>
-  <%= button_tag type: "button", onclick: "initMap();" do %>
-    現在地
-  <% end %>
-  <%= button_tag type: "button", onclick: "getPosition();" do %>
-    周辺1000kmを探す
+  <%= button_tag type: "button", onclick: "getPosition();", class: "w-100 btn btn-primary" do %>
+    現在地周辺で探す
   <% end %>
 </div>
 
+<p class="mt-5">キーワードで探す</p>
+
 <%= render 'search_form' %>
+
+<!--
+<div id="map"></div>
+
+<%= button_tag type: "button", onclick: "initMap();" do %>
+  現在地
+<% end %>
+-->
 
 <!-- GoogleMap -->
 <script>
-  let map;
+  // let map;
 
   // 初期表示：スカイツリー
   // function initMap(){
@@ -31,24 +36,24 @@
   // }
 
   // 初期表示：現在地
-  function initMap() {
-    // 位置情報を取得
-    navigator.geolocation.getCurrentPosition(function (position) {
+  // function initMap() {
+  //   // 位置情報を取得
+  //   navigator.geolocation.getCurrentPosition(function (position) {
 
-      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  //     LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-      // 取得した位置情報を中心に表示
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: LatLng,
-        zoom: 17
-      });
+  //     // 取得した位置情報を中心に表示
+  //     map = new google.maps.Map(document.getElementById('map'), {
+  //       center: LatLng,
+  //       zoom: 17
+  //     });
 
-      marker = new google.maps.Marker({
-        position: LatLng,
-        map: map
-      });
-    });
-  }
+  //     marker = new google.maps.Marker({
+  //       position: LatLng,
+  //       map: map
+  //     });
+  //   });
+  // }
 
   // 現在地取得処理
   function getPosition() {
@@ -79,4 +84,6 @@
   }
 </script>
 
+<!--
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.gmap[:api_key] %>&callback=initMap" async defer></script>
+-->

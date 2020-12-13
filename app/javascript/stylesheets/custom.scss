@@ -10,7 +10,7 @@ ol,ul {
 }
 
 a {
-  color: #4169e1;
+  color: #000;
 }
 
 a:hover {
@@ -144,22 +144,24 @@ a.hashtag:hover {
   object-fit: cover;
 }
 
-.user__post {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+// .user__post {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+// }
 
 .user__post__item {
-  width: 30%;
+  // width: 30%;
   height: auto;
-  margin-bottom: 60px;
-  background-color: #fff;
+  margin-bottom: 30px;
+  // padding: 0px;
+  // background-color: #fff;
 }
 
 .user__post__item__figure {
  	width: 100%;
- 	height: 100%;
+  height: 100%;
+  background-color: #fff;
 }
 
 .user__post__item__image {
@@ -257,5 +259,5 @@ a.hashtag:hover {
 
 #map {
   height: 400px;
-  width: 600px;
+  width: 100%;
 }

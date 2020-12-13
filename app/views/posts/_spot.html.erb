@@ -1,0 +1,6 @@
+<li class="mb-2">
+  <%= link_to new_post_path(spot_id: spot.id), method: :post, remote: true do %>
+    <strong><%= spot.name %></strong><br>
+    <%= spot.address %>
+  <% end %>
+</li>

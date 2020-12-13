@@ -3,13 +3,13 @@
   <div class="post__header">
     <%= link_to post.user do %>
       <% if post.user.image.attached? %>
-        <%= image_tag user_icon(post.user.image), class: "user__icon" %>
+        <%= image_tag resize40(post.user.image), class: "user__icon" %>
       <% else %>
         <%= image_pack_tag "user-icon.png", class: "user__icon" %>
       <% end %>
       <%= post.user.name %>
     <% end %>
-    【<%= link_to post.spot.name, post.spot %>】
+    <%= link_to post.spot.name, post.spot if post.spot %>
   </div>
 
   <!-- 投稿された画像 -->
@@ -17,7 +17,7 @@
     <div class="post__figure">
       <% post.images.each do |image| %>
         <%= link_to post do %>
-          <%= image_tag post_image(image), class: "post__image"%>
+          <%= image_tag resize600(image), class: "post__image"%>
         <% end %>
       <% end %>
     </div>
@@ -66,7 +66,7 @@
 
     <!-- 投稿時刻 -->
     <div class="post__time">
-      <%= post.created_at %>
+      <%= l post.created_at %>
     </div>
 
     <% if false %>

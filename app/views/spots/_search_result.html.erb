@@ -1,9 +1,18 @@
-<div>
+<div class="mt-5">
   <% if @spots_search_result.blank? %>
     <p>検索結果がありません</p>
   <% else %>
-    <ol>
-      <%= render partial: 'spots/spot', collection: @spots_search_result %>
-    </ol>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>所在地</th>
+          <th>住所</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'spots/spot', collection: @spots_search_result %>
+      </tbody>
+    </table>
   <% end %>
 </div>

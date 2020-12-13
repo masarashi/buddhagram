@@ -1,14 +1,18 @@
 module UsersHelper
 
-  def profile_image(image)
+  def resize20(image)
+    image.variant(resize_to_fit: [20, 20])
+  end
+  
+  def resize40(image)
+    image.variant(resize_to_fit: [40, 40])
+  end
+  
+  def resize180(image)
     image.variant(resize_to_fit: [180, 180])
   end
 
-  def user_icon(image)
-    image.variant(resize_to_fit: [40, 40])
-  end
-
-  def nav_user_icon(image)
-    image.variant(resize_to_fit: [20, 20])
+  def resize300(image)
+    image.variant(resize_to_fit: [300, 300])
   end
 end

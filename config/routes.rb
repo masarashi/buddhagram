@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'posts#index'
+  root 'spots#index'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -15,14 +15,14 @@ Rails.application.routes.draw do
     get '/timeline', to: 'users#timeline'
   end
 
+  post 'posts/new', to: 'posts#new'
+  get '/post/hashtag/:name', to: 'posts#hashtag'
+  get '/posts/search', to: 'posts#search'
+
   resources :posts do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]
   end
-
-  post 'posts/new', to: 'posts#new'
-
-  get '/post/hashtag/:name', to: 'posts#hashtag'
 
   resources :relationships, only: [:create, :destroy]
   resources :maps, only: [:index]
