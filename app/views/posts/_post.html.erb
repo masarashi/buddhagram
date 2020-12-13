@@ -9,7 +9,7 @@
       <% end %>
       <%= post.user.name %>
     <% end %>
-    <%= link_to post.spot.name, post.spot if post.spot %>
+    <%= link_to post.spot.name, post.spot, data: { "turbolinks" => false } if post.spot %>
   </div>
 
   <!-- 投稿された画像 -->

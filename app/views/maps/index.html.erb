@@ -1,26 +1,49 @@
 <div id='map'></div>
 
 <script>
+  // let map;
+
+  // 初期表示：スカイツリー
+  // function initMap(){
+  //   LatLng = { lat: 35.710063, lng: 139.8107 };
+
+  //   map = new google.maps.Map(document.getElementById('map'), {
+  //     center: LatLng,
+  //     zoom: 17,
+  //   });
+
+  //   marker = new google.maps.Marker({
+  //     position: LatLng,
+  //     map: map
+  //   });
+  // }
+
+  // 初期表示：現在地
+  // function initMap() {
+  //   // 位置情報を取得
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+
+  //     LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+  //     // 取得した位置情報を中心に表示
+  //     map = new google.maps.Map(document.getElementById('map'), {
+  //       center: LatLng,
+  //       zoom: 17
+  //     });
+
+  //     marker = new google.maps.Marker({
+  //       position: LatLng,
+  //       map: map
+  //     });
+  //   });
+  // }
+
   let map
   let marker = [];
   let infoWindow = [];
   let markerData = gon.locations;
 
   function initMap(){
-    
-    // 東京スカイツリー
-    // LatLng = { lat: 35.6585, lng: 139.7486 };
-
-    // map = new google.maps.Map(document.getElementById('map'), {
-    //   center: LatLng,
-    //   zoom: 5,
-    // });
-
-    // marker = new google.maps.Marker({
-    //   position: LatLng,
-    //   map: map
-    // });
-
     // 位置情報を取得
     navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -118,7 +141,9 @@
   }
 </script>
 
+<!--
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.gmap[:api_key] %>&callback=initMap" async defer></script>
+-->
 
 <div>
   <%= button_tag type: "button", onclick: "initMap();" do %>
