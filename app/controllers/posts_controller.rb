@@ -16,14 +16,30 @@ class PostsController < ApplicationController
     @spot = Spot.find(params[:spot_id]) if params[:spot_id].present?
   end
 
+  # 投稿確認画面用（作成保留）
+  # def confirm
+  #   @post = Post.new(post_params)
+  #   binding.pry
+  #   render 'new' if @post.invalid?
+  # end
+
   def create
-    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = '投稿しました'
       redirect_to posts_path
     else
       render 'new'
     end
+
+    # 投稿確認画面用（作成保留）
+    # @post = Post.new(post_params)
+    # if params[:back]
+    #   render 'new'
+    # else
+    #   @post.save
+    #   flash[:notice] = '投稿しました'
+    #   redirect_to posts_path
+    # end
   end
 
   def edit
@@ -71,4 +87,9 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
     end
-end
+    
+    def post_confirm_params
+      # params.permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+      params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+    end
+  end
