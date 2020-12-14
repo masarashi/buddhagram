@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
 
   def index
-    # @posts = Post.all.order(created_at: :desc)
-    @posts = Post.includes(:user, :spot, :images_attachments, :comments).order(created_at: :desc)
+    @posts = Post.with_attached_images.includes(:user, :spot, :comments).order(created_at: :desc)
     @like = Like.new
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_images.find(params[:id])
     @comment = Comment.new
   end
 
@@ -70,6 +69,6 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:content, :images, :spot_id).merge(user_id: current_user.id)
+      params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
     end
 end

@@ -15,7 +15,7 @@
   <!-- 投稿された画像 -->
   <% if post.images.attached? %>
     <div class="post__figure">
-      <% post.images.each do |image| %>
+      <% post.images.first(1).each do |image| %>
         <%= link_to post do %>
           <%= image_tag resize600(image), class: "post__image"%>
         <% end %>

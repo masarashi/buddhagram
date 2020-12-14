@@ -2,7 +2,7 @@
 <%#= form_with url: post_path(@post), method: :post, local: true do |f| %>
   <div class='form-group'>
     <%= f.label :images, class: 'd-none' %>
-    <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
+    <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', multiple: true, class: 'form-control' %>
   </div>
   <div class='form-group'>
     <%= f.label :content, class: 'd-none' %>

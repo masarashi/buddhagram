@@ -44,5 +44,5 @@
 <hr>
 
 <div class="row">
-  <%= render partial: "users/post", collection: @posts %>
+  <%= render partial: "users/post", collection: @posts.with_attached_images %>
 </div>
