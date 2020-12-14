@@ -1,0 +1,15 @@
+<%= form_with model: @post, local: true do |f| %>
+  <%= @post.content %>
+  <%= @post.spot.name if @post.spot %>
+
+  <%= f.hidden_field :images %>
+  <%= f.hidden_field :content%>
+  <%= f.hidden_field :spot_id %>
+
+  <div class="actions">
+    <%= f.submit '投稿画面に戻る', name: 'back' %>
+  </div>
+  <div class="actions">
+    <%= f.submit '投稿する' %>
+  </div>
+<% end %>

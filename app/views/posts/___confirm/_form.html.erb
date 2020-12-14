@@ -1,4 +1,4 @@
-<%= form_with model: @post, local: true do |f| %>
+<%= form_with model: @post, url: posts_confirm_path, method: :post, local: true do |f| %>
   <div class='form-group'>
     <%= f.label :images, class: 'd-none' %>
     <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', multiple: true, class: 'form-control' %>
