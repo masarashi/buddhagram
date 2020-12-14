@@ -1,5 +1,4 @@
 <!-- 投稿内容表示 -->
-
 <div class="post__show border">
   <div class="post__show__body">
     <div class="post__show__left__side">
@@ -73,3 +72,14 @@
     <%= link_to "削除", @post, class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
   <% end %>
 </div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.post__show__left__side').slick({
+      dots: true,
+      arrows: false
+    });
+  });
+</script>

@@ -40,7 +40,7 @@
   投稿はまだありません
 <% else %>
   <div class="row">
-    <%= render partial: "users/post", collection: @spot.posts %>
+    <%= render partial: "users/post", collection: @spot.posts.with_attached_images %>
   </div>
 <% end %>
 
