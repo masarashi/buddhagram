@@ -26,7 +26,7 @@
             <%= render_with_hashtags(@post.content) %>
           </div>
           <div class="post__time">
-            <%= @post.created_at %>
+            <%= l @post.created_at %>
           </div>
         </div>
         <% @post.comments.each do |comment| %>

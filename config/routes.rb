@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   post 'posts/new', to: 'posts#new'
+  # post 'posts/:id/edit', to: 'posts#edit'
   # post 'posts/confirm', to: 'posts#confirm'
   get '/post/hashtag/:name', to: 'posts#hashtag'
   get '/posts/search', to: 'posts#search'

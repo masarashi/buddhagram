@@ -1,8 +1,24 @@
 <%= form_with model: @post, local: true do |f| %>
-  <div class='form-group'>
-    <%= f.label :content, class: 'd-none' %>
+  <% if @post.images.present? %>
+    <p>チェックを入れた画像は削除されます</p>
+    <% @post.images.each do |image| %>
+      <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+      <%= image_tag resize180(image) %>
+    <% end %>
+  <% end %>
+  <div class='form-group mt-5'>
+    <%= f.label "投稿内容" %>
     <%= f.text_area :content, class: 'form-control', rows: '10' %>
   </div>
+  <% if @post.spot.present? %>
+    <div class='form-group'>
+      <p>
+        場所：<strong><%= @post.spot.name %></strong>
+        <%#= link_to "削除", edit_post_path(spot_id: nil), method: :post, remote: true %>  
+      </p>
+      <%= f.hidden_field :spot_id, value: @post.spot.id.to_i, class: 'form-control' %>
+    </div>
+  <% end %>
   <div>
     <%= f.submit '更新', class: 'btn btn-secondary' %>
   </div>
