@@ -1,22 +1,22 @@
 <%= form_with model: @post, url: posts_confirm_path, method: :post, local: true do |f| %>
-  <div class='form-group'>
-    <%= f.label :images, class: 'd-none' %>
-    <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png', multiple: true, class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :images, class: "d-none" %>
+    <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control" %>
   </div>
-  <div class='form-group'>
-    <%= f.label :content, class: 'd-none' %>
-    <%= f.text_area :content, class: 'form-control', rows: '10' %>
+  <div class="form-group">
+    <%= f.label :content, class: "d-none" %>
+    <%= f.text_area :content, class: "form-control", rows: "10" %>
   </div>
   <% if @spot.present? %>
-    <div class='form-group'>
+    <div class="form-group">
       <p>
         場所：<strong><%= @spot.name %></strong>
         <%= link_to "削除", new_post_path(spot_id: nil), method: :post, remote: true %>  
       </p>
-      <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: 'form-control' %>
+      <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: "form-control" %>
     </div>
   <% end %>
   <div>
-    <%= f.submit '投稿', class: 'w-100 btn btn-secondary' %>
+    <%= f.submit "投稿", class: "btn btn-secondary btn-block" %>
   </div>
 <% end %>

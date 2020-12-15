@@ -1,0 +1,48 @@
+<div class="profile">
+  <div class="profile__left__side">
+    <div class="profile__figure">
+      <% if @user.image.attached? %>
+        <%= image_tag resize180(@user.image), class: "profile__image" %>
+      <% else %>
+        <%= image_pack_tag "user-icon.png", class: "profile__image" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="profile__right__side">
+    <div class="profile__button">
+      <% if @user == current_user %>
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-sm btn-secondary" %>
+      <% end %>
+      <%= render "relationships/follow_form" if user_signed_in? %>
+    </div>
+    <div class="profile__name">
+      <%= @user.name %>
+    </div>
+    <div class="profile__body">
+      <%= @user.profile %>
+    </div>
+  </div>
+</div>
+
+<% @user ||= current_user %>
+<div class="d-flex mt-5">
+  <div>
+    投稿<%= @user.posts.count %>件
+  </div>
+  <div class="ml-5">
+    <%= link_to following_user_path(@user) do %>
+      フォロー中<span id="following"><%= @user.following.count %>人
+    <% end %>
+  </div>
+  <div class="ml-5">
+    <%= link_to followers_user_path(@user) do %>
+      フォロワー<span id="followers"><%= @user.followers.count %></span>人
+    <% end %>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <%= render partial: "users/post", collection: @posts.with_attached_images %>
+</div>
