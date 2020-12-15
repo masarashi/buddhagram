@@ -1,0 +1,9 @@
+<div>
+  <ol>
+    <% if user_signed_in? %>
+      <% if @feed_items.any? %>
+        <%= render partial: "posts/post", collection: @feed_items %>
+      <% end %>
+    <% end %>  
+  </ol>
+</div>
