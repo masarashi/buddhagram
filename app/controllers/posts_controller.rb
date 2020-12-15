@@ -43,11 +43,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_images.find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
+    # binding.pry
+    
+    if params[:post][:image_ids]
+      params[:post][:image_ids].each do |image_id|
+        image = @post.images.find(image_id)
+        image.purge
+      end
+    end
+
+    # if params[:post][:images]
+    #   @post.images.push(params[:post][:images])
+    # end
+
     if @post.update(post_params)
       flash[:success] = '更新しました'
       redirect_to @post
@@ -92,4 +105,4 @@ class PostsController < ApplicationController
       # params.permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
       params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
     end
-  end
+end

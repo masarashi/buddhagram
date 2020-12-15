@@ -16,7 +16,7 @@
   <% if post.images.attached? %>
     <div class="post__figure">
       <% post.images.first(1).each do |image| %>
-        <%= link_to post do %>
+        <%= link_to post, data: { "turbolinks" => false } do %>
           <%= image_tag resize600(image), class: "post__image"%>
         <% end %>
       <% end %>
