@@ -1,71 +1,104 @@
 <!-- 投稿内容表示 -->
-<div class="post__show border">
-  <div class="post__show__body">
-    <div class="post__show__left__side">
+<div class="post border">
+  <!-- 投稿したユーザ -->
+  <div class="post__header">
+    <%= link_to @post.user do %>
+      <% if @post.user.image.attached? %>
+        <%= image_tag resize40(@post.user.image), class: "user__icon" %>
+      <% else %>
+        <%= image_pack_tag "user-icon.png", class: "user__icon" %>
+      <% end %>
+      <strong><%= @post.user.name %></strong>
+    <% end %>
+    <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false } if @post.spot %>
+  </div>
+
+  <!-- 投稿画像表示 -->
+  <% if @post.images.attached? %>
+    <div class="post__figure">
       <% @post.images.each do |image| %>
-        <%= image_tag resize600(image), class: "post__image" %>
+        <%= image_tag resize600(image), class: "post__image"%>
       <% end %>
     </div>
+  <% end %>
 
-    <div class="post__show__right__side">
-      <div class="post__show__username">
-        <%= link_to @post.user do %>
-          <% if @post.user.image.attached? %>
-            <%= image_tag resize40(@post.user.image), class: "user__icon" %>
-          <% else %>
-            <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-          <% end %>
-        <% end %>
-        <%= link_to @post.user.name, @post.user %>
-        <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false } if @post.spot %>
+  <!-- 投稿内容 -->
+  <div class="post__body">
+    <!-- 投稿に対するアクション -->
+    <div class="post__action d-flex">
+      <!-- いいね -->
+      <div id="post_<%= @post.id %>">
+        <%= render 'likes/like_form', post: @post %>
       </div>
-
-      <div class="post__show__comment">
-        <div class="post__show__copy">
+      <!-- コメント投稿 -->
+      <div class="ml-2">
+        <% if user_signed_in? %>
           <div>
-            <%= render_with_hashtags(@post.content) %>
+            <%= link_to post_path(anchor: "comment") do %>
+              <i class="far fa-comment fa-fw"></i>
+            <% end %>
           </div>
-          <div class="post__time">
-            <%= l @post.created_at %>
-          </div>
-        </div>
-        <% @post.comments.each do |comment| %>
-          <div class="post__show__comment__body">
-            <div class="comment_user__icon">
-              <%= link_to comment.user do %>
-                <% if comment.user.image.attached? %>
-                  <%= image_tag resize40(comment.user.image), class: "user__icon" %>
-                <% else %>
-                  <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-                <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 投稿本文 -->
+    <div class="post__copy">
+      <div class="post__copy__scroll__area">
+        <strong><%= link_to @post.user.name, @post.user %></strong>
+        <%= render_with_hashtags(safe_join(@post.content.split("\n"), tag(:br))) %>
+      </div>
+    </div>
+
+    <!-- 投稿時刻 -->
+    <div class="time">
+      <%= l @post.created_at %>
+    </div>
+  </div>
+
+  <!-- コメント表示 -->
+  <div class="comment__body">
+    <div class="comment__scroll__area">
+      <% @comments.each do |comment| %>
+        <div class="comment__copy">
+          <div class="comment__user__icon">
+            <%= link_to comment.user do %>
+              <% if comment.user.image.attached? %>
+                <%= image_tag resize40(comment.user.image), class: "user__icon" %>
+              <% else %>
+                <%= image_pack_tag "user-icon.png", class: "user__icon" %>
               <% end %>
-            </div>
-            <div>
-              <%= link_to comment.user.name, comment.user, class: "comment_username" %>
-              <%= comment.content %><br>
-              <div class="comment__time">
-                <%= comment.created_at %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <%= form_for [@post, @comment], local: true do |f| %>
-        <div class="post__show__comment__form">
-          <div class="form-group">
-            <%= f.label :content, class: "d-none" %>
-            <%= f.text_area :content, placeholder: "コメント", class: "form-control comment__textarea" %>
+            <% end %>
           </div>
           <div>
-            <%= f.submit "送信", class: "btn btn-sm btn-secondary comment__btn" %>
+            <%= link_to comment.user.name, comment.user, class: "comment__username" %>
+            <%= comment.content %><br>
+            <div>
+              <span class="time"><%= time_ago_in_words(comment.created_at) %></span>
+              <%= link_to "削除", post_comment_path(@post.id, comment), method: :delete, class: "comment__link", data: { confirm: "本当に削除しますか？" } if comment.user == current_user %>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
   </div>
+
+  <!-- コメントフォーム -->
+  <div id="comment"></div>
+  <div class="comment__form">
+    <%= form_for [@post, @comment], local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :content, class: "d-none" %>
+        <%= f.text_area :content, placeholder: "コメント", rows: "3", class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "送信", class: "btn btn-sm btn-secondary btn-block" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
+<!-- 投稿内容編集 -->
 <div class="post__show__footer">
   <% if @post.user == current_user %>
     <%= link_to "編集", edit_post_path, class: "btn btn-sm btn-secondary" %>
@@ -73,13 +106,13 @@
   <% end %>
 </div>
 
+<!-- スライダー表示 -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.post__show__left__side').slick({
-      dots: true,
-      arrows: false
+    $('.post__figure').slick({
+      dots: true
     });
   });
 </script>
