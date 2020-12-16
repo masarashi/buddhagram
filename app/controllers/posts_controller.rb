@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_attached_images.find(params[:id])
+    @comments = Comment.includes(user: :image_attachment).where(post_id: @post.id)
     @comment = Comment.new
   end
 
@@ -15,13 +16,6 @@ class PostsController < ApplicationController
     @spots_search_result = Spot.new
     @spot = Spot.find(params[:spot_id]) if params[:spot_id].present?
   end
-
-  # 投稿確認画面用（作成保留）
-  # def confirm
-  #   @post = Post.new(post_params)
-  #   binding.pry
-  #   render 'new' if @post.invalid?
-  # end
 
   def create
     @post = Post.new(post_params)
@@ -42,6 +36,13 @@ class PostsController < ApplicationController
     #   redirect_to posts_path
     # end
   end
+
+  # 投稿確認画面用（作成保留）
+  # def confirm
+  #   @post = Post.new(post_params)
+  #   binding.pry
+  #   render 'new' if @post.invalid?
+  # end
 
   def edit
     @post = Post.with_attached_images.find(params[:id])

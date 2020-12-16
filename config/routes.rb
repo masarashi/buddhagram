@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/posts/search', to: 'posts#search'
 
   resources :posts do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
 

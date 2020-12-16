@@ -1,3 +1,4 @@
+<!-- 投稿内容表示 -->
 <div class="post border">
   <!-- 投稿したユーザ -->
   <div class="post__header">
@@ -7,7 +8,7 @@
       <% else %>
         <%= image_pack_tag "user-icon.png", class: "user__icon" %>
       <% end %>
-      <%= post.user.name %>
+      <strong><%= post.user.name %></strong>
     <% end %>
     <%= link_to post.spot.name, post.spot, data: { "turbolinks" => false } if post.spot %>
   </div>
@@ -38,7 +39,6 @@
             <%= link_to post do %>
               <i class="far fa-comment fa-fw"></i>
             <% end %>
-            <%#= post.comments.count %>
           </div>
         <% end %>
       </div>
@@ -51,8 +51,9 @@
     </div>
 
     <!-- コメント表示 -->
-    <div class="post__comment">
-      <% post.comments.each do |comment| %>
+    <%= link_to "コメント#{post.comments.count}件をすべて見る", post, class: "comment__link" if post.comments.count >= 3 %>
+    <div class="">
+      <% post.comments.first(3).each do |comment| %>
         <div>
           <div>
             <%= link_to comment.user do %>
@@ -65,21 +66,8 @@
     </div>
 
     <!-- 投稿時刻 -->
-    <div class="post__time">
-      <%= time_ago_in_words(post.created_at) %>
+    <div>
+      <%= link_to time_ago_in_words(post.created_at), post, class: "time" %>
     </div>
-
-    <% if false %>
-      <!--  -->
-      <div>
-        <% if post.likes.any? %>
-          <p>いいねしたユーザ：
-            <% post.liked_users.each do |user| %>
-              <%= link_to user.name, user %>
-            <% end %>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
   </div>
 </div>
