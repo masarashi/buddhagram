@@ -1,9 +1,17 @@
-<div class="mt-5">
-  <% if @spots_search_result.blank? %>
-    <p>検索結果がありません</p>
+<%= @error_messages %>
+
+<div class="mt-3">
+  <% if @error_message %>
+    <div class="error_message">
+      <%= @error_message %>
+    </div>
   <% else %>
-    <ol>
-      <%= render partial: 'posts/spot', collection: @spots_search_result %>
-    </ol>
+    <% if @spots_search_result.blank? %>
+      <p>検索結果がありません</p>
+    <% else %>
+      <ol>
+        <%= render partial: 'posts/spot', collection: @spots_search_result %>
+      </ol>
+    <% end %>
   <% end %>
 </div>

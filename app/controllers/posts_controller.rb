@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_attached_images.find(params[:id])
-    @comments = Comment.includes(user: :image_attachment).where(post_id: @post.id)
+    @comments = Comment.includes(user: [image_attachment: :blob]).where(post_id: @post.id)
     @comment = Comment.new
   end
 
@@ -50,18 +50,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    # binding.pry
-    
     if params[:post][:image_ids]
       params[:post][:image_ids].each do |image_id|
         image = @post.images.find(image_id)
         image.purge
       end
     end
-
-    # if params[:post][:images]
-    #   @post.images.push(params[:post][:images])
-    # end
 
     if @post.update(post_params)
       flash[:success] = '更新しました'
@@ -83,18 +77,14 @@ class PostsController < ApplicationController
     @posts_count = @posts.count
   end
 
-  # def add_spot
-  #   # binding.pry
-  #   @spot = Spot.find(params[:spot_id])
-  # end
-
   def search
     @spot = Spot.new
-    @search_keyword = params[:search_keyword]
-    @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
-    # @name = params[:search_name]
-    # @state = params[:search_state]
-    # @spots_search_result = Spot.where(name: @name).or(Spot.where(state: @state))
+    if params[:search_keyword].blank?
+      @error_message = "キーワードを入力してください"
+    else
+      @search_keyword = params[:search_keyword]
+      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+    end
   end
 
   private

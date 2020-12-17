@@ -1,11 +1,7 @@
 <div class="profile">
   <div class="profile__left__side">
     <div class="profile__figure">
-      <% if @user.image.attached? %>
-        <%= image_tag resize180(@user.image), class: "profile__image" %>
-      <% else %>
-        <%= image_pack_tag "user-icon.png", class: "profile__image" %>
-      <% end %>
+      <%= image_tag resize180(@user.image), class: "profile__image" %>
     </div>
   </div>
   <div class="profile__right__side">
@@ -44,5 +40,5 @@
 <hr>
 
 <div class="row">
-  <%= render partial: "users/post", collection: @posts.with_attached_images %>
+  <%= render partial: "users/post", collection: @posts %>
 </div>

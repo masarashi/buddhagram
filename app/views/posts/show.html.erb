@@ -3,11 +3,7 @@
   <!-- 投稿したユーザ -->
   <div class="post__header">
     <%= link_to @post.user do %>
-      <% if @post.user.image.attached? %>
-        <%= image_tag resize40(@post.user.image), class: "user__icon" %>
-      <% else %>
-        <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-      <% end %>
+      <%= image_tag resize40(@post.user.image), class: "user__icon" %>
       <strong><%= @post.user.name %></strong>
     <% end %>
     <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false } if @post.spot %>
@@ -63,11 +59,7 @@
         <div class="comment__copy">
           <div class="comment__user__icon">
             <%= link_to comment.user do %>
-              <% if comment.user.image.attached? %>
-                <%= image_tag resize40(comment.user.image), class: "user__icon" %>
-              <% else %>
-                <%= image_pack_tag "user-icon.png", class: "user__icon" %>
-              <% end %>
+              <%= image_tag resize40(comment.user.image), class: "user__icon" %>
             <% end %>
           </div>
           <div>

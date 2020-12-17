@@ -28,32 +28,32 @@
             <!-- ログイン中のメニュー -->
             <% if user_signed_in? %>
               <li class='nav-item'>
-                <%= link_to 'スポットを登録する', '/spots/get_address', class: 'nav-link' %>
+                <%= link_to '/search', class: 'nav-link' do %>
+                  <i class="fas fa-search fa-fw"></i> 検索
+                <% end %>
               </li>
               <li class='nav-item'>
-                <%= link_to 'スポットを探す', spots_path, class: 'nav-link' %>
+                <%= link_to user_timeline_path(current_user.id), class: 'nav-link' do %>
+                  <i class="far fa-images fa-fw"></i> タイムライン
+                <% end %>
               </li>
               <li class='nav-item'>
-                <%= link_to 'タイムライン', user_timeline_path(current_user.id), class: 'nav-link' %>
-              </li>
-              <li class='nav-item'>
-                <%= link_to '投稿する', new_post_path, class: 'nav-link' %>
+                <%= link_to new_post_path, class: 'nav-link' do %>
+                  <i class="far fa-plus-square fa-fw"></i> 投稿する
+                <% end %>
               </li>
               <li class='nav-item dropdown'>
                 <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                  <% if current_user.image.attached? %>
-                    <%= image_tag resize20(current_user.image), class: "nav__user__icon" %>
-                  <% else %>
-                    <%= image_pack_tag "user-icon.png", class: "nav__user__icon" %>
-                  <% end %>
+                  <%= image_tag resize20(current_user.image), class: "sm__user__icon" %>
                 </a>
                 <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                   <%= link_to current_user, class: 'dropdown-item' do %>
-                    <i class='far fa-user-circle fa-fw mr-2'></i>プロフィール
+                    <i class='far fa-user-circle fa-fw'></i> プロフィール
                   <% end %>
                   <%= link_to edit_user_registration_path(current_user), class: 'dropdown-item' do %>
-                    <i class='fas fa-user-edit fa-fw mr-2'></i>プロフィール編集
+                    <i class='fas fa-user-edit fa-fw'></i> プロフィール編集
                   <% end %>
+                  <%= link_to 'スポットを登録する', '/spots/get_address', class: 'dropdown-item' %>
                   <div class='dropdown-divider'></div>
                   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
                 </div>

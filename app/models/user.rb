@@ -17,6 +17,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :profile, length: { maximum: 256 }
 
+  before_create :default_image
+
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end
@@ -38,5 +40,11 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def default_image
+    if !self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'user-icon.png')), filename: 'user-icon.png', content_type: 'image/png')
+    end
   end
 end

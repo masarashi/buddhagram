@@ -1,0 +1,56 @@
+<% if false %>
+<div class="mt-5">
+  <% if @spots_search_result.blank? %>
+    <p>検索結果がありません</p>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>所在地</th>
+          <th>住所</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'spots/spot', collection: @spots_search_result %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+<% end %>
+
+<div class="mt-3">
+  <% if @error_message %>
+    <div class="error_message">
+      <%= @error_message %>
+    </div>
+  <% else %>
+    <% if @users_search_result.blank? and @hashtags_search_result.blank? and @spots_search_result.blank? %>
+      <p>検索結果がありません</p>
+    <% else %>
+      <ol>
+        <% @users_search_result.each do |user| %>
+          <li class="mt-2">
+            <%= link_to user do %>
+              <%= image_tag resize20(user.image), class: "sm__user__icon" %> <strong><%= user.name %></strong>
+            <% end %>
+          </li>
+        <% end %>
+        <% @hashtags_search_result.each do |hashtag| %>
+          <li class="mt-2">
+            <%= link_to "/post/hashtag/#{hashtag.name}" do %>
+              <i class="fas fa-hashtag fa-fw fa-lg"></i> <strong><%= hashtag.name %></strong>
+            <% end %>
+          </li>
+        <% end %>
+        <% @spots_search_result.each do |spot| %>
+          <li class="mt-2">
+            <%= link_to spot do %>
+              <i class="fas fa-map-marker-alt fa-fw fa-lg"></i> <strong><%= spot.name %></strong>　<%= spot.state %>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+  <% end %>
+</div>

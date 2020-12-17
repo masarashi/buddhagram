@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'spots#index'
 
+  get '/search', to: 'search#index'
+  get '/search/search', to: 'search#search'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
