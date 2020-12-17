@@ -2,11 +2,6 @@ class SpotsController < ApplicationController
   def index
     @spots = Spot.all
     @spots_search_result = Spot.new
-
-    # latitude = params[:latitude].to_f
-    # longitude = params[:longitude].to_f
-    # @locations = Spot.within_box(1000, latitude, longitude)
-    # gon.locations = @locations
   end
 
   def show
@@ -51,11 +46,14 @@ class SpotsController < ApplicationController
 
   def search
     @spot = Spot.new
-    @search_keyword = params[:search_keyword]
-    @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
-    # @name = params[:search_name]
-    # @state = params[:search_state]
-    # @spots_search_result = Spot.where(name: @name).or(Spot.where(state: @state))
+    if params[:search_keyword].blank?
+      @error_message = "キーワードを入力してください"
+    else
+      @search_keyword = params[:search_keyword]
+      @users_search_result = User.where(['name LIKE ?', "%#{@search_keyword}%"])
+      @hashtags_search_result = Hashtag.where(['name LIKE ?', "%#{@search_keyword}%"])
+      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+    end
   end
 
   private

@@ -1,8 +1,8 @@
 <div>
-  <%= form_with url: "/spots/search", method: :get do |f| %>
+  <%= form_with url: "/search/search", method: :get do |f| %>
     <div class="form-group">
       <%#= f.label :キーワードで探す %>
-      <%= f.text_area :search_keyword, :placeholder => "地名や住所を入力してください", class: "form-control", rows: "1" %>
+      <%= f.text_area :search_keyword, :placeholder => "地名、住所、ユーザー名、ハッシュタグ(#不要)", class: "form-control", rows: "1" %>
     </div>
     <div>
       <%= f.submit "検索", class: "btn btn-secondary btn-block" %>
@@ -11,7 +11,7 @@
 
   <div id="search_result">
     <% unless @spots_search_result %>
-      <%= render "spots/search_result" %>
+      <%= render "search/result" %>
     <% end %>
   </div>
 </div>

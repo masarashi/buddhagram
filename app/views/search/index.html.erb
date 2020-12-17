@@ -1,8 +1,12 @@
 <div>
   <%= button_tag type: "button", onclick: "getPosition();", class: "btn btn-lg btn-success btn-block" do %>
-    <i class="fas fa-location-arrow"></i>　現在地周辺スポットを探す
+    <i class="fas fa-location-arrow fa-lg"></i>　現在地周辺スポットを探す
   <% end %>
 </div>
+
+<p class="mt-5">キーワードで探す</p>
+
+<%= render 'form' %>
 
 <!-- GoogleMap -->
 <script>

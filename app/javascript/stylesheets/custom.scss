@@ -32,12 +32,8 @@ a.hashtag:hover {
   clear: both;
 }
 
-.imagecentering {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.error_message {
+  color: red; 
 }
 
 .profile {
@@ -122,12 +118,12 @@ a.hashtag:hover {
 }
 
 .post__copy {
-  max-height: 170px;
+  max-height: 175px;
   margin-top: 5px;
 }
 
 .post__copy__scroll__area {
-  max-height: 170px;
+  max-height: 175px;
   overflow: auto;
 }
 
@@ -137,7 +133,7 @@ a.hashtag:hover {
   color: #a9a9a9;
 }
 
-.nav__user__icon {
+.sm__user__icon {
   width: 20px;
   height: 20px;
   border-radius: 50%;
