@@ -25,14 +25,21 @@
       <%= @error_message %>
     </div>
   <% else %>
-    <% if @users_search_result.blank? and @hashtags_search_result.blank? and @spots_search_result.blank? %>
+    <% if @users_search_result.blank? and @hashtags_search_result.blank? and @spots_search_result.blank? and @statues_search_result.blank? %>
       <p>検索結果がありません</p>
     <% else %>
       <ol>
-        <% @users_search_result.each do |user| %>
+        <% @statues_search_result.each do |statue| %>
           <li class="mt-2">
-            <%= link_to user do %>
-              <%= image_tag resize20(user.image), class: "sm__user__icon" %> <strong><%= user.name %></strong>
+            <%= link_to statue do %>
+              <i class='fas fa-spa fa-fw fa-lg'></i> <strong><%= statue.name %></strong>
+            <% end %>
+          </li>
+        <% end %>
+        <% @spots_search_result.each do |spot| %>
+          <li class="mt-2">
+            <%= link_to spot, data: { "turbolinks" => false } do %>
+              <i class="fas fa-map-marker-alt fa-fw fa-lg"></i> <strong><%= spot.name %></strong>　<%= spot.state %>
             <% end %>
           </li>
         <% end %>
@@ -43,10 +50,10 @@
             <% end %>
           </li>
         <% end %>
-        <% @spots_search_result.each do |spot| %>
+        <% @users_search_result.each do |user| %>
           <li class="mt-2">
-            <%= link_to spot do %>
-              <i class="fas fa-map-marker-alt fa-fw fa-lg"></i> <strong><%= spot.name %></strong>　<%= spot.state %>
+            <%= link_to user do %>
+              <%= image_tag resize20(user.image), class: "sm__user__icon" %> <strong><%= user.name %></strong>
             <% end %>
           </li>
         <% end %>

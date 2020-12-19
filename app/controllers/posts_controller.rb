@@ -56,7 +56,6 @@ class PostsController < ApplicationController
         image.purge
       end
     end
-
     if @post.update(post_params)
       flash[:success] = '更新しました'
       redirect_to @post
