@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'spots#index'
+  root 'search#index'
 
   get '/search', to: 'search#index'
   get '/search/search', to: 'search#search'
@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   get '/spots/get_address', to: 'spots#get_address'
   get '/spots/search', to: 'spots#search'
   resources :spots
+
+  resources :statues
 end

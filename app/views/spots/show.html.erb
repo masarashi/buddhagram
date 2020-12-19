@@ -34,6 +34,23 @@
   }
 </script>
 
+<div class="text-center">
+  <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-sm" %>
+  <%= link_to "削除", edit_spot_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
+</div>
+
+<h4>所蔵する国宝彫刻</h4>
+
+<% if @spot.statues.empty? %>
+  データがありません
+<% else %>
+  <ul>
+    <% @spot.statues.each do |statue| %>
+      <li><%= link_to statue.name, statue %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h4>この場所の投稿</h4>
 
 <% if @spot.posts.empty? %>

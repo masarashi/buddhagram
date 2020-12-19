@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_071752) do
+ActiveRecord::Schema.define(version: 2020_12_17_114625) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -94,10 +94,22 @@ ActiveRecord::Schema.define(version: 2020_12_10_071752) do
   end
 
   create_table "statues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
+    t.string "ruby"
+    t.string "grade"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_statues_on_name", unique: true
+  end
+
+  create_table "storehouses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "spot_id", null: false
+    t.bigint "statue_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_storehouses_on_spot_id"
+    t.index ["statue_id"], name: "index_storehouses_on_statue_id"
   end
 
   create_table "taggings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -131,6 +143,8 @@ ActiveRecord::Schema.define(version: 2020_12_10_071752) do
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "spots"
   add_foreign_key "posts", "users"
+  add_foreign_key "storehouses", "spots"
+  add_foreign_key "storehouses", "statues"
   add_foreign_key "taggings", "hashtags"
   add_foreign_key "taggings", "posts"
 end
