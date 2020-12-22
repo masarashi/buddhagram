@@ -1,12 +1,12 @@
 <% if user_signed_in? %>
   <% if current_user.liked_by?(post.id) %>
     <%= link_to post_like_path(post, post.likes), method: :delete, remote: true do %>
-      <i class='fas fa-heart fa-fw' style='color: #ff1493'></i>
+      <i class='fas fa-heart fa-lg fa-fw' style='color: #ff1493'></i>
     <% end %>
     <%#= post.likes.count %>
   <% else %>
     <%= link_to post_likes_path(post), method: :post, remote: true do %>
-      <i class='far fa-heart fa-fw'></i>
+      <i class='far fa-heart fa-lg fa-fw'></i>
     <% end %>
     <%#= post.likes.count %>
   <% end %>

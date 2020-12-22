@@ -1,3 +1,20 @@
-<div>
+<% if false %>
+  <div>
+    <%= render partial: 'posts/post', collection: @posts %>
+  </div>
+<% end %>
+
+<div class="jscroll">
   <%= render partial: 'posts/post', collection: @posts %>
+  <span class="d-none"><%== pagy_nav(@pagy) %></span>
 </div>
+
+<script>
+  $(function() {
+  $('.jscroll').jscroll({
+    loadingHtml: '読み込み中',
+    contentSelector: '.jscroll',
+    nextSelector: 'span.next:last a'
+  });
+});
+</script>

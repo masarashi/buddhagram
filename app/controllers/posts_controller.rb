@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
+  include Pagy::Backend
 
   def index
-    @posts = Post.with_attached_images.includes(:user, :spot, :comments).order(created_at: :desc)
+    # @posts = Post.with_attached_images.includes(:user, :spot, :comments).order(created_at: :desc)
+    @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
     @like = Like.new
   end
 

@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+  include Pagy::Backend
+
   def index
     @spots = Spot.all
     @spots_search_result = Spot.new
@@ -6,6 +8,7 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @pagy, @posts = pagy(@spot.posts.order(created_at: :desc), items: 9)
   end
 
   def new

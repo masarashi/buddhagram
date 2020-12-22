@@ -130,6 +130,7 @@ a.hashtag:hover {
 }
 
 .post__figure {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -137,6 +138,13 @@ a.hashtag:hover {
 .post__image {
   max-width: 100%;
   height: auto;
+}
+
+.multiple__images {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  color: #a9a9a9;
 }
 
 .post__body {
@@ -149,11 +157,6 @@ a.hashtag:hover {
 .post__copy {
   max-height: 180px;
   margin-top: 5px;
-}
-
-.post__copy__scroll__area {
-  max-height: 180px;
-  overflow: auto;
 }
 
 .user__and__location {
@@ -189,18 +192,18 @@ a.hashtag:hover {
 }
 
 .comment__body {
-  max-height: 270px;
-  padding: 0px 15px 15px 15px;
+  max-height: 450;
+  padding: 0px 15px 0px 15px;
 }
 
 .comment__scroll__area {
-  max-height: 255px;
+  max-height: 450px;
   overflow: auto;
 }
 
 .comment__copy {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .time {
@@ -210,6 +213,7 @@ a.hashtag:hover {
 
 .comment__link {
   color: #a9a9a9;
+  font-size: 0.9em;
 }
 
 .post__show__footer {
