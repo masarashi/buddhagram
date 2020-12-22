@@ -1,4 +1,5 @@
 module UsersHelper
+  include Pagy::Frontend
 
   def resize20(image)
     image.variant(resize_to_fit: [20, 20])
