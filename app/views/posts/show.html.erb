@@ -2,11 +2,17 @@
 <div class="post border">
   <!-- 投稿したユーザ -->
   <div class="post__header">
-    <%= link_to @post.user do %>
-      <%= image_tag resize40(@post.user.image), class: "user__icon" %>
-      <strong><%= @post.user.name %></strong>
-    <% end %>
-    <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false } if @post.spot %>
+    <div class="post__header__aside">
+      <%= link_to @post.user do %>
+        <%= image_tag resize40(@post.user.image), class: "user__icon__40" %>
+      <% end %>
+      <div class="user__and__location">
+        <div>
+          <%= link_to @post.user.name, @post.user, class: "user__name" %>
+        </div>
+        <%= link_to @post.spot.name, @post.spot, data: { "turbolinks" => false }, class: "user__post__location" if @post.spot %>
+      </div>
+    </div>
   </div>
 
   <!-- 投稿画像表示 -->
@@ -53,18 +59,40 @@
   </div>
 
   <!-- コメント表示 -->
+  <% if false %>
   <div class="comment__body">
     <div class="comment__scroll__area">
       <% @comments.each do |comment| %>
         <div class="comment__copy">
           <div class="comment__user__icon">
             <%= link_to comment.user do %>
-              <%= image_tag resize40(comment.user.image), class: "user__icon" %>
+              <%= image_tag resize40(comment.user.image), class: "user__icon__40" %>
             <% end %>
           </div>
           <div>
             <%= link_to comment.user.name, comment.user, class: "comment__username" %>
             <%= comment.content %><br>
+            <div>
+              <span class="time"><%= time_ago_in_words(comment.created_at) %></span>
+              <%= link_to "削除", post_comment_path(@post.id, comment), method: :delete, class: "comment__link", data: { confirm: "本当に削除しますか？" } if comment.user == current_user %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="comment__body">
+    <div class="comment__scroll__area">
+      <% @comments.each do |comment| %>
+        <div class="comment__copy">
+          <%= link_to comment.user do %>
+            <%= image_tag resize40(comment.user.image), class: "user__icon__40" %>
+          <% end %>
+          <div>
+            <strong><%= link_to comment.user.name, comment.user %></strong>
+            <%= comment.content %>
             <div>
               <span class="time"><%= time_ago_in_words(comment.created_at) %></span>
               <%= link_to "削除", post_comment_path(@post.id, comment), method: :delete, class: "comment__link", data: { confirm: "本当に削除しますか？" } if comment.user == current_user %>

@@ -36,6 +36,24 @@ a.hashtag:hover {
   color: red; 
 }
 
+.user__icon__20 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+.user__icon__40 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+// プロフィール
+
 .profile {
   display: flex;
   height: 200px;
@@ -71,10 +89,6 @@ a.hashtag:hover {
   padding: 10px;
 }
 
-.profile__right__side__header {
-
-}
-
 .profile__button {
   margin-bottom: 10px;
 }
@@ -88,16 +102,31 @@ a.hashtag:hover {
 
 }
 
+
+// 投稿内容
+
+.slick__arrows {
+  background-color: #000;
+}
+
 .post {
   width: 600px;
   height: auto;
   margin: 0 auto 10px;
   background-color: #fff;
+  font-size: 0.9em;
 }
 
 .post__header {
-  padding: 10px 15px;
+  height: 70px;
+  padding: 0px 15px;
   border-bottom: 1px solid #eee;
+}
+
+.post__header__aside {
+  display: table-cell;
+  height: 69px;
+  vertical-align: middle;
 }
 
 .post__figure {
@@ -118,47 +147,33 @@ a.hashtag:hover {
 }
 
 .post__copy {
-  max-height: 175px;
+  max-height: 180px;
   margin-top: 5px;
 }
 
 .post__copy__scroll__area {
-  max-height: 175px;
+  max-height: 180px;
   overflow: auto;
 }
 
-.post__time {
-  margin-top: 5px;
-  font-size: 0.8em;
+.user__and__location {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user__name {
+  font-weight: bold;
+  vertical-align: middle;
+}
+ 
+.user__post__location {
   color: #a9a9a9;
+  line-height: 1;
 }
-
-.sm__user__icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-// .user__post {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-// }
 
 .user__post__item {
-  // width: 30%;
   height: auto;
   margin-bottom: 30px;
-  // padding: 0px;
-  // background-color: #fff;
 }
 
 .user__post__item__figure {
@@ -173,52 +188,9 @@ a.hashtag:hover {
   object-fit: contain;
 }
 
-.post__show {
-  width: 1000px;
-  // min-height: 600px;
-  margin: 0 auto; 
-  background-color: #fff;
-}
-
-.post__show__body {
-  display: flex;
-  // height: 100%;
-}
-
-.post__show__left__side {
-  width: 600px;
-  min-height: 600px;
-}
-
-.post__show__right__side {
-  position: relative;
-  width: 400px;
-  min-height: 600px;
-  border-left: 1px solid #eee;
-}
-
-.post__show__username {
-  width: 100%;
-  height: 60px;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-// .post__show__copy {
-//   padding: 10px;
-//   margin-bottom: 10px;
-// }
-
-.post__show__copy {
-  height: 76%;
-  margin-bottom: 10px;
-  padding: 10px 10px 0px 10px;
-  overflow: auto;
-}
-
 .comment__body {
   max-height: 270px;
-  padding: 15px;
+  padding: 0px 15px 15px 15px;
 }
 
 .comment__scroll__area {
@@ -229,12 +201,15 @@ a.hashtag:hover {
 .comment__copy {
   display: flex;
   margin-bottom: 10px;
-  // margin-bottom: 10px;
 }
 
-.comment__form {
-  padding: 10px;
-  border-top: 1px solid #eee;
+.time {
+  color: #a9a9a9;
+  font-size: 0.9em;
+}
+
+.comment__link {
+  color: #a9a9a9;
 }
 
 .post__show__footer {
@@ -242,32 +217,15 @@ a.hashtag:hover {
   text-align: center;
 }
 
-.comment__user__icon {
-  // padding: 10px;
+.comment__form {
+  padding: 10px;
+  border-top: 1px solid #eee;
 }
 
-.comment__username {
-  // padding: 10px;
-  font-weight: bold;
-}
 
-.time {
-  margin-top: 5px;
-  font-size: 0.9em;
-  color: #a9a9a9;
-}
-
-.comment__link {
-  margin-top: 5px;
-  font-size: 0.9em;
-  color: #a9a9a9;
-}
+// 地図
 
 #map {
   height: 400px;
   width: 100%;
-}
-
-.slick__arrows {
-  background-color: #000;
 }

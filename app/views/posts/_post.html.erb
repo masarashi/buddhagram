@@ -2,11 +2,17 @@
 <div class="post border">
   <!-- 投稿したユーザ -->
   <div class="post__header">
-    <%= link_to post.user do %>
-      <%= image_tag resize40(post.user.image), class: "user__icon" %>
-      <strong><%= post.user.name %></strong>
-    <% end %>
-    <%= link_to post.spot.name, post.spot, data: { "turbolinks" => false } if post.spot %>
+    <div class="post__header__aside">
+      <%= link_to post.user do %>
+        <%= image_tag resize40(post.user.image), class: "user__icon__40" %>
+      <% end %>
+      <div class="user__and__location">
+        <div>
+          <%= link_to post.user.name, post.user, class: "user__name" %>
+        </div>
+        <%= link_to post.spot.name, post.spot, data: { "turbolinks" => false }, class: "user__post__location" if post.spot %>
+      </div>
+    </div>
   </div>
 
   <!-- 投稿された画像 -->
