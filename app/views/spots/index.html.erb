@@ -5,6 +5,7 @@
         <th>名称</th>
         <th>所在地</th>
         <th>住所</th>
+        <th>投稿件数</th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +14,11 @@
           <td><%= link_to spot.name, spot, data: { "turbolinks" => false } %></td>
           <td><%= spot.state %></td>
           <td><%= spot.address %></td>
+          <% if spot.posts.count >= 1 %>
+            <td><%= spot.posts.count %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

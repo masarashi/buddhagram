@@ -8,7 +8,9 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
-    @pagy, @posts = pagy(@spot.posts.order(created_at: :desc), items: 9)
+    @posts = @spot.posts.order(created_at: :desc)
+    @popular_posts = @posts.limit(6).sort{ |a,b| b.likes.count <=> a.likes.count }
+    @pagy, @latest_posts = pagy(@posts, items: 3)
   end
 
   def new
