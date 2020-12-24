@@ -62,6 +62,7 @@ gem 'devise'
 gem 'devise-i18n'
 # AWS S3
 gem 'aws-sdk-s3', require: false
+gem 'active_storage_validations'
 # 画像処理
 gem 'image_processing'
 gem 'mini_magick'
