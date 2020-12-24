@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # post 'posts/confirm', to: 'posts#confirm'
   get '/post/hashtag/:name', to: 'posts#hashtag'
   get '/posts/search', to: 'posts#search'
+  get '/posts/latest', to: 'posts#latest'
 
   resources :posts do
     resources :comments, only: [:create, :destroy]

@@ -9,11 +9,21 @@
 <%= render 'form' %>
 
 <div class="mt-5">
-  <%= link_to "仏像一覧を見る", statues_path %>
+  <%= link_to "仏像一覧を見る", statues_path, class: "btn btn-lg btn-primary btn-block" %>
 </div>
 
-<div class="mt-5">
-  <%= link_to "スポット一覧を見る", spots_path %>
+<div class="mt-2">
+  <%= link_to "スポット一覧を見る", spots_path, class: "btn btn-lg btn-primary btn-block" %>
+</div>
+
+<h6 class="mt-5">最新の投稿</h6>
+
+<div class="row">
+  <%= render partial: "users/post", collection: @posts %>
+</div>
+
+<div class="text-center">
+  <%= link_to "みんなの投稿を見る", posts_latest_path %>
 </div>
 
 <!-- GoogleMap -->

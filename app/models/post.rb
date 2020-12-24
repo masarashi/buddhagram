@@ -6,8 +6,6 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :taggings, dependent: :destroy
   has_many :hashtags, through: :taggings
-  has_many :storehouses, dependent: :destroy
-  has_many :statues, through: :storehouses
   has_many_attached :images
 
   # def likes_count(post)

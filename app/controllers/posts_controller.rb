@@ -67,15 +67,21 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    Post.find(params[:id]).destroy!
     flash[:success] = '削除しました'
     redirect_to posts_path
   end
 
   def hashtag
     @hashtag = Hashtag.find_by(name: params[:name])
-    @posts = @hashtag.posts
-    @posts_count = @posts.count
+    if @hashtag
+      @posts = @hashtag.posts.order(created_at: :desc)
+      @popular_posts = @posts.limit(6).sort{ |a,b| b.likes.count <=> a.likes.count }
+      @pagy, @latest_posts = pagy(@posts, items: 3)
+      @posts_count = @posts.count
+    else
+      redirect_to root_path
+    end
   end
 
   def search
@@ -86,6 +92,11 @@ class PostsController < ApplicationController
       @search_keyword = params[:search_keyword]
       @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
     end
+  end
+
+  def latest
+    @posts = Post.all.order(created_at: :desc)
+    @pagy, @latest_posts = pagy(@posts, items: 9)
   end
 
   private
