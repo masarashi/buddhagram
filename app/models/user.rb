@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  before_create :default_image
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -14,10 +16,12 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_one_attached :image
 
+  validates :image, presence: true,
+                    content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
+                    size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
+
   validates :name, presence: true
   validates :profile, length: { maximum: 256 }
-
-  before_create :default_image
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?

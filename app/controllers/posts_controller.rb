@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   include Pagy::Backend
 
   def index
-    # @posts = Post.with_attached_images.includes(:user, :spot, :comments).order(created_at: :desc)
     @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
     @like = Like.new
   end
@@ -106,7 +105,6 @@ class PostsController < ApplicationController
     end
     
     def post_confirm_params
-      # params.permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
       params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
     end
 end
