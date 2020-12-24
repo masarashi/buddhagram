@@ -4,6 +4,8 @@
       <%= render partial: 'posts/post', collection: @feed_items %>
       <span class="d-none"><%== pagy_nav(@pagy) %></span>
     </div>
+  <% else %>
+    投稿してみよう
   <% end %>
 <% end %>
 

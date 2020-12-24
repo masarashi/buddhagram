@@ -4,6 +4,15 @@
       <% post.images.first(1).each do |image| %>
         <%= image_tag resize300(image), class: "user__post__item__image" %>
       <% end %>
+      <% if post.images.count >= 2 %>
+        <i class="fas fa-clone multiple__images"></i>
+      <% end %>
+      <div class="mask">
+        <div class="caption">
+          <i class="fas fa-heart fa-lg fa-fw"></i> <%= post.likes.count %>
+          <i class="fas fa-comment fa-lg fa-fw ml-5"></i> <%= post.comments.count %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

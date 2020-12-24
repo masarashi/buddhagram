@@ -1,7 +1,10 @@
 class SearchController < ApplicationController
+  include Pagy::Backend
+
   def index
     @spots = Spot.all
     @spots_search_result = Spot.new
+    @posts = Post.all.order(created_at: :desc).limit(9)
   end
 
   def search

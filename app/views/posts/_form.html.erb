@@ -1,7 +1,7 @@
 <%= form_with model: @post, local: true do |f| %>
   <div class="form-group">
     <%= f.label :images, class: "d-none" %>
-    <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control" %>
+    <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
   </div>
   <div class="form-group">
     <%= f.label :content, class: "d-none" %>
@@ -9,10 +9,8 @@
   </div>
   <% if @spot.present? %>
     <div class="form-group">
-      <p>
-        場所：<strong><%= @spot.name %></strong>
-        <%= link_to "削除", new_post_path(spot_id: nil), method: :post, remote: true %>  
-      </p>
+      場所：<strong><%= @spot.name %></strong>
+      <%= link_to "削除", new_post_path(spot_id: nil), method: :post, remote: true %>  
       <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: "form-control" %>
     </div>
   <% end %>

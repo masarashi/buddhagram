@@ -14,6 +14,6 @@ module UsersHelper
   end
 
   def resize300(image)
-    image.variant(resize_to_fit: [300, 300])
+    image.variant(resize_to_fill: [300, 300])
   end
 end

@@ -39,7 +39,7 @@
   <%= link_to "削除", edit_spot_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
 </div>
 
-<h5>所蔵する国宝彫刻</h5>
+<h6>所蔵する国宝彫刻</h6>
 
 <% if @spot.statues.empty? %>
   データがありません
@@ -53,14 +53,14 @@
 
 <div>
   <% if @spot.posts.empty? %>
-    <h5>人気の投稿</h5>
+    <h6>最新の投稿</h6>
     投稿はまだありません
   <% else %>
-    <h5 class="mt-5">人気の投稿</h5>
+    <h6 class="mt-5">人気の投稿</h6>
     <div class="row">
       <%= render partial: "users/post", collection: @popular_posts %>
     </div>
-    <h5 class="mt-5">最新の投稿</h5>
+    <h6 class="mt-5">最新の投稿</h6>
     <div class="jscroll">
       <div class="row">
         <%= render partial: "users/post", collection: @latest_posts %>
