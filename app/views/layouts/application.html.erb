@@ -53,8 +53,13 @@
                   <%= link_to edit_user_registration_path(current_user), class: 'dropdown-item' do %>
                     <i class='fas fa-user-edit fa-fw'></i> プロフィール編集
                   <% end %>
-                  <%= link_to "仏像登録", new_statue_path, class: 'dropdown-item' %>
-                  <%= link_to 'スポットを登録する', '/spots/get_address', class: 'dropdown-item' %>
+                  <!-- 管理者のみ -->
+                  <% if current_user.admin? %>
+                    <%= link_to "ユーザ管理", users_path, class: 'dropdown-item' %>
+                    <%= link_to "投稿管理", posts_path, class: 'dropdown-item' %>
+                    <%= link_to "仏像登録", new_statue_path, class: 'dropdown-item' %>
+                    <%= link_to 'スポットを登録する', '/spots/get_address', class: 'dropdown-item' %>
+                  <% end %>
                   <div class='dropdown-divider'></div>
                   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
                 </div>

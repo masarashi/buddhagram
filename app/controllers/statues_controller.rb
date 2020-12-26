@@ -1,4 +1,6 @@
 class StatuesController < ApplicationController
+  before_action :admin?, only: %i[new create edit update destroy]
+
   def index
     @statues = Statue.all
   end

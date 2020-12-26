@@ -1,6 +1,8 @@
 class SpotsController < ApplicationController
   include Pagy::Backend
 
+  before_action :admin?, only: %i[new create edit update destroy get_address]
+
   def index
     @spots = Spot.all
     @spots_search_result = Spot.new
@@ -32,6 +34,18 @@ class SpotsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
   end
 
   def get_address
