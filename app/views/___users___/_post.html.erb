@@ -1,9 +1,0 @@
-<div class="col-4 user__post__item">
-  <%= link_to post, data: { "turbolinks" => false } do %>
-    <div class="user__post__item__figure">
-      <% post.images.first(1).each do |image| %>
-        <%= image_tag resize300(image), class: "user__post__item__image" %>
-      <% end %>
-    </div>
-  <% end %>
-</div>

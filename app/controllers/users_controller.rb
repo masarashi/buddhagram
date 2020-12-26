@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   include Pagy::Backend
 
+  before_action :admin?, only: :index
   before_action :authenticate_user!, only: :timeline
   before_action :correct_user, only: :timeline
+
+  def index
+    @pagy, @users = pagy(User.all)
+  end
 
   def show
     @user = User.find(params[:id])

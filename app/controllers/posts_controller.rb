@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
-    @like = Like.new
+    # @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
+    # @like = Like.new
+    @pagy, @posts = pagy(Post.includes(:user).order(created_at: :desc))
   end
 
   def show

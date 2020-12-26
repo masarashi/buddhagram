@@ -1,20 +1,20 @@
-<% if false %>
-  <div>
-    <%= render partial: 'posts/post', collection: @posts %>
-  </div>
-<% end %>
-
-<div class="jscroll">
-  <%= render partial: 'posts/post', collection: @posts %>
-  <span class="d-none"><%== pagy_nav(@pagy) %></span>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>投稿日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.user.name %></td>
+          <td><%= l post.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<script>
-  $(function() {
-  $('.jscroll').jscroll({
-    loadingHtml: '読み込み中',
-    contentSelector: '.jscroll',
-    nextSelector: 'span.next:last a'
-  });
-});
-</script>
+<%== pagy_bootstrap_nav(@pagy) %>
