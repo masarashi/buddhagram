@@ -18,12 +18,12 @@
   
   <div class="form-group row">
     <%= f.label :name, class: "col-sm-3 col-form-label" %>
-    <%= f.text_field :name, autocomplete: "name", class: "col-sm-9 form-control" %>
+    <%= f.text_field :name, :placeholder => "32文字以内", autocomplete: "name", class: "col-sm-9 form-control" %>
   </div>
 
   <div class="form-group row">
     <%= f.label :profile, class: "col-sm-3 col-form-label" %>
-    <%= f.text_area :profile, rows: "3", class: "col-sm-9 form-control"  %>
+    <%= f.text_area :profile, :placeholder => "256文字以内", rows: "6", class: "col-sm-9 form-control"  %>
   </div>
 
   <div class="form-group row">

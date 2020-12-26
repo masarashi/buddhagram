@@ -16,21 +16,18 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_one_attached :image
 
-  validates :image, presence: true,
-                    content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
-                    size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
-
-  validates :name, presence: true
+  validates :name,    presence: true, uniqueness: true, length: { maximum: 32 }
   validates :profile, length: { maximum: 256 }
+  validates :image,   attached: true, content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
+                                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end
 
-  # ユーザーのステータスフィードを返す
   def feed
     following_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
-    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).with_attached_images.includes(:user, :spot, [comments: :user]).order(created_at: :desc)
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).with_attached_images.includes(:user, :spot, :comments, user: [image_attachment: :blob]).order(created_at: :desc)
   end
 
   def follow(other_user)
