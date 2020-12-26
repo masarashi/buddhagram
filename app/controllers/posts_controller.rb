@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
+  before_action :authenticate_user!, only: %i[new create update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
+
   def index
     @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
     @like = Like.new
@@ -104,7 +107,12 @@ class PostsController < ApplicationController
       params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
     end
     
-    def post_confirm_params
-      params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+    def correct_user
+      @post = current_user.posts.find_by(id: params[:id])
+      redirect_to root_url if @post.nil?
     end
+
+    # def post_confirm_params
+    #   params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+    # end
 end

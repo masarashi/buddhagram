@@ -7,13 +7,12 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :taggings, dependent: :destroy
   has_many :hashtags, through: :taggings
-
   has_many_attached :images
 
-  validates :images,  presence: true,
-                      content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
-                      dimension: { width: 5000, height: 5000, message: "画像の大きさは5000x5000までにしてください" },
-                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
+  validates :content, length: { maximum: 512 }
+  validates :images,  attached: true, limit: { min: 1, max: 5 },
+                                      content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
+                                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
 
   after_create do
     post = Post.find_by(id: id)

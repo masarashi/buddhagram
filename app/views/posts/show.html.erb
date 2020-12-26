@@ -82,17 +82,19 @@
   </div>
 
   <!-- コメントフォーム -->
-  <div class="comment__form">
-    <%= form_for [@post, @comment], local: true do |f| %>
-      <div class="form-group">
-        <%= f.label :content, class: "d-none" %>
-        <%= f.text_area :content, placeholder: "コメント", rows: "3", class: "form-control" %>
-      </div>
-      <div>
-        <%= f.submit "送信", class: "btn btn-sm btn-secondary btn-block" %>
-      </div>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="comment__form">
+      <%= form_for [@post, @comment], local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :content, class: "d-none" %>
+          <%= f.text_area :content, placeholder: "コメント", rows: "3", class: "form-control" %>
+        </div>
+        <div>
+          <%= f.submit "送信", class: "btn btn-sm btn-secondary btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <!-- 投稿内容編集 -->

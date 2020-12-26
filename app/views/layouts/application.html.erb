@@ -59,7 +59,7 @@
                   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
                 </div>
               </li>
-              <!-- 非ログイン時のメニュー -->
+            <!-- 非ログイン時のメニュー -->
             <% else %>
               <li class='nav-item'>
                 <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link' %>
