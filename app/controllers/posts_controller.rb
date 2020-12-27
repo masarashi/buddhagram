@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       flash[:notice] = '投稿しました'
-      redirect_to posts_path
+      redirect_to user_timeline_path(@post.user)
     else
       render 'new'
     end

@@ -3,5 +3,9 @@ FactoryBot.define do
     sequence(:name)   { |n| "user#{n}" }
     sequence(:email)  { |n| "tester#{n}@example.com" }
     password          { "hogehoge" }
+
+    after(:build) do |user|
+      user.image.attach(io: File.open('spec/images/user-icon.png'), filename: 'user-icon.png', content_type: 'image/png')
+    end
   end
 end

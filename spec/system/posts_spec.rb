@@ -8,15 +8,15 @@ RSpec.describe "Posts", type: :system do
   scenario "user creates a new post" do
     user = FactoryBot.create(:user)
 
-    visit root_path
+    visit new_user_session_path
     click_link "ログイン"
     fill_in "user_email", with: user.email
     fill_in "user_password", with: user.password
-    click_button "Log in"
+    click_button "ログイン"
 
     expect {
       click_link "投稿する"
-      attach_file "post_images", "/buddhagram/app/javascript/images//user-icon.png"
+      attach_file "post_images", "/buddhagram/app/javascript/images/user-icon.png"
       fill_in "post_content", with: "Test Post"
       click_button "投稿"
 

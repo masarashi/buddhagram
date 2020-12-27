@@ -6,7 +6,7 @@ class Spot < ApplicationRecord
   has_many :storehouses, dependent: :destroy
   has_many :statues, through: :storehouses
   
-  validates :name,      presence: true, uniqueness: true
+  validates :name,      presence: true, uniqueness: { case_sensitive: true }  # 大文字と小文字を区別する
   validates :country,   presence: true
   validates :state,     presence: true
   validates :address,   presence: true
