@@ -9,11 +9,11 @@ RSpec.describe "Relationships", type: :system do
     userA = FactoryBot.create(:user)
     userB = FactoryBot.create(:user)
 
-    visit root_path
+    visit new_user_session_path
     click_link "ログイン"
     fill_in "user_email", with: userA.email
     fill_in "user_password", with: userA.password
-    click_button "Log in"
+    click_button "ログイン"
 
     expect {
       visit user_path(userB)
@@ -29,7 +29,7 @@ RSpec.describe "Relationships", type: :system do
     click_link "ログイン"
     fill_in "user_email", with: userA.email
     fill_in "user_password", with: userA.password
-    click_button "Log in"
+    click_button "ログイン"
     visit user_path(userB)
     click_button "フォローする"
 
