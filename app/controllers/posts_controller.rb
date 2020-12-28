@@ -71,8 +71,8 @@ class PostsController < ApplicationController
 
   def destroy
     Post.find(params[:id]).destroy!
-    flash[:success] = '削除しました'
-    redirect_to posts_path
+    flash[:notice] = '投稿を削除しました'
+    redirect_to user_timeline_path(@post.user)
   end
 
   def hashtag
