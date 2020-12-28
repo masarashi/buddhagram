@@ -8,21 +8,44 @@ RSpec.describe "Posts", type: :system do
   scenario "user creates a new post" do
     user = FactoryBot.create(:user)
 
-    visit new_user_session_path
-    click_link "ログイン"
-    fill_in "user_email", with: user.email
-    fill_in "user_password", with: user.password
-    click_button "ログイン"
+    sign_in user
+    visit root_path
 
     expect {
-      click_link "投稿する"
+      click_on "投稿する"
       attach_file "post_images", "/buddhagram/app/javascript/images/user-icon.png"
       fill_in "post_content", with: "Test Post"
-      click_button "投稿"
+      click_on "投稿"
 
       expect(page).to have_content "投稿しました"
       expect(page).to have_content "Test Post"
       expect(page).to have_content "#{user.name}"
     }.to change(user.posts, :count).by(1)
+  end
+
+  scenario "user can edit a own post" do
+    post = FactoryBot.create(:post)
+
+    sign_in post.user
+    visit post_path(post)
+
+    click_on "編集"
+    fill_in "post_content", with: "Content Update"
+    click_on "更新"
+    expect(page).to have_content "Content Update"
+  end
+
+  scenario "user can delete a own post" do
+    post = FactoryBot.create(:post)
+
+    sign_in post.user
+    visit post_path(post)
+
+    click_on "削除"
+
+    expect {
+      expect(page.accept_confirm).to eq "本当に削除しますか？"
+      expect(page).to have_content "投稿を削除しました"
+    }.to change(post.user.posts, :count).by(-1)
   end
 end

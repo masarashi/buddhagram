@@ -18,9 +18,11 @@
 
 <h6 class="mt-5">最新の投稿</h6>
 
+<% if false %>
 <div class="row">
   <%= render partial: "users/post", collection: @posts %>
 </div>
+<% end %>
 
 <div class="text-center">
   <%= link_to "みんなの投稿を見る", posts_latest_path %>

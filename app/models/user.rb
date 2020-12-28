@@ -18,8 +18,8 @@ class User < ApplicationRecord
 
   validates :name,    presence: true, length: { maximum: 32 }, uniqueness: { case_sensitive: true }  # 大文字と小文字を区別する
   validates :profile, length: { maximum: 256 }
-  validates :image,   attached: true, content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
-                                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
+  validates :image,   content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
+                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
