@@ -5,7 +5,7 @@ RSpec.describe "Comments", type: :system do
   #   driven_by(:rack_test)
   # end
 
-  scenario "user add comment to post" do
+  scenario "user adds comment to post" do
     user = FactoryBot.create(:user)
     post = FactoryBot.create(:post)
 
@@ -22,7 +22,7 @@ RSpec.describe "Comments", type: :system do
     }.to change(post.comments, :count).by(1)
   end
 
-  scenario "user delete own comment" do
+  scenario "user deletes own comment" do
     comment = FactoryBot.create(:comment)
 
     sign_in comment.user

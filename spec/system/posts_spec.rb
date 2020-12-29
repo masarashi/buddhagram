@@ -23,7 +23,7 @@ RSpec.describe "Posts", type: :system do
     }.to change(user.posts, :count).by(1)
   end
 
-  scenario "user can edit a own post" do
+  scenario "user edits a own post" do
     post = FactoryBot.create(:post)
 
     sign_in post.user
@@ -35,7 +35,7 @@ RSpec.describe "Posts", type: :system do
     expect(page).to have_content "Content Update"
   end
 
-  scenario "user can delete a own post" do
+  scenario "user deletes a own post" do
     post = FactoryBot.create(:post)
 
     sign_in post.user

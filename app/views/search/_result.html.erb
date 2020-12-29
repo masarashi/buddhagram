@@ -31,28 +31,28 @@
       <ol>
         <% @statues_search_result.each do |statue| %>
           <li class="mt-2">
-            <%= link_to statue do %>
+            <%= link_to statue, id: "statue" do %>
               <i class='fas fa-spa fa-fw fa-lg'></i> <strong><%= statue.name %></strong>
             <% end %>
           </li>
         <% end %>
         <% @spots_search_result.each do |spot| %>
           <li class="mt-2">
-            <%= link_to spot, data: { "turbolinks" => false } do %>
+            <%= link_to spot, data: { "turbolinks" => false }, id: "spot" do %>
               <i class="fas fa-map-marker-alt fa-fw fa-lg"></i> <strong><%= spot.name %></strong>　<%= spot.state %>
             <% end %>
           </li>
         <% end %>
         <% @hashtags_search_result.each do |hashtag| %>
           <li class="mt-2">
-            <%= link_to "/post/hashtag/#{hashtag.name}" do %>
+            <%= link_to "/post/hashtag/#{hashtag.name}", id: "hashtag" do %>
               <i class="fas fa-hashtag fa-fw fa-lg"></i> <strong><%= hashtag.name %></strong>
             <% end %>
           </li>
         <% end %>
         <% @users_search_result.each do |user| %>
           <li class="mt-2">
-            <%= link_to user do %>
+            <%= link_to user, id: "user" do %>
               <%= image_tag resize20(user.image), class: "user__icon__20" %> <span class="user__name"><%= user.name %></span>
             <% end %>
           </li>
