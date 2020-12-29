@@ -15,10 +15,10 @@
   </tr>
 </table>
 
-<% if current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
   <div class="text-center">
     <%= link_to "編集", edit_statue_path, class: "btn btn-outline-secondary btn-sm" %>
-    <%= link_to "削除", edit_statue_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
+    <%= link_to "削除", @statue, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
   </div>
 <% end %>
 

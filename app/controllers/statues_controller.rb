@@ -33,7 +33,7 @@ class StatuesController < ApplicationController
   def update
     @statue = Statue.find(params[:id])
     if @statue.update(statue_params)
-      flash[:success] = '更新しました'
+      flash[:notice] = '更新しました'
       redirect_to @statue
     else
       render 'edit'
@@ -41,7 +41,9 @@ class StatuesController < ApplicationController
   end
 
   def destroy
-
+    Statue.find(params[:id]).destroy!
+    flash[:notice] = '削除しました'
+    redirect_to statues_path
   end
 
   private

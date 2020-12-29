@@ -29,23 +29,31 @@ class SpotsController < ApplicationController
   def create
     @spot = Spot.new(spot_params)
     if @spot.save
-      flash[:notice] = '登録しました'
+      flash[:notice] = "登録しました"
       redirect_to @spot
     else
-      render 'new'
+      render "new"
     end
   end
 
   def edit
-
+    @spot = Spot.find(params[:id])
   end
 
   def update
-
+    @spot = Spot.find(params[:id])
+    if @spot.update(spot_params)
+      flash[:notice] = "更新しました"
+      redirect_to @spot
+    else
+      render "edit"
+    end
   end
 
   def destroy
-
+    Spot.find(params[:id]).destroy!
+    flash[:notice] = "削除しました"
+    redirect_to spots_path
   end
 
   def get_address
