@@ -1,4 +1,10 @@
 <div>
+  <div class="mt-2">
+    <%= link_to "場所を追加しない", new_post_path, class: "btn btn-secondary btn-block" %>
+  </div>
+
+  <h6 class="mt-5">投稿場所を検索</h6>
+  
   <%= form_with url: "/posts/search", method: :get do |f| %>
     <div class="form-group">
       <%#= f.label :キーワードで探す %>

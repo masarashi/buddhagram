@@ -18,18 +18,19 @@ Rails.application.routes.draw do
     get '/timeline', to: 'users#timeline'
   end
 
+  get '/posts/new_post', to: 'posts#new_post'
+  get '/posts/hashtag/:name', to: 'posts#hashtag'
+  get '/posts/search', to: 'posts#search'
+  get '/posts/latest', to: 'posts#latest'
   post 'posts/new', to: 'posts#new'
   # post 'posts/:id/edit', to: 'posts#edit'
   # post 'posts/confirm', to: 'posts#confirm'
-  get '/post/hashtag/:name', to: 'posts#hashtag'
-  get '/posts/search', to: 'posts#search'
-  get '/posts/latest', to: 'posts#latest'
-
+  
   resources :posts do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
-
+  
   resources :relationships, only: [:create, :destroy]
   resources :maps, only: [:index]
 

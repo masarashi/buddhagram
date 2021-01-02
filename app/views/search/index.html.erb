@@ -1,32 +1,46 @@
-<div>
-  <%= button_tag type: "button", onclick: "getPosition();", class: "btn btn-lg btn-success btn-block" do %>
-    <i class="fas fa-location-arrow fa-lg"></i>　現在地周辺スポットを探す
+<div class="w-50 mx-auto">
+  <%= button_tag type: "button", onclick: "getPosition();", class: "btn btn-success btn-block" do %>
+    <i class="fas fa-location-arrow fa-fw"></i> 現在地周辺スポット
+  <% end %>
+
+  <div class="mt-3">
+    <%= link_to statues_path, class: "btn btn-primary btn-block" do %>
+      <i class='fas fa-spa fa-fw'></i> 仏像一覧
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to spots_path, class: "btn btn-primary btn-block" do %>
+      <i class="fas fa-map-marker-alt fa-fw"></i> スポット一覧
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to posts_latest_path, class: "btn btn-primary btn-block" do %>
+      <i class="far fa-images fa-fw"></i> みんなの投稿
+    <% end %>
+  </div>
+
+  <% if false %>
+    <p class="mt-3">キーワード</p>
+  <% end %>
+
+  <div class="mt-3">
+    <%= render 'form' %>
+  </div>
+
+  <% if false %>
+    <h6 class="mt-5">最新の投稿</h6>
+    <div class="row">
+      <%= render partial: "users/post", collection: @posts %>
+    </div>
+    <div class="text-center">
+      <%= link_to "みんなの投稿を見る", posts_latest_path %>
+    </div>
   <% end %>
 </div>
 
-<p class="mt-5">キーワードで探す</p>
 
-<%= render 'form' %>
-
-<div class="mt-5">
-  <%= link_to "仏像一覧を見る", statues_path, class: "btn btn-lg btn-primary btn-block" %>
-</div>
-
-<div class="mt-2">
-  <%= link_to "スポット一覧を見る", spots_path, class: "btn btn-lg btn-primary btn-block" %>
-</div>
-
-<h6 class="mt-5">最新の投稿</h6>
-
-<% if false %>
-<div class="row">
-  <%= render partial: "users/post", collection: @posts %>
-</div>
-<% end %>
-
-<div class="text-center">
-  <%= link_to "みんなの投稿を見る", posts_latest_path %>
-</div>
 
 <!-- GoogleMap -->
 <script>

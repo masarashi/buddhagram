@@ -22,6 +22,12 @@ class PostsController < ApplicationController
     @spot = Spot.find(params[:spot_id]) if params[:spot_id].present?
   end
 
+  def new_post
+    @post = Post.new
+    @spots_search_result = Spot.new
+    @spot = Spot.find(params[:spot_id]) if params[:spot_id].present?
+  end
+
   def create
     @post = Post.new(post_params)
     if @post.save
@@ -80,7 +86,7 @@ class PostsController < ApplicationController
     if @hashtag
       @posts = @hashtag.posts.order(created_at: :desc)
       @popular_posts = @posts.limit(6).sort{ |a,b| b.likes.count <=> a.likes.count }
-      @pagy, @latest_posts = pagy(@posts, items: 3)
+      @pagy, @latest_posts = pagy(@posts, items: 9)
       @posts_count = @posts.count
     else
       redirect_to root_path
@@ -99,7 +105,7 @@ class PostsController < ApplicationController
 
   def latest
     @posts = Post.all.order(created_at: :desc)
-    @pagy, @latest_posts = pagy(@posts, items: 9)
+    @pagy, @latest_posts = pagy(@posts, items: 3)
   end
 
   private
