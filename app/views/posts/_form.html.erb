@@ -1,17 +1,17 @@
 <%= form_with model: @post, local: true do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="form-group">
-    <%= f.label :images, class: "d-none" %>
+    <%= f.label "画像（必須）" %>
     <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
   </div>
   <div class="form-group">
-    <%= f.label :content, class: "d-none" %>
+    <%= f.label :content %>
     <%= f.text_area :content, class: "form-control", rows: "10" %>
   </div>
   <% if @spot.present? %>
     <div class="form-group">
       場所：<strong><%= @spot.name %></strong>
-      <%= link_to "削除", new_post_path(spot_id: nil), method: :post, remote: true %>  
+      <%= link_to "変更する（前のページに戻る）", posts_new_post_path, class: "ml-2 text-sm-gray" %>  
       <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: "form-control" %>
     </div>
   <% end %>

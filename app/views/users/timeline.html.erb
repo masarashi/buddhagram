@@ -5,16 +5,18 @@
       <span class="d-none"><%== pagy_nav(@pagy) %></span>
     </div>
   <% else %>
-    投稿してみよう
+    <div class="text-center">
+      <%= link_to "みんなの投稿を見る", posts_latest_path %>
+    </div>
   <% end %>
 <% end %>
 
 <script>
   $(function() {
-  $('.jscroll').jscroll({
-    loadingHtml: '読み込み中',
-    contentSelector: '.jscroll',
-    nextSelector: 'span.next:last a'
+    $('.jscroll').jscroll({
+      loadingHtml: '読み込み中',
+      contentSelector: '.jscroll',
+      nextSelector: 'span.next:last a'
+    });
   });
-});
 </script>

@@ -1,7 +1,28 @@
-<div id="form">
-  <%= render "form" %>
+<div class="w-50 mx-auto">
+  <ul class="cp_stepflow07 mb-5">
+    <li class="completed"><span class="bubble"></span><span>STEP 1：投稿場所の追加（任意）</span></li>
+    <li class="active"><span class="bubble"></span><span>STEP 2：投稿内容の入力</span></li>
+  </ul>
+
+  <div class="container-sm">
+    <div id="form">
+      <%= render "posts/form" %>
+    </div>
+  </div>
 </div>
 
-<p class="mt-5">場所を追加</p>
 
-<%= render "posts/search_form" %>
+
+
+
+
+
+<% if false %>
+
+  <p class="mt-5">場所を追加</p>
+
+  <div id="search_form">
+    <%= render "posts/search_form" %>
+  </div>
+
+<% end %>

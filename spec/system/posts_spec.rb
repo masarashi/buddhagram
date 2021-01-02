@@ -13,6 +13,34 @@ RSpec.describe "Posts", type: :system do
 
     expect {
       click_on "投稿する"
+      click_on "場所を追加しない"
+      attach_file "post_images", "/buddhagram/app/javascript/images/user-icon.png"
+      fill_in "post_content", with: "Test Post"
+      click_on "投稿"
+
+      expect(page).to have_content "投稿しました"
+      expect(page).to have_content "Test Post"
+      expect(page).to have_content "#{user.name}"
+    }.to change(user.posts, :count).by(1)
+  end
+
+  scenario "user creates a new post with spot" do
+    user = FactoryBot.create(:user)
+    spot = FactoryBot.create(:spot)
+    keyword = spot.name
+
+    sign_in user
+    visit root_path
+
+    expect {
+      click_on "投稿する"
+
+      fill_in "search_keyword", with: spot.name
+      click_button "検索"
+      sleep 0.5
+      click_on "#{spot.name}"
+
+      expect(page).to have_content "#{spot.name}"
       attach_file "post_images", "/buddhagram/app/javascript/images/user-icon.png"
       fill_in "post_content", with: "Test Post"
       click_on "投稿"

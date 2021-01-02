@@ -29,17 +29,17 @@
             <% if user_signed_in? %>
               <li class='nav-item'>
                 <%= link_to '/search', class: 'nav-link' do %>
-                  <i class="fas fa-search fa-fw"></i> 検索
+                  <i class="fas fa-search fa-fw"></i> さがす
+                <% end %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to posts_new_post_path, class: 'nav-link' do %>
+                  <i class="far fa-plus-square fa-fw"></i> 投稿する
                 <% end %>
               </li>
               <li class='nav-item'>
                 <%= link_to user_timeline_path(current_user.id), class: 'nav-link' do %>
                   <i class="far fa-images fa-fw"></i> タイムライン
-                <% end %>
-              </li>
-              <li class='nav-item'>
-                <%= link_to new_post_path, class: 'nav-link' do %>
-                  <i class="far fa-plus-square fa-fw"></i> 投稿する
                 <% end %>
               </li>
               <li class='nav-item dropdown'>
