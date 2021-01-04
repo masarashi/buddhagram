@@ -11,7 +11,7 @@ services:
       - mysql-data:/var/lib/mysql
   app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/buddhagram
       - gem-data:/usr/local/bundle
@@ -19,7 +19,6 @@ services:
       - '3000:3000'
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpacker
-      SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
     depends_on:
       - db
       - chrome
@@ -28,8 +27,8 @@ services:
   webpacker:
     build: .
     environment:
-      - NODE_ENV=development
-      - RAILS_ENV=development
+      - NODE_ENV=production
+      - RAILS_ENV=production
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server
     volumes:
@@ -37,12 +36,21 @@ services:
       - gem-data:/usr/local/bundle
     ports:
       - '127.0.0.1:3035:3035'
-  chrome:
-    image: selenium/standalone-chrome:latest
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/webapp/public
+      - tmp-data:/webapp/tmp
     ports:
-      - 4444:4444
+      - 80:80
+    depends_on:
+      - app
 volumes:
   mysql-data:
     driver: local
   gem-data:
     driver: local
+  public-data:
+  tmp-data:
+  log-data:
