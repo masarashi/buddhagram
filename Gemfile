@@ -46,6 +46,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Add
+  gem 'brakeman', require: false
   gem 'pry-byebug'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
