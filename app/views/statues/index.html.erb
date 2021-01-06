@@ -1,20 +1,22 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>名称</th>
-      <th>よみがな</th>
-      <th>カテゴリ</th>
-      <th>説明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @statues.each do |statue| %>
+<div class="wrapper">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to statue.name, statue %></td>
-        <td><%= statue.ruby %></td>
-        <td><%= statue.grade %></td>
-        <td><%= statue.content %></td>
+        <th>名称</th>
+        <th>よみがな</th>
+        <th>カテゴリ</th>
+        <th>説明</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @statues.each do |statue| %>
+        <tr>
+          <td><%= link_to statue.name, statue %></td>
+          <td><%= statue.ruby %></td>
+          <td><%= statue.grade %></td>
+          <td><%= statue.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

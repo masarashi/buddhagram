@@ -1,19 +1,59 @@
-<h2><%= @spot.name %></h2>
+<div class="wrapper">
+  <h2><%= @spot.name %></h2>
 
-<table class="table">
-  <tr>
-    <th>名称</th>
-    <td><%= @spot.name %></td>
-  </tr>
-  <tr>
-    <th>所在地</th>
-    <td><%= @spot.address %></td>
-  </tr>
-  <tr>
-    <th>地図</th>
-    <td><div id='map'></div></td>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>名称</th>
+      <td><%= @spot.name %></td>
+    </tr>
+    <tr>
+      <th>所在地</th>
+      <td><%= @spot.address %></td>
+    </tr>
+    <tr>
+      <th>地図</th>
+      <td><div id='map'></div></td>
+    </tr>
+  </table>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="text-center">
+      <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-sm" %>
+      <%= link_to "削除", @spot, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
+    </div>
+  <% end %>
+
+  <h2 class="mt-5">所蔵する国宝彫刻</h2>
+
+  <% if @spot.statues.empty? %>
+    データがありません
+  <% else %>
+    <ul>
+      <% @spot.statues.each do |statue| %>
+        <li><%= link_to statue.name, statue %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <% if @spot.posts.empty? %>
+      <h2 class="mt-5">最新の投稿</h2>
+      投稿はまだありません
+    <% else %>
+      <h2 class="mt-5">人気の投稿</h2>
+      <div class="row">
+        <%= render partial: "users/post", collection: @popular_posts %>
+      </div>
+      <h2 class="mt-5">最新の投稿</h2>
+      <div class="jscroll">
+        <div class="row">
+          <%= render partial: "users/post", collection: @latest_posts %>
+          <span class="d-none"><%== pagy_nav(@pagy) %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <script>
   let map
@@ -33,44 +73,6 @@
     });
   }
 </script>
-
-<% if user_signed_in? && current_user.admin? %>
-  <div class="text-center">
-    <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-sm" %>
-    <%= link_to "削除", @spot, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
-  </div>
-<% end %>
-
-<h6>所蔵する国宝彫刻</h6>
-
-<% if @spot.statues.empty? %>
-  データがありません
-<% else %>
-  <ul>
-    <% @spot.statues.each do |statue| %>
-      <li><%= link_to statue.name, statue %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<div>
-  <% if @spot.posts.empty? %>
-    <h6>最新の投稿</h6>
-    投稿はまだありません
-  <% else %>
-    <h6 class="mt-5">人気の投稿</h6>
-    <div class="row">
-      <%= render partial: "users/post", collection: @popular_posts %>
-    </div>
-    <h6 class="mt-5">最新の投稿</h6>
-    <div class="jscroll">
-      <div class="row">
-        <%= render partial: "users/post", collection: @latest_posts %>
-        <span class="d-none"><%== pagy_nav(@pagy) %></span>
-      </div>
-    </div>
-  <% end %>
-</div>
 
 <script>
   $(function() {
