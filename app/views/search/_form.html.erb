@@ -1,11 +1,16 @@
 <div>
   <%= form_with url: "/search/search", method: :get do |f| %>
     <div class="form-group">
-      <%#= f.label :キーワードで探す %>
-      <%= f.text_area :search_keyword, :placeholder => "仏像名、地名、住所、ユーザー名、ハッシュタグ（#不要）", rows: "2", class: "form-control" %>
-    </div>
-    <div>
-      <%= f.submit "検索", class: "btn btn-secondary btn-block" %>
+      <%= f.label "キーワードで探す", class: "d-none" %>
+      <p class="text-sm-gray">仏像名、地名、住所、ユーザー名、ハッシュタグ（#不要）</p>
+      <div class="row">
+        <div class="col-10">
+          <%= f.text_field :search_keyword, :placeholder => "キーワード", rows: "1", class: "sbox5" %>
+        </div>
+        <div class="col-2">
+          <%= f.submit "検索", class: "sbtn5" %>
+        </div>
+      </div>
     </div>
   <% end %>
 

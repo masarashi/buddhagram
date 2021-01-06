@@ -1,12 +1,12 @@
 <%= form_with model: @post, local: true do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="form-group">
-    <%= f.label "画像（必須）" %>
+    <%= f.label "画像のアップロード（必須）" %>
     <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
   </div>
   <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control", rows: "10" %>
+    <%= f.label :content, class: "d-none" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "本文", rows: "10" %>
   </div>
   <% if @spot.present? %>
     <div class="form-group">
@@ -16,6 +16,6 @@
     </div>
   <% end %>
   <div>
-    <%= f.submit "投稿", class: "btn btn-secondary btn-block" %>
+    <%= f.submit "投稿", class: "sbtn5" %>
   </div>
 <% end %>
