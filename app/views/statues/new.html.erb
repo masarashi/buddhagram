@@ -1,28 +1,30 @@
-<%= form_with model: @statue, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ruby %>
-    <%= f.text_field :ruby, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :grade %>
-    <%= f.select :grade, { "如来": "如来", "菩薩": "菩薩", "明王": "明王", "天部": "天部", "その他": "その他" }, { include_blank: "選択してください（必須）", selected: "選択してください（必須）" }, { required: true, class: "form-control" } %>
-  </div>
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control" %>
-  </div>
-  <div class="form-check">
-    <%= f.collection_check_boxes(:spot_ids, @spots, :id, :name) do |spot| %>
-      <div class="block">
-        <%= spot.label { spot.check_box + spot.text } %>
-      </div>
-    <% end %>
-  </div>
-  <div>
-    <%= f.submit "登録", class: "btn btn-secondary btn-block" %>
-  </div>
-<% end %>
+<div class="wrapper__sm">
+  <%= form_with model: @statue, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :ruby %>
+      <%= f.text_field :ruby, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :grade %>
+      <%= f.select :grade, { "如来": "如来", "菩薩": "菩薩", "明王": "明王", "天部": "天部", "その他": "その他" }, { include_blank: "選択してください（必須）", selected: "選択してください（必須）" }, { required: true, class: "form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <div class="form-check">
+      <%= f.collection_check_boxes(:spot_ids, @spots, :id, :name) do |spot| %>
+        <div class="block">
+          <%= spot.label { spot.check_box + spot.text } %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= f.submit "登録", class: "mt-5 btn btn-secondary btn-block" %>
+    </div>
+  <% end %>
+</div>

@@ -1,14 +1,15 @@
-<div>
-  <%= @name %>
+<div class="wrapper__sm">
+  <%= @name %><br>
   <%= @address %>
-</div>
 
-<%= form_with model: @spot, local: true do |f| %>
-  <%= f.hidden_field :name, value: "#{@name}" %>
-  <%= f.hidden_field :country, value: "#{@country}" %>
-  <%= f.hidden_field :state, value: "#{@state}" %>
-  <%= f.hidden_field :address, value: "#{@address}" %>
-  <%= f.hidden_field :latitude, value: "#{@latitude}" %>
-  <%= f.hidden_field :longitude, value: "#{@longitude}" %>
-  <%= f.submit '登録する', class: 'btn btn-secondary' %>
-<% end %>
+  <%= form_with model: @spot, local: true do |f| %>
+    <%= f.hidden_field :name, value: "#{@name}" %>
+    <%= f.hidden_field :country, value: "#{@country}" %>
+    <%= f.hidden_field :state, value: "#{@state}" %>
+    <%= f.hidden_field :address, value: "#{@address}" %>
+    <%= f.hidden_field :latitude, value: "#{@latitude}" %>
+    <%= f.hidden_field :longitude, value: "#{@longitude}" %>
+    <%= f.submit '登録する', class: 'mt-5 btn btn-secondary btn-block' %>
+  <% end %>
+
+</div>

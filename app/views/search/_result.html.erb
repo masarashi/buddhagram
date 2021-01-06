@@ -19,7 +19,7 @@
 </div>
 <% end %>
 
-<div class="mt-3">
+<div class="search__result">
   <% if @error_message %>
     <div class="error_message">
       <%= @error_message %>
@@ -28,6 +28,7 @@
     <% if @users_search_result.blank? and @hashtags_search_result.blank? and @spots_search_result.blank? and @statues_search_result.blank? %>
       <p>検索結果がありません</p>
     <% else %>
+      <p>検索結果</p>
       <ol>
         <% @statues_search_result.each do |statue| %>
           <li class="mt-2">

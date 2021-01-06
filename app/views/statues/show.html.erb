@@ -1,35 +1,37 @@
-<h2>データ</h2>
+<div class="wrapper__sm">
+  <h2><%= @statue.name %></h2>
 
-<table class="table table-striped">
-  <tr>
-    <th>名称</th>
-    <td><%= @statue.name %>（<%= @statue.ruby %>）</td>
-  </tr>
-  <tr>
-    <th>カテゴリ</th>
-    <td><%= @statue.grade %></td>
-  </tr>
-  <tr>
-    <th>説明</th>
-    <td><%= @statue.content %></td>
-  </tr>
-</table>
+  <table class="table table-striped">
+    <tr>
+      <th>名称</th>
+      <td><%= @statue.name %>（<%= @statue.ruby %>）</td>
+    </tr>
+    <tr>
+      <th>カテゴリ</th>
+      <td><%= @statue.grade %></td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td><%= @statue.content %></td>
+    </tr>
+  </table>
 
-<% if user_signed_in? && current_user.admin? %>
-  <div class="text-center">
-    <%= link_to "編集", edit_statue_path, class: "btn btn-outline-secondary btn-sm" %>
-    <%= link_to "削除", @statue, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
-  </div>
-<% end %>
-
-<h4>所蔵場所</h4>
-
-<ul>
-  <% @statue.spots.each do |spot| %>
-    <li>
-      <%= link_to spot, data: { "turbolinks" => false } do %>
-        <strong><%= spot.name %></strong>　<%= spot.state %>
-      <%end %>
-    </li>
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="text-center">
+      <%= link_to "編集", edit_statue_path, class: "btn btn-outline-secondary btn-sm" %>
+      <%= link_to "削除", @statue, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
+    </div>
   <% end %>
-</ul>
+
+  <h2>所蔵場所</h2>
+
+  <ul>
+    <% @statue.spots.each do |spot| %>
+      <li>
+        <%= link_to spot, data: { "turbolinks" => false } do %>
+          <strong><%= spot.name %></strong><span class="text-sm-gray">（<%= spot.state %>）</span>
+        <%end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

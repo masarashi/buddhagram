@@ -1,9 +1,11 @@
-<%= form_with url: new_spot_path, method: :get, local: true do |f| %>
-  <div class='form-group'>
-    <%#= f.label :地名を入力してください %>
-    <%= f.text_area :search_name, class: 'form-control' %>
-  </div>
-  <div>
-    <%= f.submit '検索', class: 'btn btn-secondary btn-block' %>
-  </div>
-<% end %>
+<div class="wrapper__sm">
+  <%= form_with url: new_spot_path, method: :get, local: true do |f| %>
+    <div class='form-group'>
+      <%#= f.label :地名を入力してください %>
+      <%= f.text_area :search_name, class: 'form-control' %>
+    </div>
+    <div>
+      <%= f.submit '検索', class: 'btn btn-secondary btn-block' %>
+    </div>
+  <% end %>
+</div>
