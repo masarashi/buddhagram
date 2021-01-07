@@ -1,7 +1,9 @@
-<div class="jscroll">
-  <div class="row">
-    <%= render partial: "users/post", collection: @latest_posts %>
-    <span class="d-none"><%== pagy_nav(@pagy) %></span>
+<div class="container">
+  <div class="jscroll">
+    <div class="row">
+      <%= render partial: "users/post", collection: @latest_posts %>
+      <span class="d-none"><%== pagy_nav(@pagy) %></span>
+    </div>
   </div>
 </div>
 
