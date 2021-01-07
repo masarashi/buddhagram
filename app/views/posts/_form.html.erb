@@ -1,21 +1,24 @@
 <%= form_with model: @post, local: true do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-  <div class="form-group">
-    <%= f.label "画像のアップロード（必須）" %>
-    <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :content, class: "d-none" %>
-    <%= f.text_area :content, class: "form-control", placeholder: "本文", rows: "10" %>
-  </div>
   <% if @spot.present? %>
-    <div class="form-group">
-      場所：<strong><%= @spot.name %></strong>
+    <div>
+      <p>投稿場所</p>
+      <%= @spot.name %>
       <%= link_to "変更する（前のページに戻る）", posts_new_post_path, class: "ml-2 text-sm-gray" %>  
       <%= f.hidden_field :spot_id, value: @spot.id.to_i, class: "form-control" %>
     </div>
   <% end %>
   <div>
-    <%= f.submit "投稿", class: "sbtn5" %>
+    <p>画像のアップロード（<span class="text-danger">必須</span>）</p>
+    <%= f.label "image", class: "d-none" %>
+    <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
+  </div>
+  <div>
+    <p>本文の入力</p>
+    <%= f.label :content, class: "d-none" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "任意（512文字まで）", rows: "10", class: "textarea" %>
+  </div>
+  <div>
+    <%= f.submit "投稿", class: "sbtn" %>
   </div>
 <% end %>
