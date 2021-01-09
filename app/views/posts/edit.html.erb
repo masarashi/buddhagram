@@ -1,29 +1,35 @@
-<div class="w-50 mx-auto">
+<div class="wrapper__sm post__edit">
   <%= form_with model: @post, local: true do |f| %>
     <% if @post.images.present? %>
-      <p>チェックを入れた画像は削除されます。（2枚以上ある場合）</p>
-      <% @post.images.each do |image| %>
-        <% if @post.images.count >= 2 %>
-          <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+      <div>
+        <h2>投稿画像</h2>
+        <% @post.images.each do |image| %>
+          <% if @post.images.count >= 2 %>
+            <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+          <% end %>
+          <%= image_tag resize180(image) %>
         <% end %>
-        <%= image_tag resize180(image) %>
-      <% end %>
+        <% if @post.images.count >= 2 %>
+          <p class="mt-3 text-danger">チェックを入れた画像は削除されます（0枚には出来ません）</p>
+        <% end %>
+      </div>
     <% end %>
-    <div class='form-group mt-5'>
-      <%= f.label "投稿内容" %>
-      <%= f.text_area :content, class: 'form-control', rows: '10' %>
+    <div class="mt-5">
+      <h2>投稿内容</h2>
+      <%= f.label "content", class: "d-none" %>
+      <%= f.text_area :content, class: 'form-control', rows: '10', class: "textarea" %>
     </div>
     <% if @post.spot.present? %>
       <div class='form-group'>
-        <p>
-          場所：<strong><%= @post.spot.name %></strong>
-          <%#= link_to "削除", edit_post_path(spot_id: nil), method: :post, remote: true %>  
-        </p>
+        <h2>投稿場所</h2>
+        <%= @post.spot.name %>
         <%= f.hidden_field :spot_id, value: @post.spot.id.to_i, class: 'form-control' %>
       </div>
     <% end %>
-    <div>
-      <%= f.submit '更新', class: 'btn btn-secondary btn-block' %>
+    <div class="mt-5">
+      <%= f.submit '更新', class: 'btn btn-info btn-block' %>
+      <hr>
+      <%= link_to "削除", @post, class: "btn btn-danger btn-block", method: :delete, data: { confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 </div>

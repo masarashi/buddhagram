@@ -9,7 +9,7 @@
     <% if @spots_search_result.blank? %>
       <p>検索結果がありません</p>
     <% else %>
-      <p class="text-danger">追加する場所をクリックすると次へ進みます</p>
+      <p class="text-danger">追加する場所を選ぶと次へ進みます</p>
       <ol>
         <%= render partial: 'posts/spot', collection: @spots_search_result %>
       </ol>

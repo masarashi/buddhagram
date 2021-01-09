@@ -1,0 +1,21 @@
+<div class="col-6 col-md-6 col-lg-4 spot__list__item">
+  <%= link_to spot, data: { "turbolinks" => false } do %>
+    <div class="row">
+      <div class="col-6">
+        <% if spot.image.attached? %>
+          <div class="spot__list__item__figure">
+            <%= image_tag resize180(spot.image), class: "spot__list__item__image" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <div class="spot__list__item__body">
+          <h2><%= spot.name %></h2>
+          <p><i class="fas fa-map-marker-alt fa-fw"></i> <%= spot.state %></p>
+          <p><i class="far fa-images fa-fw"></i> <%= spot.posts.count %></p>
+        </div>
+      </div>
+    </div>
+    <div class="mask"></div>
+  <% end %>
+</div>

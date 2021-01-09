@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
   before_action :admin?, only: %i[new create edit update destroy get_address]
 
   def index
-    @spots = Spot.all
+    @spots = Spot.with_attached_image
     @spots_search_result = Spot.new
   end
 
@@ -86,6 +86,6 @@ class SpotsController < ApplicationController
   private
 
     def spot_params
-      params.require(:spot).permit(:name, :country, :state, :address, :latitude, :longitude)
+      params.require(:spot).permit(:name, :country, :state, :address, :latitude, :longitude, :image)
     end
 end

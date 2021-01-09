@@ -28,6 +28,10 @@
       <%= f.label :longitude %>
       <%= f.text_field :longitude, class: "form-control" %>
     </div>
+    <div class="form-group">
+      <%= f.label "image", class: "d-none" %>
+      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control-file" %>
+    </div>
     <div>
       <%= f.submit "更新", class: "btn btn-secondary btn-block" %>
     </div>
