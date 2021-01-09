@@ -2,7 +2,7 @@ class StatuesController < ApplicationController
   before_action :admin?, only: %i[new create edit update destroy]
 
   def index
-    @statues = Statue.all
+    @statues = Statue.with_attached_image
   end
 
   def show
@@ -49,6 +49,6 @@ class StatuesController < ApplicationController
   private
 
     def statue_params
-      params.require(:statue).permit(:name, :ruby, :grade, :content, spot_ids: [])
+      params.require(:statue).permit(:name, :ruby, :grade, :content, :image, spot_ids: [])
     end
 end

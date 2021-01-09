@@ -1,9 +1,15 @@
 <div class="container wrapper">
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="mb-4">
+      <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-block" %>
+    </div>
+  <% end %>
+
   <h2><%= @spot.name %></h2>
 
-  <p><%= image_tag resize180(@spot.image) if @spot.image.attached? %></p>
+  <p class="text-center"><%= image_tag resize180(@spot.image) if @spot.image.attached? %></p>
 
-  <table class="table">
+  <table class="table table-borderless">
     <tr>
       <th>名称</th>
       <td><%= @spot.name %></td>
@@ -18,12 +24,6 @@
     </tr>
   </table>
 
-  <% if user_signed_in? && current_user.admin? %>
-    <div class="text-center">
-      <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-sm" %>
-      <%= link_to "削除", @spot, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
-    </div>
-  <% end %>
 
   <h2 class="mt-5">所蔵する国宝彫刻</h2>
 
