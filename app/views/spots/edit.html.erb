@@ -34,6 +34,8 @@
     </div>
     <div>
       <%= f.submit "更新", class: "btn btn-secondary btn-block" %>
+      <hr>
+      <%= link_to "削除", @spot, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-block" %>
     </div>
   <% end %>
 </div>

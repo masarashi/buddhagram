@@ -1,0 +1,11 @@
+<div class="col-6 col-sm-6 col-md-4 col-lg-2 statue__list__item">
+  <%= link_to statue do %>
+    <div class="statue__list__item__figure">
+      <%= image_tag resize120(statue.image), class: "statue__list__item__image" if statue.image.attached? %>
+    </div>
+    <div class="statue__list__item__name">
+      <h2><%= statue.name %></h2>
+    </div>
+    <div class="mask"></div>
+  <% end %>
+</div>

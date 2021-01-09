@@ -1,10 +1,21 @@
 <div class="wrapper__sm">
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="mb-4">
+      <%= link_to "編集", edit_statue_path, class: "btn btn-outline-secondary btn-block" %>
+    </div>
+  <% end %>
+
   <h2><%= @statue.name %></h2>
 
-  <table class="table table-striped">
+  <p class="text-center"><%= image_tag resize180(@statue.image) if @statue.image.attached? %></p>
+
+  <table class="table table-borderless">
     <tr>
       <th>名称</th>
-      <td><%= @statue.name %>（<%= @statue.ruby %>）</td>
+      <td>
+        <%= @statue.name %><br>
+        <%= @statue.ruby %>
+      </td>
     </tr>
     <tr>
       <th>カテゴリ</th>
@@ -15,13 +26,6 @@
       <td><%= @statue.content %></td>
     </tr>
   </table>
-
-  <% if user_signed_in? && current_user.admin? %>
-    <div class="text-center">
-      <%= link_to "編集", edit_statue_path, class: "btn btn-outline-secondary btn-sm" %>
-      <%= link_to "削除", @statue, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
-    </div>
-  <% end %>
 
   <h2 class="mt-5">所蔵場所</h2>
 
