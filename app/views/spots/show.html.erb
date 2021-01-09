@@ -1,6 +1,8 @@
 <div class="container wrapper">
   <h2><%= @spot.name %></h2>
 
+  <p><%= image_tag resize180(@spot.image) if @spot.image.attached? %></p>
+
   <table class="table">
     <tr>
       <th>名称</th>

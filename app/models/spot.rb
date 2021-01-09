@@ -1,10 +1,11 @@
 class Spot < ApplicationRecord
-  geocoded_by :name
-  after_validation :geocode
+  # geocoded_by :name
+  # after_validation :geocode
 
   has_many :posts
   has_many :storehouses, dependent: :destroy
   has_many :statues, through: :storehouses
+  has_one_attached :image
   
   validates :name,      presence: true, uniqueness: { case_sensitive: true }  # 大文字と小文字を区別する
   validates :country,   presence: true
@@ -22,4 +23,10 @@ class Spot < ApplicationRecord
   #     within_bounding_box(box)
   #   end
   # end
+
+  def default_image
+    if !self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'user-icon.png')), filename: 'noimage.png', content_type: 'image/png')
+    end
+  end
 end

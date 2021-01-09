@@ -13,7 +13,7 @@
         </div>
         <div class="mt-5">
           <%= f.label :image, class: "d-none" %>
-          <p>プロフィール画像を変更</p>
+          <p>プロフィール画像</p>
           <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control-file" %>
         </div>
       </div>
@@ -22,28 +22,28 @@
 
       <div>
         <%= f.label :name, class: "d-none" %>
-        <%= f.text_field :name, :placeholder => "32文字以内", autocomplete: "name", class: "form-control" %>
+        <%= f.text_field :name, :placeholder => "32文字以内", autocomplete: "name", class: "textfield" %>
       </div>
 
       <p class="mt-5">自己紹介</p>
 
       <div>
         <%= f.label :profile, class: "d-none" %>
-        <%= f.text_area :profile, :placeholder => "256文字以内", rows: "6", class: "form-control"  %>
+        <%= f.text_area :profile, :placeholder => "256文字以内", rows: "6", class: "textarea"  %>
       </div>
 
       <p class="mt-5">メールアドレス</p>
 
       <div>
         <%= f.label :email, class: "d-none" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "textfield" %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
       <% end %>
 
-      <p class="mt-5">パスワード変更</p>
+      <p class="mt-5">パスワード</p>
 
       <div>
         <%= f.label :password, class: "d-none" %>
@@ -52,16 +52,16 @@
             <%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
           <% end %>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", :placeholder => "変更する場合は入力してください（6文字以上）", class: "form-control" %>
+        <%= f.password_field :password, autocomplete: "new-password", :placeholder => "変更する場合は入力してください（6文字以上）", class: "textfield" %>
       </div>
 
       <div class="mt-2">
         <%= f.label :password_confirmation, class: "d-none" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "変更する場合はもう一度入力してください", class: "form-control" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "変更する場合はもう一度入力してください", class: "textfield" %>
       </div>
 
       <div class="mt-5">
-        <%= f.submit t('.update'), class: "btn btn-outline-info btn-block" %>
+        <%= f.submit t('.update'), class: "btn btn-info btn-block" %>
       </div>
     <% end %>
   </div>
@@ -69,7 +69,7 @@
   <div class="wrapper__sm mt-3">
     <div>
       <p class="text-danger">退会する</p>
-      <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-outline-danger btn-block" %>
+      <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-danger btn-block" %>
     </div>
 
     <% if false %>
