@@ -64,7 +64,7 @@ class SpotsController < ApplicationController
     @latitude = params[:latitude].to_f
     @longitude = params[:longitude].to_f
     @current_location = Spot.new(name: "現在地", latitude: @latitude, longitude: @longitude)
-    @locations = @current_location.nearbys(200, units: :km)
+    @locations = @current_location.nearbys(200, units: :km).with_attached_image
     gon.locations = @locations
 
     # Google Map

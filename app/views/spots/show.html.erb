@@ -1,4 +1,4 @@
-<div class="container wrapper">
+<div class="container wrapper spot">
   <% if user_signed_in? && current_user.admin? %>
     <div class="mb-4">
       <%= link_to "編集", edit_spot_path, class: "btn btn-outline-secondary btn-block" %>
@@ -24,7 +24,6 @@
     </tr>
   </table>
 
-
   <h2 class="mt-5">所蔵する国宝彫刻</h2>
 
   <% if @spot.statues.empty? %>
@@ -39,7 +38,7 @@
 
   <div>
     <% if @spot.posts.empty? %>
-      <h2 class="mt-5">最新の投稿</h2>
+      <h2 class="mt-5">人気の投稿</h2>
       投稿はまだありません
     <% else %>
       <h2 class="mt-5">人気の投稿</h2>

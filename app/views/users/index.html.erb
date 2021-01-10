@@ -5,14 +5,16 @@
         <th>ユーザ名</th>
         <th>Eメール</th>
         <th>管理者権限</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
           <td><%= user.admin %></td>
+          <td><%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm" %></td>
         </tr>
       <% end %>
     </tbody>

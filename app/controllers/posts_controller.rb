@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!, only: %i[new create update destroy]
+  before_action :authenticate_user!, only: %i[index new create update destroy]
   before_action :correct_user, only: %i[edit update destroy]
+  before_action :admin?, only: :index
 
   def index
     # @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
     @comments = Comment.includes(user: [image_attachment: :blob]).where(post_id: @post.id)
     @comment = Comment.new
   end
-
+p
   def new
     @post = Post.new
     @spots_search_result = Spot.new

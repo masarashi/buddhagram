@@ -32,7 +32,7 @@ nav .brand {
 }
 
 .jumbotron {
-  height: 700px;
+  height: 800px;
   margin-top: -60px;
   border-radius: 0;
   background: url("../images/bg-image.jpg") center no-repeat;
@@ -366,14 +366,19 @@ nav .brand {
   border-top: 1px solid #eee;
 }
 
-
 // 地図
 
 #map {
   height: 400px;
   width: 100%;
+  border-radius: 5px;
 }
 
+.spot #map {
+  height: 300px;
+  width: 100%;
+  border-radius: 5px;
+}
 
 // ステップバー
 
@@ -540,7 +545,7 @@ nav .brand {
   height: 40px;
   padding: 0 0 0 10px;
   border: none;
-  background: #fffafa;
+  background: #f8f8ff;
 }
 
 .textarea {
@@ -549,7 +554,7 @@ nav .brand {
   height: 100%;
   padding: 5px;
   border: none;
-  background: #fffafa;
+  background: #f8f8ff;
   resize: none;
 }
 
@@ -560,7 +565,7 @@ nav .brand {
   padding: 0 0 0 10px;
   border: none;
   border-radius: 5px 0px 0px 5px;
-  background: #fffafa;
+  background: #f8f8ff;
 }
 
 .search__btn {
@@ -573,7 +578,7 @@ nav .brand {
 }
 
 .search__btn:hover {
-  background: #fffafa;
+  background: #f8f8ff;
   color: #696969;
 }
 
@@ -646,7 +651,7 @@ nav .brand {
 .spot__list__item__body p {
   margin-bottom: 5px;
 }
-x
+
 .spot__list__item .mask {
   position: absolute;
   top: 0;
@@ -722,4 +727,12 @@ x
 
 .statue__list__item:hover .mask {
   opacity: 1;
+}
+
+.timeline .link {
+  color: #4169e1;
+}
+
+.timeline .link:hover {
+  color: #6495ed;
 }

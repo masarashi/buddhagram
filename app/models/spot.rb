@@ -1,6 +1,6 @@
 class Spot < ApplicationRecord
-  # geocoded_by :name
-  # after_validation :geocode
+  geocoded_by :name
+  after_validation :geocode
   before_create :default_image
 
   has_many :posts

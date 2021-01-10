@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include Pagy::Backend
 
-  before_action :admin?, only: :index
-  before_action :authenticate_user!, only: :timeline
+  before_action :authenticate_user!, only: %i[index timeline]
   before_action :correct_user, only: :timeline
+  before_action :admin?, only: :index
 
   def index
     @pagy, @users = pagy(User.all)

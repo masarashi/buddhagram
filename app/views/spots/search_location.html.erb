@@ -1,5 +1,9 @@
 <div class="container">
-  <div id='map'></div>
+  <div id="map"></div>
+
+  <div class="row mt-5">
+    <%= render partial: "search/spot", collection: @locations %>
+  </div>
 
   <!-- 検索ボタン -->
   <% if false %>
@@ -11,30 +15,34 @@
         周辺200kmを探す
       <% end %>
     </div>
+  
+    <!-- 検索結果の表示 -->
+    <div class="mt-5">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>住所</th>
+            <th>現在地からの距離（直線距離）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @locations.each do |location| %>
+            <tr>
+              <td><%= link_to location.name, location, data: { "turbolinks" => false } %></td>
+              <td><%= location.address %></td>
+              <td><%= location.distance_from(@current_location).round %> km</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   <% end %>
 
-  <!-- 検索結果の表示 -->
-  <div class="mt-5">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>名称</th>
-          <th>住所</th>
-          <th>現在地からの距離（直線距離）</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @locations.each do |location| %>
-          <tr>
-            <td><%= link_to location.name, location, data: { "turbolinks" => false } %></td>
-            <td><%= location.address %></td>
-            <td><%= location.distance_from(@current_location).round %> km</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
 </div>
+
+
 
 <!-- GoogleMap -->
 <script>
