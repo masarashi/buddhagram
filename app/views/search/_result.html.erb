@@ -33,21 +33,21 @@
         <% @statues_search_result.each do |statue| %>
           <li class="mt-2">
             <%= link_to statue, id: "statue" do %>
-              <i class='fas fa-spa fa-fw fa-lg'></i> <strong><%= statue.name %></strong>
+              <i class="fas fa-spa fa-fw"></i> <strong><%= statue.name %></strong>
             <% end %>
           </li>
         <% end %>
         <% @spots_search_result.each do |spot| %>
           <li class="mt-2">
             <%= link_to spot, data: { "turbolinks" => false }, id: "spot" do %>
-              <i class="fas fa-map-marker-alt fa-fw fa-lg"></i> <strong><%= spot.name %></strong><span class="text-sm-gray">（<%= spot.state %>）</span>
+              <i class="fas fa-map-marker-alt fa-fw"></i> <strong><%= spot.name %></strong><span class="text-sm-gray">（<%= spot.state %>）</span>
             <% end %>
           </li>
         <% end %>
         <% @hashtags_search_result.each do |hashtag| %>
           <li class="mt-2">
             <%= link_to "/posts/hashtag/#{hashtag.name}", id: "hashtag" do %>
-              <i class="fas fa-hashtag fa-fw fa-lg"></i> <strong><%= hashtag.name %></strong>
+              <i class="fas fa-hashtag fa-fw"></i> <strong><%= hashtag.name %></strong>
             <% end %>
           </li>
         <% end %>

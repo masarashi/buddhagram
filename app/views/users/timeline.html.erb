@@ -1,15 +1,21 @@
-<% if user_signed_in? %>
-  <% if @feed_items.any? %>
-    <div class="jscroll">
-      <%= render partial: 'posts/post', collection: @feed_items %>
-      <span class="d-none"><%== pagy_nav(@pagy) %></span>
-    </div>
-  <% else %>
-    <div class="text-center">
-      <%= link_to "みんなの投稿を見る", posts_latest_path %>
-    </div>
+<div class="timeline">
+  <% if user_signed_in? %>
+    <% if @feed_items.any? %>
+      <div class="jscroll">
+        <%= render partial: 'posts/post', collection: @feed_items %>
+        <span class="d-none"><%== pagy_nav(@pagy) %></span>
+      </div>
+    <% else %>
+      <div class="wrapper__sm">
+        <p>タイムラインには自分の投稿や自分がフォローしているユーザの投稿が表示されます</p>
+        <h2 class="mt-5">投稿してみよう！</h2>
+        <p><%= link_to "投稿画面へ", new_post_path, class: "link" %></p>
+        <h2 class="mt-5">ユーザをフォローしよう！</h2>
+          <%= link_to "みんなの投稿を見る", posts_latest_path, class: "link" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <script>
   $(function() {

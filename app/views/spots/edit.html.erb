@@ -2,37 +2,37 @@
   <%= form_with model: @spot, local: true do |f| %>
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :country %>
-      <%= f.text_field :country, class: "form-control" %>
+      <%= f.text_field :country, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control" %>
+      <%= f.text_field :state, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control" %>
+      <%= f.text_field :address, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :content %>
-      <%= f.text_area :content, rows: "5", class: "form-control" %>
+      <%= f.text_area :content, rows: "5", class: "textarea" %>
     </div>
     <div class="form-group">
       <%= f.label :latitude %>
-      <%= f.text_field :latitude, class: "form-control" %>
+      <%= f.text_field :latitude, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :longitude %>
-      <%= f.text_field :longitude, class: "form-control" %>
+      <%= f.text_field :longitude, class: "textfield" %>
     </div>
     <div class="form-group">
-      <%= f.label "image", class: "d-none" %>
+      <%= f.label "image" %>
       <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control-file" %>
     </div>
-    <div>
+    <div class="mt-5">
       <%= f.submit "更新", class: "btn btn-secondary btn-block" %>
       <hr>
       <%= link_to "削除", @spot, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-block" %>

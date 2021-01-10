@@ -2,11 +2,11 @@
   <%= form_with model: @statue, local: true do |f| %>
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :ruby %>
-      <%= f.text_field :ruby, class: "form-control" %>
+      <%= f.text_field :ruby, class: "textfield" %>
     </div>
     <div class="form-group">
       <%= f.label :grade %>
@@ -14,9 +14,10 @@
     </div>
     <div class="form-group">
       <%= f.label :content %>
-      <%= f.text_area :content, class: "form-control" %>
+      <%= f.text_area :content, class: "textarea" %>
     </div>
     <div class="form-check">
+      <%= f.label :spot %>
       <%= f.collection_check_boxes(:spot_ids, @spots, :id, :name) do |spot| %>
         <div class="block">
           <%= spot.label { spot.check_box + spot.text } %>
@@ -24,11 +25,11 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label "image", class: "d-none" %>
+      <%= f.label "image"%>
       <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control-file" %>
     </div>
-    <div>
-      <%= f.submit "登録", class: "mt-5 btn btn-secondary btn-block" %>
+    <div class="mt-5">
+      <%= f.submit "登録", class: "btn btn-secondary btn-block" %>
     </div>
   <% end %>
 </div>
