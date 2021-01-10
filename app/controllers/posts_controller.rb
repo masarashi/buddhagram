@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @comments = Comment.includes(user: [image_attachment: :blob]).where(post_id: @post.id)
     @comment = Comment.new
   end
-p
+
   def new
     @post = Post.new
     @spots_search_result = Spot.new
