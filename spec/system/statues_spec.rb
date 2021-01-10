@@ -37,7 +37,8 @@ RSpec.describe "Statues", type: :system do
     uncheck statue.spots[0].name
     click_on "更新"
 
-    expect(page).to have_content "弥勒菩薩（みろくぼさつ）"
+    expect(page).to have_content "弥勒菩薩"
+    expect(page).to have_content "みろくぼさつ"
     expect(page).to have_content "菩薩"
     expect(page).to have_content "編集テスト"
     expect(page).to have_content "更新しました"
@@ -50,8 +51,9 @@ RSpec.describe "Statues", type: :system do
 
     sign_in admin
     visit statue_path(statue)
-
+    click_on "編集"
     click_on "削除"
+    
     expect(page.accept_confirm).to eq "本当に削除しますか？"
     expect(page).to have_content "削除しました"
   end

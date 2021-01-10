@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def feed
     following_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
-    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).with_attached_images.includes(:user, :spot, :comments, user: [image_attachment: :blob]).order(created_at: :desc)
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).with_attached_images.includes(:user, :spot, comments: :user, user: [image_attachment: :blob]).order(created_at: :desc)
   end
 
   def follow(other_user)
