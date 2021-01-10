@@ -39,8 +39,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -67,8 +67,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'devise-i18n'
 # AWS S3
-gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
+gem 'aws-sdk-s3', require: false
 # 画像処理
 gem 'image_processing'
 gem 'mini_magick'
@@ -77,5 +77,5 @@ gem 'geocoder'
 gem 'gon'
 # 国際化
 gem 'rails-i18n', '~> 6.0.0'
-#　ページネーション
+# ページネーション
 gem 'pagy'
