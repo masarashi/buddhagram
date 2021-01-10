@@ -7,7 +7,7 @@ RSpec.describe "Users", type: :system do
 
   scenario "user successfully signs up" do
     visit root_path
-    click_link "サインアップ"
+    click_link "アカウント登録"
 
     expect {
       fill_in "user_email", with: "test@example.com"
