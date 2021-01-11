@@ -9,7 +9,7 @@ RSpec.describe 'Spots', type: :system do
     admin = FactoryBot.create(:user, :admin)
 
     sign_in admin
-    visit spots_get_address_path
+    visit spots_geocoding_search_path
 
     fill_in 'search_name', with: '法隆寺'
     click_button '検索'

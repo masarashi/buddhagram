@@ -6,21 +6,21 @@ RSpec.describe 'Relationships', type: :system do
   # end
 
   it 'user follow and unfollow a other user', js: true do
-    userA = FactoryBot.create(:user)
-    userB = FactoryBot.create(:user)
+    user1 = FactoryBot.create(:user)
+    user2 = FactoryBot.create(:user)
 
-    sign_in userA
-    visit user_path(userB)
+    sign_in user1
+    visit user_path(user2)
 
     expect do
       click_on 'フォローする'
       expect(page).to have_button 'フォロー中'
-    end.to change { userA.following.count }.by(1).and change { userB.followers.count }.by(1)
+    end.to change { user1.following.count }.by(1).and change { user2.followers.count }.by(1)
 
     expect do
       click_on 'フォロー中'
       sleep 0.5
       expect(page).to have_button 'フォローする'
-    end.to change { userA.following.count }.by(-1).and change { userB.followers.count }.by(-1)
+    end.to change { user1.following.count }.by(-1).and change { user2.followers.count }.by(-1)
   end
 end

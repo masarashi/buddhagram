@@ -29,7 +29,7 @@ RSpec.describe 'Hashtags', type: :system do
     post = FactoryBot.create(:post, :with_hashtags)
 
     visit search_path
-    fill_in 'search_keyword', with: '釈迦'
+    fill_in 'search_keyword', with: post.hashtags[0].name
     click_on '検索'
     sleep 0.5
 

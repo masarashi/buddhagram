@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :maps, only: [:index]
 
   get '/spots/search_location'
-  get '/spots/get_address', to: 'spots#get_address'
+  get '/spots/geocoding_search', to: 'spots#geocoding_search'
   get '/spots/search', to: 'spots#search'
   resources :spots
 

@@ -27,7 +27,6 @@ RSpec.describe 'Posts', type: :system do
   it 'user creates a new post with spot' do
     user = FactoryBot.create(:user)
     spot = FactoryBot.create(:spot)
-    search_keyword = spot.name
 
     sign_in user
     visit root_path
