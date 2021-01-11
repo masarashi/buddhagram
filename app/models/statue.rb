@@ -6,14 +6,12 @@ class Statue < ApplicationRecord
   has_one_attached :image
 
   validates :name,    presence: true, uniqueness: { case_sensitive: true }  # 大文字と小文字を区別する
-  validates :ruby,    presence: true, uniqueness: { case_sensitive: true }  # 大文字と小文字を区別する
+  validates :ruby,    presence: true # 大文字と小文字を区別する
   validates :grade,   presence: true
   validates :content, length: { maximum: 512 }
 
   def default_image
-    unless image.attached?
-      image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'noimage.png')),
-                   filename: 'noimage.png', content_type: 'image/png')
-    end
+    image.attach(io: File.open(Rails.root.join('app/javascript/images/noimage.png')),
+                 filename: 'noimage.png', content_type: 'image/png')
   end
 end

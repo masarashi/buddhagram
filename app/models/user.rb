@@ -46,9 +46,7 @@ class User < ApplicationRecord
   end
 
   def default_image
-    unless image.attached?
-      image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'user-icon.png')),
-                   filename: 'user-icon.png', content_type: 'image/png')
-    end
+    image.attach(io: File.open(Rails.root.join('app/javascript/images/user-icon.png')),
+                 filename: 'user-icon.png', content_type: 'image/png')
   end
 end

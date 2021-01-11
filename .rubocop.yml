@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-rails
   - rubocop-rspec
@@ -5,19 +7,23 @@ require:
 
 AllCops:
   Exclude:
-    - bin/*
-    - db/schema.rb
-    - db/migrate/*
-    - node_modules/*
+    - bin/**/*
+    - db/**/*
+    - node_modules/**/*
     - tmp/**/*
+
+Rails: 
+  Enabled: true
 
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
-Rails: 
-  Enabled: true
+# Example has too many lines
+RSpec/ExampleLength:
+  Enabled: false
 
+# 日本語のコメントを許可
 Style/AsciiComments:
   Enabled: false
 

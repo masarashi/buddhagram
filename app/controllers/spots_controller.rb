@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   include Pagy::Backend
 
-  before_action :admin?, only: %i[new create edit update destroy get_address]
+  before_action :admin?, only: %i[new create edit update destroy geocoding_search]
 
   def index
     @spots = Spot.with_attached_image
@@ -56,7 +56,7 @@ class SpotsController < ApplicationController
     redirect_to spots_path
   end
 
-  def get_address
+  def geocoding_search
     @spot = Spot.new
   end
 

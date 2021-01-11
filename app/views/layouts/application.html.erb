@@ -57,7 +57,7 @@
                   <% if user_signed_in? && current_user.admin? %>
                     <div class='dropdown-divider'></div>
                     <%= link_to "仏像登録", new_statue_path, class: 'dropdown-item' %>
-                    <%= link_to "スポット登録", '/spots/get_address', class: 'dropdown-item' %>
+                    <%= link_to "スポット登録", '/spots/geocoding_search', class: 'dropdown-item' %>
                     <div class='dropdown-divider'></div>
                     <%= link_to "ユーザ管理", users_path, class: 'dropdown-item' %>
                     <%= link_to "投稿管理", posts_path, class: 'dropdown-item' %>
