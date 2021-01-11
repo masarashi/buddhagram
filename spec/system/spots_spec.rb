@@ -46,7 +46,7 @@ RSpec.describe "Spots", type: :system do
 
     sign_in admin
     visit spot_path(spot)
-
+    click_on "編集"
     click_on "削除"
     expect(page.accept_confirm).to eq "本当に削除しますか？"
     expect(page).to have_content "削除しました"

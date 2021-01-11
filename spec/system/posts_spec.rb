@@ -69,8 +69,9 @@ RSpec.describe "Posts", type: :system do
     sign_in post.user
     visit post_path(post)
 
+    click_on "編集"
     click_on "削除"
-
+    
     expect {
       expect(page.accept_confirm).to eq "本当に削除しますか？"
       expect(page).to have_content "投稿を削除しました"

@@ -17,7 +17,7 @@
     <div class="mt-5">
       <h2>投稿内容</h2>
       <%= f.label "content", class: "d-none" %>
-      <%= f.text_area :content, class: 'form-control', rows: '10', class: "textarea" %>
+      <%= f.text_area :content, rows: '10', class: "textarea" %>
     </div>
     <% if @post.spot.present? %>
       <div class="mt-5">
