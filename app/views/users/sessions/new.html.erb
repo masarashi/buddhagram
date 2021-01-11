@@ -1,6 +1,8 @@
 <div class="jumbotron">
   <div class="session">
-    <div class="brand"><h2>Buddhagram</h2></div>
+    <%# <div class="brand"><h2>Buddhagram</h2></div> %>
+    <h2>ログイン</h2>
+
 
     <% if false %>
       <h2><%= t('.sign_in') %></h2>
@@ -26,7 +28,7 @@
         </div>
       <% end %>
 
-      <div class="form-group">
+      <div>
         <%= f.submit t('.sign_in'), class: "btn btn-info btn-block" %>
       </div>
     <% end %>

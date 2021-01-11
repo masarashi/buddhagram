@@ -18,6 +18,7 @@ Rails:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+    - config/routes.rb
 
 # Example has too many lines
 RSpec/ExampleLength:

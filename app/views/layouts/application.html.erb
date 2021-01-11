@@ -71,10 +71,14 @@
             <!-- 非ログイン時のメニュー -->
             <% else %>
               <li class='nav-item'>
-                <%= link_to 'アカウント登録', new_user_registration_path, class: 'nav-link' %>
+                <%= link_to new_user_session_path, class: 'nav-link' do %>
+                  <i class="fas fa-sign-in-alt fa-fw"></i> ログイン
+                <% end %>
               </li>
               <li class='nav-item'>
-                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+                <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link ml-3 rounded bg-info text-white' do %>
+                  <i class="fas fa-eye fa-fw"></i> ゲストログイン
+                <% end %>
               </li>
             <% end %>
           </ul>

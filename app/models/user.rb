@@ -49,4 +49,11 @@ class User < ApplicationRecord
     image.attach(io: File.open(Rails.root.join('app/javascript/images/user-icon.png')),
                  filename: 'user-icon.png', content_type: 'image/png')
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
 end
