@@ -18,8 +18,8 @@ class User < ApplicationRecord
 
   validates :name,    presence: true, length: { maximum: 32 }, uniqueness: { case_sensitive: true } # 大文字と小文字を区別する
   validates :profile, length: { maximum: 256 }
-  validates :image,   content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
-                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
+  validates :image,   content_type: { in: %w[image/jpeg image/gif image/png], message: '画像はjpeg、gif、png形式のみアップロード可能です' },
+                      size: { less_than: 5.megabytes, message: '画像は5MB未満にしてください' }
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
@@ -46,9 +46,9 @@ class User < ApplicationRecord
   end
 
   def default_image
-    if !self.image.attached?
-      self.image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'user-icon.png')),
-                        filename: 'user-icon.png', content_type: 'image/png')
+    unless image.attached?
+      image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'user-icon.png')),
+                   filename: 'user-icon.png', content_type: 'image/png')
     end
   end
 end

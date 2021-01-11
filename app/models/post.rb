@@ -11,8 +11,8 @@ class Post < ApplicationRecord
 
   validates :content, length: { maximum: 512 }
   validates :images,  attached: true, limit: { min: 1, max: 5 },
-                      content_type: { in: %w[image/jpeg image/gif image/png], message: "画像はjpeg、gif、png形式のみアップロード可能です" },
-                      size: { less_than: 5.megabytes, message: "画像は5MB未満にしてください" }
+                      content_type: { in: %w[image/jpeg image/gif image/png], message: '画像はjpeg、gif、png形式のみアップロード可能です' },
+                      size: { less_than: 5.megabytes, message: '画像は5MB未満にしてください' }
 
   after_create do
     post = Post.find_by(id: id)

@@ -2,7 +2,7 @@
   <p class="mt-5">投稿場所を検索</p>
   <%= form_with url: "/posts/search", method: :get do |f| %>
     <div>
-      <%= f.label "キーワードで探す", class: "d-none" %>
+      <%= f.label "search_spot", class: "d-none" %>
       <div class="row">
         <div class="col-10 pr-0">
           <%= f.text_field :search_keyword, :placeholder => "キーワード", rows: "1", class: "search__textfield" %>

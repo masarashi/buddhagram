@@ -97,7 +97,7 @@ class PostsController < ApplicationController
   def search
     @spot = Spot.new
     if params[:search_keyword].blank?
-      @error_message = "キーワードを入力してください"
+      @error_message = '検索ワードを入力してください'
     else
       @search_keyword = params[:search_keyword]
       @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%",
