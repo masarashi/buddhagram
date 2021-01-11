@@ -86,7 +86,7 @@ class PostsController < ApplicationController
     @hashtag = Hashtag.find_by(name: params[:name])
     if @hashtag
       @posts = @hashtag.posts.order(created_at: :desc)
-      @popular_posts = @posts.limit(6).sort{ |a,b| b.likes.count <=> a.likes.count }
+      @popular_posts = @posts.limit(6).sort { |a, b| b.likes.count <=> a.likes.count }
       @pagy, @latest_posts = pagy(@posts, items: 9)
       @posts_count = @posts.count
     else
@@ -100,7 +100,8 @@ class PostsController < ApplicationController
       @error_message = "キーワードを入力してください"
     else
       @search_keyword = params[:search_keyword]
-      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%",
+                                         "%#{@search_keyword}%", "%#{@search_keyword}%"])
     end
   end
 
@@ -111,16 +112,16 @@ class PostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
-    end
-    
-    def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
-      redirect_to root_url if @post.nil?
-    end
+  def post_params
+    params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+  end
 
-    # def post_confirm_params
-    #   params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
-    # end
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_url if @post.nil?
+  end
+
+  # def post_confirm_params
+  #   params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
+  # end
 end

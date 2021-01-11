@@ -8,13 +8,13 @@ class StatuesController < ApplicationController
   def show
     @statue = Statue.find(params[:id])
   end
-  
+
   def new
     @spots = Spot.all
     @statue = Statue.new
     @statue.storehouses.new
   end
-  
+
   def create
     @statue = Statue.new(statue_params)
     if @statue.save!
@@ -24,7 +24,7 @@ class StatuesController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @spots = Spot.all
     @statue = Statue.find(params[:id])
@@ -48,7 +48,7 @@ class StatuesController < ApplicationController
 
   private
 
-    def statue_params
-      params.require(:statue).permit(:name, :ruby, :grade, :content, :image, spot_ids: [])
-    end
+  def statue_params
+    params.require(:statue).permit(:name, :ruby, :grade, :content, :image, spot_ids: [])
+  end
 end

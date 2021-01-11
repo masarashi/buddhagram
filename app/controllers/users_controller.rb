@@ -30,13 +30,16 @@ class UsersController < ApplicationController
   def timeline
     @user = User.find(params[:user_id])
     @pagy, @feed_items = pagy(@user.feed, items: 3)
-    @pagy2, @posts = pagy(Post.with_attached_images.includes(:user, :spot).includes(user: [image_attachment: :blob]).order(created_at: :desc), items: 3)
+    @pagy2, @posts = pagy(
+      Post.with_attached_images.includes(:user,
+                                         :spot).includes(user: [image_attachment: :blob]).order(created_at: :desc), items: 3
+    )
   end
 
   private
 
-    def correct_user
-      @user = User.find(params[:user_id])
-      redirect_to(root_url) unless current_user == @user
-    end
+  def correct_user
+    @user = User.find(params[:user_id])
+    redirect_to(root_url) unless current_user == @user
+  end
 end

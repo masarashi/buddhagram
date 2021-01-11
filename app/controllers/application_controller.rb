@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :image])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :image])
+  end
 
-    def admin?
-      redirect_to root_url unless current_user.admin?
-    end
+  def admin?
+    redirect_to root_url unless current_user.admin?
+  end
 end

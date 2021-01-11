@@ -56,7 +56,7 @@ RSpec.describe "Spots", type: :system do
     spot = FactoryBot.create(:spot, :with_statues)
 
     visit spot_path(spot)
-    
+
     expect(page).to have_selector "a", text: spot.statues[0].name
   end
 
@@ -72,7 +72,7 @@ RSpec.describe "Spots", type: :system do
     # visit search_path
 
     # click_on "現在地周辺スポットを探す"
-    
+
     # sleep 2
     # take_screenshot
 

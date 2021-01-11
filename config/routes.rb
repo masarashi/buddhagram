@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'search#index'
 
   get '/search', to: 'search#index'
@@ -25,12 +24,12 @@ Rails.application.routes.draw do
   post 'posts/new', to: 'posts#new'
   # post 'posts/:id/edit', to: 'posts#edit'
   # post 'posts/confirm', to: 'posts#confirm'
-  
+
   resources :posts do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
-  
+
   resources :relationships, only: [:create, :destroy]
   resources :maps, only: [:index]
 

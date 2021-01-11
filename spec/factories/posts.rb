@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :post do
-    association :user 
+    association :user
     content     { "Hello, World!" }
 
     trait :with_hashtags do
@@ -12,7 +12,8 @@ FactoryBot.define do
     end
 
     after(:build) do |post|
-      post.images.attach(io: File.open('spec/images/sample_image.png'), filename: 'sample_image.png', content_type: 'image/png')
+      post.images.attach(io: File.open('spec/images/sample_image.png'), filename: 'sample_image.png',
+                         content_type: 'image/png')
     end
   end
 end

@@ -27,7 +27,8 @@ class Spot < ApplicationRecord
 
   def default_image
     if !self.image.attached?
-      self.image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'noimage.png')), filename: 'noimage.png', content_type: 'image/png')
+      self.image.attach(io: File.open(Rails.root.join('app', 'javascript', 'images', 'noimage.png')),
+                        filename: 'noimage.png', content_type: 'image/png')
     end
   end
 end
