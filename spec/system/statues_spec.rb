@@ -62,7 +62,7 @@ RSpec.describe "Statues", type: :system do
     statue = FactoryBot.create(:statue, :with_spots)
 
     visit statue_path(statue)
-    
+
     expect(page).to have_selector "a", text: statue.spots[0].name
   end
 end

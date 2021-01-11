@@ -11,7 +11,7 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @posts = @spot.posts.order(created_at: :desc)
-    @popular_posts = @posts.limit(6).sort{ |a,b| b.likes.count <=> a.likes.count }
+    @popular_posts = @posts.limit(6).sort { |a, b| b.likes.count <=> a.likes.count }
     @pagy, @latest_posts = pagy(@posts, items: 3)
   end
 
@@ -21,7 +21,7 @@ class SpotsController < ApplicationController
     @results = Geocoder.search("#{@name}")
     @country = @results.first.country
     @state = @results.first.state
-    @address = @results.first.address.gsub("、"," ").split(" ")[1,2].join(' ')
+    @address = @results.first.address.gsub("、", " ").split(" ")[1, 2].join(' ')
     @latitude = @results.first.latitude
     @longitude = @results.first.longitude
   end
@@ -79,13 +79,14 @@ class SpotsController < ApplicationController
       @search_keyword = params[:search_keyword]
       @users_search_result = User.where(['name LIKE ?', "%#{@search_keyword}%"])
       @hashtags_search_result = Hashtag.where(['name LIKE ?', "%#{@search_keyword}%"])
-      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%", "%#{@search_keyword}%", "%#{@search_keyword}%"])
+      @spots_search_result = Spot.where(['name LIKE ? OR state LIKE ? OR address LIKE ?', "%#{@search_keyword}%",
+                                         "%#{@search_keyword}%", "%#{@search_keyword}%"])
     end
   end
 
   private
 
-    def spot_params
-      params.require(:spot).permit(:name, :country, :state, :address, :latitude, :longitude, :image)
-    end
+  def spot_params
+    params.require(:spot).permit(:name, :country, :state, :address, :latitude, :longitude, :image)
+  end
 end

@@ -8,4 +8,3 @@ require 'rails_helper'
 #     puts comment.user.inspect
 #   end
 # end
-  

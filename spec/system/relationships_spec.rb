@@ -12,7 +12,7 @@ RSpec.describe "Relationships", type: :system do
     sign_in userA
     visit user_path(userB)
 
-    expect { 
+    expect {
       click_on "フォローする"
       expect(page).to have_button "フォロー中"
     }.to change { userA.following.count }.by(1).and change { userB.followers.count }.by(1)

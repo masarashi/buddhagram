@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "csv"
- 
+
 CSV.foreach('db/seeds/spots.csv', headers: true) do |row|
   Spot.create(
     name: row['name'],

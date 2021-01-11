@@ -5,11 +5,12 @@ FactoryBot.define do
     password          { "hogehoge" }
 
     trait :admin do
-      admin     { "true" }
+      admin { "true" }
     end
 
     after(:build) do |user|
-      user.image.attach(io: File.open('spec/images/user-icon.png'), filename: 'user-icon.png', content_type: 'image/png')
+      user.image.attach(io: File.open('spec/images/user-icon.png'), filename: 'user-icon.png',
+                        content_type: 'image/png')
     end
   end
 end

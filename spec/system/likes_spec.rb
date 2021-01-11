@@ -16,7 +16,7 @@ RSpec.describe "Likes", type: :system do
       find(".likes-link").click
       sleep 0.5
     }.to change(post.likes, :count).by(1)
-    
+
     expect {
       find(".likes-link").click
       sleep 0.5
@@ -33,7 +33,7 @@ RSpec.describe "Likes", type: :system do
       find(".likes-link").click
       sleep 0.5
     }.to change(post.likes, :count).by(1)
-    
+
     expect {
       find(".likes-link").click
       sleep 0.5

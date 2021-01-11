@@ -1,3 +1,2 @@
 class StorehousesController < ApplicationController
-
 end
