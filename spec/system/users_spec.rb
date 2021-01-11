@@ -7,7 +7,8 @@ RSpec.describe 'Users', type: :system do
 
   it 'user successfully signs up' do
     visit root_path
-    click_link 'アカウント登録'
+    click_on 'ログイン'
+    click_on 'アカウント新規登録'
 
     expect do
       fill_in 'user_email', with: 'test@example.com'
@@ -19,5 +20,13 @@ RSpec.describe 'Users', type: :system do
 
     expect(page).to have_content 'アカウント登録が完了しました。'
     expect(page).to have_current_path root_path, ignore_query: true
+  end
+
+  it 'guest successfully login without signs up' do
+    visit root_path
+    click_on 'ゲストログイン'
+
+    expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+    expect(page).to have_no_content 'ゲストログイン'
   end
 end
