@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :post do
     association :user
-    content     { "Hello, World!" }
+    content     { 'Hello, World!' }
 
     trait :with_hashtags do
-      content { "#釈迦" }
+      content { '#釈迦' }
     end
 
     trait :with_spots do

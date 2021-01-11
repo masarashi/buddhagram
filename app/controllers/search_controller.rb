@@ -10,7 +10,7 @@ class SearchController < ApplicationController
   def search
     @spot = Spot.new
     if params[:search_keyword].blank?
-      @error_message = "キーワードを入力してください"
+      @error_message = '検索ワードを入力してください'
     else
       @search_keyword = params[:search_keyword]
       @users_search_result = User.where(['name LIKE ?', "%#{@search_keyword}%"])

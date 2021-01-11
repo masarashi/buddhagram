@@ -26,11 +26,11 @@ Rails.application.routes.draw do
   # post 'posts/confirm', to: 'posts#confirm'
 
   resources :posts do
-    resources :comments, only: [:create, :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy]
+    resources :likes, only: %i[create destroy]
   end
 
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: %i[create destroy]
   resources :maps, only: [:index]
 
   get '/spots/search_location'

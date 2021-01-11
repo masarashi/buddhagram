@@ -18,10 +18,10 @@ class SpotsController < ApplicationController
   def new
     @spot = Spot.new
     @name = params[:search_name]
-    @results = Geocoder.search("#{@name}")
+    @results = Geocoder.search(@name.to_s)
     @country = @results.first.country
     @state = @results.first.state
-    @address = @results.first.address.gsub("、", " ").split(" ")[1, 2].join(' ')
+    @address = @results.first.address.tr('、', ' ').split(' ')[1, 2].join(' ')
     @latitude = @results.first.latitude
     @longitude = @results.first.longitude
   end
@@ -29,10 +29,10 @@ class SpotsController < ApplicationController
   def create
     @spot = Spot.new(spot_params)
     if @spot.save
-      flash[:notice] = "登録しました"
+      flash[:notice] = '登録しました'
       redirect_to @spot
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -43,16 +43,16 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     if @spot.update(spot_params)
-      flash[:notice] = "更新しました"
+      flash[:notice] = '更新しました'
       redirect_to @spot
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     Spot.find(params[:id]).destroy!
-    flash[:notice] = "削除しました"
+    flash[:notice] = '削除しました'
     redirect_to spots_path
   end
 
@@ -63,7 +63,7 @@ class SpotsController < ApplicationController
   def search_location
     @latitude = params[:latitude].to_f
     @longitude = params[:longitude].to_f
-    @current_location = Spot.new(name: "現在地", latitude: @latitude, longitude: @longitude)
+    @current_location = Spot.new(name: '現在地', latitude: @latitude, longitude: @longitude)
     @locations = @current_location.nearbys(200, units: :km).with_attached_image
     gon.locations = @locations
 
@@ -74,7 +74,7 @@ class SpotsController < ApplicationController
   def search
     @spot = Spot.new
     if params[:search_keyword].blank?
-      @error_message = "キーワードを入力してください"
+      @error_message = '検索ワードを入力してください'
     else
       @search_keyword = params[:search_keyword]
       @users_search_result = User.where(['name LIKE ?', "%#{@search_keyword}%"])

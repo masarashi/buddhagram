@@ -2,10 +2,10 @@ FactoryBot.define do
   factory :user do
     sequence(:name)   { |n| "user#{n}" }
     sequence(:email)  { |n| "tester#{n}@example.com" }
-    password          { "hogehoge" }
+    password          { 'hogehoge' }
 
     trait :admin do
-      admin { "true" }
+      admin { 'true' }
     end
 
     after(:build) do |user|
