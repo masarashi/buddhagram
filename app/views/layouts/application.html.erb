@@ -15,91 +15,97 @@
   </head>
 
   <body>
-    <nav class='navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm'>
-      <div class='container'>
-        <%= link_to root_path, class: 'navbar-brand' do %>
-          <span class='brand'>Buddhagram</span>
-        <% end %>
-        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
-          <span class='navbar-toggler-icon'></span>
-        </button>
-        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul class='navbar-nav ml-auto'>
-            <li class='nav-item'>
-              <%= link_to '/search', class: 'nav-link' do %>
-                <i class="fas fa-search fa-fw"></i> 見つける
+    <div class="footerFixed">
+      <nav class='navbar navbar-expand-lg navbar-light bg-body'>
+        <div class='container'>
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <span class='brand'>Buddhagram</span>
+          <% end %>
+          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+          <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul class='navbar-nav ml-auto'>
+              <li class='nav-item'>
+                <%= link_to '/search', class: 'nav-link' do %>
+                  <i class="fas fa-search fa-fw"></i> 見つける
+                <% end %>
+              </li>
+              <!-- ログイン中のメニュー -->
+              <% if user_signed_in? %>
+                <li class='nav-item'>
+                  <%= link_to posts_new_post_path, class: 'nav-link' do %>
+                    <i class="far fa-plus-square fa-fw"></i> 投稿する
+                  <% end %>
+                </li>
+                <li class='nav-item'>
+                  <%= link_to user_timeline_path(current_user.id), class: 'nav-link' do %>
+                    <i class="far fa-images fa-fw"></i> タイムライン
+                  <% end %>
+                </li>
+                <li class='nav-item dropdown'>
+                  <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                    <%= image_tag resize20(current_user.image), class: "user__icon__20" %>
+                  </a>
+                  <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                    <%= link_to current_user, class: 'dropdown-item' do %>
+                      <i class='far fa-user-circle fa-fw'></i> プロフィール
+                    <% end %>
+                    <%= link_to edit_user_registration_path(current_user), class: 'dropdown-item' do %>
+                      <i class='fas fa-user-edit fa-fw'></i> プロフィール編集
+                    <% end %>
+                    <!-- 管理者のみ -->
+                    <% if user_signed_in? && current_user.admin? %>
+                      <div class='dropdown-divider'></div>
+                      <%= link_to "仏像登録", new_statue_path, class: 'dropdown-item' %>
+                      <%= link_to "スポット登録", '/spots/geocoding_search', class: 'dropdown-item' %>
+                      <div class='dropdown-divider'></div>
+                      <%= link_to "ユーザ管理", users_path, class: 'dropdown-item' %>
+                      <%= link_to "投稿管理", posts_path, class: 'dropdown-item' %>
+                    <% end %>
+                    <div class='dropdown-divider'></div>
+                    <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                      <i class="fas fa-sign-out-alt fa-fw"></i> ログアウト
+                    <% end %>
+                  </div>
+                </li>
+              <!-- 非ログイン時のメニュー -->
+              <% else %>
+                <li class='nav-item'>
+                  <%= link_to new_user_session_path, class: 'nav-link mr-2' do %>
+                    <i class="fas fa-sign-in-alt fa-fw"></i> ログイン
+                  <% end %>
+                </li>
+                <li class='nav-item'>
+                  <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link btn btn-sm btn-info text-white' do %>
+                    <i class="fas fa-eye fa-fw"></i> ゲストログイン
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <!-- ログイン中のメニュー -->
-            <% if user_signed_in? %>
-              <li class='nav-item'>
-                <%= link_to posts_new_post_path, class: 'nav-link' do %>
-                  <i class="far fa-plus-square fa-fw"></i> 投稿する
-                <% end %>
-              </li>
-              <li class='nav-item'>
-                <%= link_to user_timeline_path(current_user.id), class: 'nav-link' do %>
-                  <i class="far fa-images fa-fw"></i> タイムライン
-                <% end %>
-              </li>
-              <li class='nav-item dropdown'>
-                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                  <%= image_tag resize20(current_user.image), class: "user__icon__20" %>
-                </a>
-                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                  <%= link_to current_user, class: 'dropdown-item' do %>
-                    <i class='far fa-user-circle fa-fw'></i> プロフィール
-                  <% end %>
-                  <%= link_to edit_user_registration_path(current_user), class: 'dropdown-item' do %>
-                    <i class='fas fa-user-edit fa-fw'></i> プロフィール編集
-                  <% end %>
-                  <!-- 管理者のみ -->
-                  <% if user_signed_in? && current_user.admin? %>
-                    <div class='dropdown-divider'></div>
-                    <%= link_to "仏像登録", new_statue_path, class: 'dropdown-item' %>
-                    <%= link_to "スポット登録", '/spots/geocoding_search', class: 'dropdown-item' %>
-                    <div class='dropdown-divider'></div>
-                    <%= link_to "ユーザ管理", users_path, class: 'dropdown-item' %>
-                    <%= link_to "投稿管理", posts_path, class: 'dropdown-item' %>
-                  <% end %>
-                  <div class='dropdown-divider'></div>
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
-                    <i class="fas fa-sign-out-alt fa-fw"></i> ログアウト
-                  <% end %>
-                </div>
-              </li>
-            <!-- 非ログイン時のメニュー -->
-            <% else %>
-              <li class='nav-item'>
-                <%= link_to new_user_session_path, class: 'nav-link' do %>
-                  <i class="fas fa-sign-in-alt fa-fw"></i> ログイン
-                <% end %>
-              </li>
-              <li class='nav-item'>
-                <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link ml-3 rounded bg-info text-white' do %>
-                  <i class="fas fa-eye fa-fw"></i> ゲストログイン
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
+            </ul>
+          </div>
         </div>
+      </nav>
+
+      <div>
+        <% if flash.notice %>
+          <p class="notice alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if flash.alert %>
+          <p class="alert alert alert-danger"><%= alert %></p>
+        <% end %>
       </div>
-    </nav>
 
-    <div>
-      <% if flash.notice %>
-        <p class="notice alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if flash.alert %>
-        <p class="alert alert alert-danger"><%= alert %></p>
-      <% end %>
+      <div style="padding-top: 60px">
+        <%= yield %>
+      </div>
+
+      <footer>
+        <div class="container">
+          <p><i class="fab fa-twitter"></i><a href="https://twitter.com/msoigrs" rel="nofollow"> Twitter</a></p>
+          <p>© Masao Igarashi 2021</p>
+        </div>
+      </footer>
     </div>
-
-    <div class='mt-5'>
-      <%= yield %>
-    </div>
-
-    <footer>
-    </footer>
   </body>
 </html>
