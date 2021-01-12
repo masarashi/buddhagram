@@ -4,57 +4,22 @@
     <%= render partial: "spots/spot", collection: @spots %>
   </div>
 
-
   <% if false %>
-
-  <div class="jscroll">
-    <div class="row">
-      <%= render partial: "users/post", collection: @posts %>
-      <span class="d-none"><%== pagy_nav(@pagy) %></span>
+    <div class="jscroll">
+      <div class="row">
+        <%= render partial: "users/post", collection: @posts %>
+        <span class="d-none"><%== pagy_nav(@pagy) %></span>
+      </div>
     </div>
-  </div>
 
-  <script>
-    $(function() {
-      $('.jscroll').jscroll({
-        loadingHtml: '読み込み中',
-        contentSelector: '.jscroll',
-        nextSelector: 'span.next:last a'
+    <script>
+      $(function() {
+        $('.jscroll').jscroll({
+          loadingHtml: '読み込み中',
+          contentSelector: '.jscroll',
+          nextSelector: 'span.next:last a'
+        });
       });
-    });
-  </script>
-
-
-
-
-
-
-
-
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>名称</th>
-          <th>所在地</th>
-          <th>住所</th>
-          <th>投稿件数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @spots.each do |spot| %>
-          <tr>
-            <td><%= link_to spot.name, spot, data: { "turbolinks" => false } %></td>
-            <td><%= spot.state %></td>
-            <td><%= spot.address %></td>
-            <% if spot.posts.count >= 1 %>
-              <td><%= spot.posts.count %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    </script>
   <% end %>
-
 </div>
