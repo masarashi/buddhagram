@@ -11,13 +11,11 @@ require 'csv'
 CSV.foreach('db/seeds/spots.csv', headers: true) do |row|
   Spot.create(
     name: row['name'],
-    content: row['content'],
-    zip: row['zip'],
     country: row['country'],
-    prefecture: row['prefecture'],
-    city: row['city'],
-    address1: row['address1'],
-    address2: row['address2'],
-    url: row['url']
+    state: row['state'],
+    address: row['address'],
+    latitude: row['latitude'],
+    longitude: row['longitude'],
+    content: row['content']
   )
 end
