@@ -1,5 +1,30 @@
-<div class="container">
+<div class="container statues">
   <div class="row">
-    <%= render partial: "statues/statue", collection: @statues %>
+    <%#= render partial: "statues/statue", collection: @statues %>
+  </div>
+  
+  <h2>如来</h2>
+  <div class="row mb-5">
+    <%= render partial: "statues/statue", collection: @nyorai %>
+  </div>
+  
+  <h2>菩薩</h2>
+  <div class="row mb-5">
+    <%= render partial: "statues/statue", collection: @bosatsu %>
+  </div>
+  
+  <h2>明王</h2>
+  <div class="row mb-5">
+    <%= render partial: "statues/statue", collection: @myouou %>
+  </div>
+  
+  <h2>天部</h2>
+  <div class="row mb-5">
+    <%= render partial: "statues/statue", collection: @tenbu %>
+  </div>
+  
+  <h2>その他</h2>
+  <div class="row">
+    <%= render partial: "statues/statue", collection: @others %>
   </div>
 </div>
