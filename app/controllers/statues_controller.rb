@@ -3,6 +3,11 @@ class StatuesController < ApplicationController
 
   def index
     @statues = Statue.with_attached_image
+    @nyorai = Statue.with_attached_image.where(grade: '如来')
+    @bosatsu = Statue.with_attached_image.where(grade: '菩薩')
+    @myouou = Statue.with_attached_image.where(grade: '明王')
+    @tenbu = Statue.with_attached_image.where(grade: '天部')
+    @others = Statue.with_attached_image.where(grade: 'その他')
   end
 
   def show
