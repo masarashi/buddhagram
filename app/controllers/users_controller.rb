@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   before_action :admin?, only: :index
 
   def index
-    @pagy, @users = pagy(User.all)
+    @users = User.all
+    # @pagy, @users = pagy(User.all)
   end
 
   def show

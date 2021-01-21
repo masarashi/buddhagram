@@ -79,3 +79,5 @@ gem 'gon'
 gem 'rails-i18n', '~> 6.0.0'
 # ページネーション
 gem 'pagy'
+# ダミーデータ
+gem 'faker'
