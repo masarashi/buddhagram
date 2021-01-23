@@ -73,7 +73,7 @@
           <%= link_to comment.user do %>
             <%= image_tag resize40(comment.user.image), class: "user__icon__40" %>
           <% end %>
-          <div>
+          <div class="ml-1">
             <strong><%= link_to comment.user.name, comment.user %></strong>
             <%= comment.content %>
             <div>

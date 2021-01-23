@@ -5,19 +5,21 @@
     投稿<%= @posts_count %>件
   </div>
 
-  <div>
-    <h2 class="mt-5">人気の投稿</h2>
-    <div class="row">
-      <%= render partial: "users/post", collection: @popular_posts %>
-    </div>
-    <h2 class="mt-5">最新の投稿</h2>
-    <div class="jscroll">
+  <% if @posts_count >= 1 %>
+    <div>
+      <h2 class="mt-5">人気の投稿</h2>
       <div class="row">
-        <%= render partial: "users/post", collection: @latest_posts %>
-        <span class="d-none"><%== pagy_nav(@pagy) %></span>
+        <%= render partial: "users/post", collection: @popular_posts %>
+      </div>
+      <h2 class="mt-5">最新の投稿</h2>
+      <div class="jscroll">
+        <div class="row">
+          <%= render partial: "users/post", collection: @latest_posts %>
+          <span class="d-none"><%== pagy_nav(@pagy) %></span>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <script>

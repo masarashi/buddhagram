@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <div>
+    <%= link_to user do %>
+      <%= image_tag resize20(user.image), class: "user__icon__20" %> <span class="user__name"><%= user.name %></span>
+    <% end %>
+  </div>
+<% end %>
