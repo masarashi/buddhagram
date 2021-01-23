@@ -58,7 +58,7 @@
         <%= link_to @post.user do %>
           <%= image_tag resize40(@post.user.image), class: "user__icon__40" %>
         <% end %>
-        <div>
+        <div class="ml-1">
           <strong><%= link_to @post.user.name, @post.user %></strong>
           <%= render_with_hashtags(safe_join(@post.content.split("\n"), tag(:br))) %>
           <!-- 投稿時刻 -->
@@ -73,7 +73,7 @@
           <%= link_to comment.user do %>
             <%= image_tag resize40(comment.user.image), class: "user__icon__40" %>
           <% end %>
-          <div>
+          <div class="ml-1">
             <strong><%= link_to comment.user.name, comment.user %></strong>
             <%= comment.content %>
             <div>

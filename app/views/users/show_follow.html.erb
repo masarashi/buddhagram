@@ -15,7 +15,7 @@
     </div>
     <div class="ml-5">
       <%= link_to followers_user_path(@user) do %>
-        フォロワー<%= @user.followers.count %>人
+        フォロワー<span id="followers"><%= @user.followers.count %></span>人
       <% end %>
     </div>
   </div>
@@ -23,12 +23,8 @@
   <hr>
 
   <% if @users.any? %>
-    <% @users.each do |user| %>
-      <div>
-        <%= link_to user do %>
-          <%= image_tag resize20(user.image), class: "user__icon__20" %> <span class="user__name"><%= user.name %></span>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="user_list">
+      <%= render 'users/user_list' %>
+    </div>
   <% end %>
 </div>

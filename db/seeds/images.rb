@@ -1,19 +1,7 @@
-# spot = Spot.find_by(name: '中尊寺')
-# # spot.image.attach(io: File.open('app/javascript/images/noimage.png'), filename: 'noimage.png', content_type: 'image/png')
-# spot.image.attach(io: File.open("app/javascript/images/#{spot.name}.jpg"), filename: "#{spot.name}.jpg", content_type: 'image/jpg')
-
 Spot.all.each do |spot|
-  if File.exist?("app/javascript/images/spots/#{spot.name}.jpg")
-    spot.image.attach(io: File.open("app/javascript/images/spots/#{spot.name}.jpg"), filename: "#{spot.name}.jpg", content_type: 'image/jpg')
-  else
-    spot.image.attach(io: File.open('app/javascript/images/noimage.png'), filename: 'noimage.png', content_type: 'image/png')
-  end
+  spot.image.attach(io: File.open("app/javascript/images/spots/#{spot.name}.jpg"), filename: "#{spot.name}.jpg", content_type: 'image/jpg') if File.exist?("app/javascript/images/spots/#{spot.name}.jpg")
 end
 
 Statue.all.each do |statue|
-  if File.exist?("app/javascript/images/statues/#{statue.name}.jpg")
-    statue.image.attach(io: File.open("app/javascript/images/statues/#{statue.name}.jpg"), filename: "#{statue.name}.jpg", content_type: 'image/jpg')
-  else
-    statue.image.attach(io: File.open('app/javascript/images/noimage.png'), filename: 'noimage.png', content_type: 'image/png')
-  end
+  statue.image.attach(io: File.open("app/javascript/images/statues/#{statue.name}.png"), filename: "#{statue.name}.png", content_type: 'image/png') if File.exist?("app/javascript/images/statues/#{statue.name}.png")
 end

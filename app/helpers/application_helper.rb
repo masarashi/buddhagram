@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def resize180(image)
-    image.variant(resize_to_fit: [180, 180])
+    image.variant(resize_to_fit: [180, nil])
   end
 
   def resize300(image)

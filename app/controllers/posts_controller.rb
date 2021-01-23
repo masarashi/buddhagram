@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!, only: %i[index new create update destroy]
+  # before_action :authenticate_user!, only: %i[index new create update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :admin?, only: :index
 
