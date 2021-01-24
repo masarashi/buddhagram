@@ -1,29 +1,38 @@
 <div class="container statues">
+
+  <div class="text-center mb-5">
+    <a href="#nyorai">如来</a> /
+    <a href="#bosatsu">菩薩</a> /
+    <a href="#myouou">明王</a> /
+    <a href="#tenbu">天部</a> /
+    <a href="#others">その他</a>
+  </div>
+
   <div class="row">
     <%#= render partial: "statues/statue", collection: @statues %>
   </div>
   
-  <h2>如来</h2>
+  <h2 id="nyorai">如来</h2>
   <div class="row mb-5">
     <%= render partial: "statues/statue", collection: @nyorai %>
   </div>
   
-  <h2>菩薩</h2>
+  <h2 id="bosatsu">菩薩</h2>
   <div class="row mb-5">
     <%= render partial: "statues/statue", collection: @bosatsu %>
   </div>
   
-  <h2>明王</h2>
+  <h2 id="myouou">明王</h2>
   <div class="row mb-5">
     <%= render partial: "statues/statue", collection: @myouou %>
   </div>
   
-  <h2>天部</h2>
+  <h2 id="tenbu">天部</h2>
   <div class="row mb-5">
     <%= render partial: "statues/statue", collection: @tenbu %>
   </div>
   
-  <h2>その他</h2>
+  <h2 id="others">その他</h2>
   <div class="row">
     <%= render partial: "statues/statue", collection: @others %>
   </div>

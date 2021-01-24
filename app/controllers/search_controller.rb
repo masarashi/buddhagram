@@ -5,6 +5,8 @@ class SearchController < ApplicationController
     @spots = Spot.all
     @spots_search_result = Spot.new
     @posts = Post.all.order(created_at: :desc).limit(9)
+    @statues = Statue.all
+    @posts_count = Post.all.count
   end
 
   def search
