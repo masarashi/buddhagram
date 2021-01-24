@@ -16,7 +16,7 @@
 
   <body>
     <div class="footerFixed">
-      <nav class='navbar navbar-expand navbar-light bg-body'>
+      <nav class='navbar navbar-expand navbar-light bg-white'>
         <div class='container'>
           <%= link_to root_path, class: 'navbar-brand' do %>
             <span class='brand'>Buddhagram</span>
@@ -87,7 +87,7 @@
         </div>
       </nav>
 
-      <div>
+      <div class="flash">
         <% if flash.notice %>
           <p class="notice alert alert-success"><%= notice %></p>
         <% end %>

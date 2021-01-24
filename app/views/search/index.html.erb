@@ -1,8 +1,38 @@
+<div class="jumbotron">
+  <div class="container">
+    <p>お寺や仏像との巡り合い</p>
+    <h1>Buddhagram</h1>
+  </div>
+</div>
+
 <div class="container">
+  <div class="d-flex justify-content-center counter">
+    <div class="border-right">
+      <%= link_to spots_path do %>
+        <span><%= @spots.count %></span><br>
+        スポット
+      <% end %>
+    </div>
+    <div>
+      <%= link_to statues_path do %>
+        <span><%= @statues.count %></span><br>
+        仏像
+      <% end %>
+    </div>
+    <div class="border-left">
+      <%= link_to posts_latest_path do %>
+        <span><%= @posts_count %></span><br>
+        投稿
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container search">
   <div class="wrapper">
     <h2>カテゴリ</h2>
 
-    <div class="row pb-0 search__buttons">
+    <div class="row pt-0 pb-0 search__buttons">
       <div class="col-md-6 search__button__locations">
         <a href="#" onclick="getPosition();">
           <div>
@@ -39,10 +69,8 @@
         <% end %>
       </div>    
     </div>
-  </div>
 
-  <div class="wrapper">
-    <h2>検索</h2>
+    <h2 class="mt-5">検索</h2>
     <%= render 'form' %>
   </div>
 </div>
