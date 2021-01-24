@@ -12,7 +12,7 @@
         <div class="spot__list__item__body">
           <h2><%= spot.name %></h2>
           <p><i class="fas fa-map-marker-alt fa-fw"></i> <%= spot.state %></p>
-          <p><i class="fas fa-directions fa-fw"></i></i> 約 <strong class="text-info"><%= spot.distance_from(@current_location).round %></strong> km</p>
+          <p><i class="fas fa-directions fa-fw"></i></i> 約 <strong class="distance"><%= spot.distance_from(@current_location).round %></strong> km</p>
         </div>
       </div>
     </div>
