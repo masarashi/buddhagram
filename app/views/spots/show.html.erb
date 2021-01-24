@@ -29,11 +29,9 @@
   <% if @spot.statues.empty? %>
     データがありません
   <% else %>
-    <ul>
-      <% @spot.statues.each do |statue| %>
-        <li><%= link_to statue.name, statue %></li>
-      <% end %>
-    </ul>
+    <% @spot.statues.each do |statue| %>
+      <%= link_to statue.name, statue %> / 
+    <% end %>
   <% end %>
 
   <div>

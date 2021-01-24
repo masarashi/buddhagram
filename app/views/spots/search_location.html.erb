@@ -63,10 +63,11 @@
         zoom: 7
       });
 
-      marker = new google.maps.Marker({
-        position: LatLng,
-        map: map
-      });
+      // 現在地のマーカー
+      // marker = new google.maps.Marker({
+      //   position: LatLng,
+      //   map: map
+      // });
 
       // 周辺スポットの表示
       for (var i = 0; i < markerData.length; i++) {
@@ -87,7 +88,8 @@
         // 各地点の吹き出しを作成
         infoWindow[i] = new google.maps.InfoWindow({
           // 吹き出しの中身, 引数で各属性の配列と配列番号を渡す
-          content: `<a href='/spots/${ id }'>${ markerData[i]['name'] }</a>`
+          content: `<a href='/spots/${ id }' data-turbolinks='false'>${ markerData[i]['name'] }</a>`
+          // content: `${ markerData[i]['name'] }`
         });
 
         // マーカーにクリックイベントを追加

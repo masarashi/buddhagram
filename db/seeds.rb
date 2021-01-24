@@ -11,7 +11,7 @@
 # require './db/seeds/storehouses.rb'
 # require './db/seeds/images.rb'
 
-# ユーザ作成
+# # ユーザ作成
 # 20.times do |i|
 #   User.create(email: "demouser#{i}@example.com",
 #               name: Faker::Name.name,
@@ -21,24 +21,44 @@
 #                                                          content_type: 'image/png')
 # end
 
-# 投稿作成
+# # ゲストユーザ作成
+# User.create(email: 'guest@example.com', name: 'ゲスト', profile: 'ご自由にご覧ください', password: SecureRandom.urlsafe_base64)
+
+# # 投稿作成
 # 99.times do
-#   images = Dir.glob('app/javascript/images/statues/*')
-#   post = Post.new(user_id: User.all.sample.id, content: Faker::Lorem.sentence, spot_id: Spot.all.sample.id)
-#   post.images.attach(io: File.open(images.sample), filename: images.sample)
+#   # 画像一覧の取得
+#   # images = Dir.glob('app/javascript/images/statues/*')
+#   images = Dir.entries('app/javascript/images/statues/')
+
+#   # 画像の取り出し
+#   image = images.sample
+
+#   # 本文
+#   body = Faker::Lorem.sentence
+
+#   # 確率で本文にハッシュタグを追加
+#   if rand(3).zero?
+#     # ハッシュタグの定義（画像名から拡張子を消す）
+#     hashtag = " ##{File.basename(image, '.*')}"
+#     body << hashtag
+#   end
+
+#   # 投稿処理
+#   post = Post.new(user_id: User.all.sample.id, content: body, spot_id: Spot.all.sample.id)
+#   post.images.attach(io: File.open("app/javascript/images/statues/#{image}"), filename: image)
 #   post.save
 # end
 
-# ユーザフォロー
+# # ユーザフォロー
 # 20.times do |i|
 #   user = User.find_by(email: "demouser#{i}@example.com")
-#   other_users = User.where.not(user_id: user.id).sample(5)
+#   other_users = User.where.not(id: user.id).sample(5)
 #   other_users.each do |other_user|
 #     user.following << other_user
 #   end
 # end
 
-# いいね
+# # いいね
 # 20.times do |i|
 #   user = User.find_by(email: "demouser#{i}@example.com")
 #   posts = Post.where.not(user_id: user.id).sample(20)
@@ -47,7 +67,7 @@
 #   end
 # end
 
-# コメント
+# # コメント
 # 200.times do
 #   user = User.all.sample
 #   post = Post.where.not(user_id: user.id).sample
