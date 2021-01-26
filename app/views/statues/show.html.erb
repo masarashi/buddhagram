@@ -33,7 +33,7 @@
     <% @statue.spots.each do |spot| %>
       <li>
         <%= link_to spot, data: { "turbolinks" => false } do %>
-          <%= spot.name %><span class="text-sm-gray">（<%= spot.state %>）</span>
+          <span class="link"><%= spot.name %></span><span class="text-sm-gray">（<%= spot.state %>）</span>
         <%end %>
       </li>
     <% end %>

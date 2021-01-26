@@ -1,5 +1,12 @@
 <div class="container">
 
+  <% unless user_signed_in? %>
+    <p class="text-center mb-5">
+      ログインすると画像を投稿したり、投稿にいいねやコメントができます！<br>
+      <%= link_to 'ゲストでログインする', users_guest_sign_in_path, method: :post, class: 'link' %>
+    </p>
+  <% end %>
+
   <div class="jscroll">
     <div class="row">
       <%= render partial: "users/post", collection: @latest_posts %>

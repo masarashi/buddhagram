@@ -14,9 +14,9 @@
     <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", multiple: true, class: "form-control-file" %>
   </div>
   <div>
-    <p>本文の入力</p>
+    <p>本文の入力（任意）</p>
     <%= f.label :content, class: "d-none" %>
-    <%= f.text_area :content, placeholder: "任意（512文字まで）", rows: "10", class: "textarea" %>
+    <%= f.text_area :content, placeholder: "512文字まで。#はハッシュタグとして認識されます。", rows: "10", class: "textarea" %>
   </div>
   <div>
     <%= f.submit "投稿", class: "btn btn-info btn-block" %>

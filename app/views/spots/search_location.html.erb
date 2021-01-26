@@ -1,6 +1,8 @@
 <div class="container">
   <div id="map"></div>
 
+  <p class="text-center mt-5 mb-5">ご利用者様の現在位置から200km以内のスポットを表示しています。</p>
+
   <div class="row mt-5">
     <%= render partial: "search/spot", collection: @locations %>
   </div>
@@ -37,7 +39,6 @@
         </tbody>
       </table>
     </div>
-
   <% end %>
 
 </div>

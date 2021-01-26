@@ -105,7 +105,7 @@ footer p {
 
 .counter span {
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 1.5em;
 }
 
 .error_message {
@@ -808,26 +808,27 @@ footer p {
   opacity: 1;
 }
 
-.timeline .link {
-  color: #4169e1;
-}
-
-.timeline .link:hover {
-  color: #6495ed;
-}
-
 .statues h2 {
   margin-left: -15px;
   margin-bottom: 10px;
   padding: 10px;
   // padding-bottom: 10px;
-  border-left: 5px solid #696969;
+  // border-bottom: 1px solid #696969;
   // border-bottom: 1px solid #eee;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
 }
 
 .distance {
   font-size: 1.2em;
   color: #17a2b8;
+}
+
+
+.link {
+  color: #4169e1;
+}
+
+.link:hover {
+  color: #6495ed;
 }
