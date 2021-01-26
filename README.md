@@ -1,7 +1,9 @@
 # アプリ概要
-https://buddhagram.work/
 
 仏像とお寺と人が巡り合うことをコンセプトにしたSNS＆情報サイトです。
+
+https://buddhagram.work/
+
 
 # 機能および使用技術
 
