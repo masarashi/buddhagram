@@ -42,6 +42,15 @@
         </a>
       </div>
 
+      <div class="col-md-6 search__button__posts">
+        <%= link_to posts_latest_path do %>
+          <div>
+            <p class="caption"><i class="fas fa-images fa-fw"></i> みんなの投稿</p>
+            <div class="mask"></div>
+          </div>
+        <% end %>
+      </div>
+
       <div class="col-md-6 search__button__spots">
         <%= link_to spots_path do %>
           <div>
@@ -59,15 +68,6 @@
           </div>
         <% end %>
       </div>
-
-      <div class="col-md-6 search__button__posts">
-        <%= link_to posts_latest_path do %>
-          <div>
-            <p class="caption"><i class="fas fa-images fa-fw"></i> みんなの投稿</p>
-            <div class="mask"></div>
-          </div>
-        <% end %>
-      </div>    
     </div>
 
     <h2 class="mt-5">検索</h2>
