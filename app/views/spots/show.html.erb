@@ -30,7 +30,7 @@
     データがありません
   <% else %>
     <% @spot.statues.each do |statue| %>
-      <%= link_to statue.name, statue %> / 
+      <%= link_to statue.name, statue, class: 'link' %> / 
     <% end %>
   <% end %>
 

@@ -29,7 +29,7 @@
       <p>検索結果がありません</p>
     <% else %>
       <p>検索結果</p>
-      <ol>
+      <ol class="mb-0">
         <% @statues_search_result.each do |statue| %>
           <li class="mt-2">
             <%= link_to statue, id: "statue" do %>

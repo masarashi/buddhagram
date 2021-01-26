@@ -72,13 +72,13 @@
               <!-- 非ログイン時のメニュー -->
               <% else %>
                 <li class='nav-item'>
-                  <%= link_to new_user_session_path, class: 'nav-link mr-2' do %>
+                  <%= link_to new_user_session_path, class: 'nav-link' do %>
                     <i class="fas fa-sign-in-alt fa-fw"></i> ログイン
                   <% end %>
                 </li>
                 <li class='nav-item'>
-                  <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link btn btn-sm btn-info text-white' do %>
-                    <i class="fas fa-eye fa-fw"></i> ゲストログイン
+                  <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link btn btn-sm btn-info text-white ml-2' do %>
+                    <i class="fas fa-user fa-fw"></i> ゲストログイン
                   <% end %>
                 </li>
               <% end %>
