@@ -61,9 +61,9 @@ https://buddhagram.work/
 		- 周辺スポット検索（ブラウザの位置情報を取得し現在値から近いスポットを表示）：jQuery / gon[gem]
 		- お寺の位置情報：geocoder[gem]
 		- Google Mapの表示：Google Maps API / geocoder[gem]
-	- キーワード検索機能
+	- キーワード検索
 		- 仏像、スポット（地名や住所）、ハッシュタグ、ユーザを対象に検索
-	- 検索結果表示：Ajax
+		- 検索結果表示：Ajax
 
 - **全般**
 	- ページネーション：pagy[gem]（ページネーション）
