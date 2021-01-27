@@ -77,7 +77,7 @@ https://buddhagram.work/
 
 # 構成図
 
-![network](https://user-images.githubusercontent.com/69148986/105982121-3b5cb300-60da-11eb-8d4f-9c508eeee7ff.jpg)
+![network](https://user-images.githubusercontent.com/69148986/105991143-cba0f500-60e6-11eb-9802-c56f52c5bd89.jpg)
 
 # ER図
 
