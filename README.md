@@ -62,7 +62,7 @@ https://buddhagram.work/
 
 - **検索機能**
 	- 周辺スポット検索
-		- ブラウザの位置情報を取得し現在値から近いスポットを表示：jQuery / gon[gem]
+		- ブラウザの位置情報を取得し現在地から近いスポットを表示：jQuery / gon[gem]
 		- お寺の位置情報：geocoder[gem]
 		- Google Mapの表示：Google Maps API / geocoder[gem]
 	- キーワード検索
