@@ -49,6 +49,7 @@ https://buddhagram.work/
 	- 投稿場所の紐付け：Ajax（場所の検索時）
 	- コメント
 	- ハッシュタグ：正規表現によるハッシュタグの検出（ハッシュタグをクリックすると専用ページを表示）
+	- 複数画像の表示：slick（スライダー用のプラグイン）
 
 - **検索機能**
 	- スポット検索
@@ -61,8 +62,8 @@ https://buddhagram.work/
 
 - **全般**
 	- ページネーション：pagy[gem]（ページネーション）
-	- スクロールでページネーションの次のページを読み込み：jscroll（無限スクロール用 jQuery plugin）
-	- 画像アップロード：AWS S3
+	- スクロールに応じてデータを表示：jscroll（無限スクロール用プラグイン）
+	- 画像アップロード：Active Storage / AWS S3
 	- 画像処理：active_storage_validations[gem] / image_processing[gem] / mini_magick[gem]
 
 
