@@ -17,7 +17,7 @@ https://buddhagram.work/
 	- MacOS / Docker / docker-compose / MariaDB
 	- 【開発環境コンテナ構成】rails / mariadb / webpacker / chrome_driver（システムスペック用）
 - 本番環境
-	- AWS（EC2 / RDS（MariaDB） / S3 / ELB / Route53 / ACM）/ Docker / docker-compose / nginx
+	- AWS（EC2 / RDS for MariaDB / S3 / ELB / Route53 / ACM）/ Docker / docker-compose / nginx
 	- 【本番環境コンテナ構成】rails / nginx
 
 - その他
