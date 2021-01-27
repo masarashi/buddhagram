@@ -9,6 +9,29 @@ https://buddhagram.work/
 
 # 使用技術
 
+- フロントエンド
+	- HTML / CSS / bootstrap / jQuery / Ajax
+- バックエンド
+	- Ruby on Rails
+- 開発環境
+	- MacOS / Docker / docker-compose / MariaDB
+	- 【開発環境コンテナ構成】rails / mariadb / webpacker / chrome_driver（システムスペック用）
+- 本番環境
+	- AWS（EC2 / RDS（MariaDB） / S3 / ELB / Route53 / ACM）/ Docker / docker-compose / nginx
+	- 【本番環境コンテナ構成】rails / nginx
+
+- その他
+	- テストコード：RSpec[gem] / capybara[gem] / FactoryBot[gem]
+	- コードチェック：rubocop[gem] / bullet[gem]（N+1問題の検出）
+	- セキュリティチェック：brakeman[gem]
+	- デモデータ登録：seed / faker[gem]
+
+- バージョン情報
+	- MacOS Catalina 10.15.7
+	- ruby 2.7.1
+	- rails 6.0.3.4
+	- docker 19.03.13
+	- docker-compose 1.27.4
 
 
 # 機能一覧
@@ -36,30 +59,11 @@ https://buddhagram.work/
 	- 検索結果表示：Ajax
 
 - **全般**
-	- ページデザイン：bootstrap
 	- ページネーション：pagy[gem]（ページネーション）
-	- タイムラインや投稿一覧など表示件数の多いもの：jscroll（無限スクロール用 jQuery plugin）
+	- スクロールでページネーションの次のページを読み込み：jscroll（無限スクロール用 jQuery plugin）
 	- 画像アップロード：AWS S3
 	- 画像処理：active_storage_validations[gem] / image_processing[gem] / mini_magick[gem]
 
-- **その他**
-	- インフラ：AWS EC2 / AWS RDB（mariaDB）
-	- コンテナ：Docker（docker-compose）
-		- 【本番環境コンテナ構成】rails / nginx
-		- 【開発環境コンテナ構成】rails / mariadb / webpacker / chrome_driver（システムスペック用）
-	- ドメイン：お名前.com / Route53
-	- ロードバランサ：AWS ALB
-	- SSL証明書：AWS ACM
-	- テスト：RSpec[gem] / capybara[gem] / FactoryBot[gem]
-	- コードチェック：rubocop[gem] / bullet[gem]（N+1問題の検出）
-	- セキュリティチェック：brakeman[gem]
-	- デモデータ登録：faker[gem] / seed
-
-- **バージョン情報**
-	- ruby 2.7.1
-	- rails 6.0.3.4
-	- docker 19.03.13
-	- docker-compose 1.27.4
 
 # 作成動機
 
