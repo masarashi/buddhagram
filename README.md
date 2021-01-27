@@ -66,7 +66,9 @@ https://buddhagram.work/
 	- 画像アップロード：Active Storage / AWS S3
 	- 画像処理：active_storage_validations[gem] / image_processing[gem] / mini_magick[gem]＊＊
 
-# こだわり
+# こだわった点
+
+- あああ
 
 # 作成動機
 
