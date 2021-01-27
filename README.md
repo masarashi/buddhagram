@@ -1,5 +1,5 @@
 <div align="center">
-<img width="500" alt="top_page" src="https://user-images.githubusercontent.com/69148986/105990159-744e5500-60e5-11eb-802f-06ca3f43c202.png">
+<img width="550" alt="top_page" src="https://user-images.githubusercontent.com/69148986/105990159-744e5500-60e5-11eb-802f-06ca3f43c202.png">
 </div>
 
 # アプリ概要
