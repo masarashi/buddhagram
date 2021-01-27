@@ -1,3 +1,5 @@
+<img width="500" alt="top_page" src="https://user-images.githubusercontent.com/69148986/105990159-744e5500-60e5-11eb-802f-06ca3f43c202.png">
+
 # アプリ概要
 
 ### Buddhagram 仏像とお寺と人が巡り合うことをコンセプトにしたSNS+情報サイト
@@ -6,8 +8,6 @@ https://buddhagram.work/
 
 右上の「ゲストログイン」ボタンをクリックすると、ゲストでログインした状態でご利用になれます。  
 ログインすると、ユーザフォロー、いいね、コメント、タイムライン機能がご利用になれます。
-
-<img width="500" alt="top_page" src="https://user-images.githubusercontent.com/69148986/105990159-744e5500-60e5-11eb-802f-06ca3f43c202.png">
 
 ### Buddhagram で提供すること
 
