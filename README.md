@@ -73,6 +73,6 @@ https://buddhagram.work/
 
 # 構成図
 
-![network](https://user-images.githubusercontent.com/69148986/105981805-dbfea300-60d9-11eb-8d37-4464aa52cb70.jpg)
+![network](https://user-images.githubusercontent.com/69148986/105982121-3b5cb300-60da-11eb-8d4f-9c508eeee7ff.jpg)
 
 # ER図
