@@ -76,3 +76,5 @@ https://buddhagram.work/
 ![network](https://user-images.githubusercontent.com/69148986/105982121-3b5cb300-60da-11eb-8d4f-9c508eeee7ff.jpg)
 
 # ER図
+
+![er](https://user-images.githubusercontent.com/69148986/105989640-c0e56080-60e4-11eb-94dc-3d6b79ef33b5.jpg)
