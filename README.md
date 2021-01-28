@@ -1,13 +1,17 @@
+<div align="center">
+<img width="600" alt="top_page" src="https://user-images.githubusercontent.com/69148986/105990159-744e5500-60e5-11eb-802f-06ca3f43c202.png">
+</div>
+
 # アプリ概要
 
-### 仏像とお寺と人が巡り合うことをコンセプトにしたSNS+情報サイト
+### Buddhagram 仏像とお寺と人が巡り合うことをコンセプトにしたSNS+情報サイト
 
 https://buddhagram.work/
 
 右上の「ゲストログイン」ボタンをクリックすると、ゲストでログインした状態でご利用になれます。  
 ログインすると、ユーザフォロー、いいね、コメント、タイムライン機能がご利用になれます。
 
-### Buddhagram で提供したいこと
+### Buddhagram で提供すること
 
 1. 周辺にどんな仏像やお寺があるのかすぐに知ることが出来る（周辺スポット検索機能）
 1. 仏像やお寺に特化した体験をシェア出来る（投稿、いいね、コメント、ユーザフォロー機能）
@@ -21,7 +25,7 @@ https://buddhagram.work/
 	- Ruby on Rails
 - 開発環境
 	- MacOS / Docker / docker-compose / MariaDB
-	- 【開発環境コンテナ構成】rails / mariadb / webpacker / chrome_driver（システムスペック用）
+	- 【開発環境コンテナ構成】rails / MariaDB / webpacker / chrome_driver（システムスペック用）
 - 本番環境
 	- AWS（EC2 / RDS for MariaDB / S3 / ELB / Route53 / ACM）/ Docker / docker-compose / nginx
 	- 【本番環境コンテナ構成】rails / nginx
@@ -58,7 +62,7 @@ https://buddhagram.work/
 
 - **検索機能**
 	- 周辺スポット検索
-		- ブラウザの位置情報を取得し現在値から近いスポットを表示：jQuery / gon[gem]
+		- ブラウザの位置情報を取得し現在地から近いスポットを表示：jQuery / gon[gem]
 		- お寺の位置情報：geocoder[gem]
 		- Google Mapの表示：Google Maps API / geocoder[gem]
 	- キーワード検索
@@ -73,6 +77,8 @@ https://buddhagram.work/
 
 # 構成図
 
-![network](https://user-images.githubusercontent.com/69148986/105982121-3b5cb300-60da-11eb-8d4f-9c508eeee7ff.jpg)
+![network](https://user-images.githubusercontent.com/69148986/105991143-cba0f500-60e6-11eb-9802-c56f52c5bd89.jpg)
 
 # ER図
+
+![er](https://user-images.githubusercontent.com/69148986/105989858-0bff7380-60e5-11eb-89b1-29d04b205821.jpg)
