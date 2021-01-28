@@ -5,23 +5,4 @@
   <div class="row">
     <%= render partial: "spots/spot", collection: @spots %>
   </div>
-
-  <% if false %>
-    <div class="jscroll">
-      <div class="row">
-        <%= render partial: "users/post", collection: @posts %>
-        <span class="d-none"><%== pagy_nav(@pagy) %></span>
-      </div>
-    </div>
-
-    <script>
-      $(function() {
-        $('.jscroll').jscroll({
-          loadingHtml: '読み込み中',
-          contentSelector: '.jscroll',
-          nextSelector: 'span.next:last a'
-        });
-      });
-    </script>
-  <% end %>
 </div>
