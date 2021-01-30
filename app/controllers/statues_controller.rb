@@ -1,4 +1,5 @@
 class StatuesController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :admin?, only: %i[new create edit update destroy]
 
   def index

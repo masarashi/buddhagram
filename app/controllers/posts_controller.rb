@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  # before_action :authenticate_user!, only: %i[index new create update destroy]
+  before_action :authenticate_user!, only: %i[index new new_post create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :admin?, only: :index
 
   def index
-    # @pagy, @posts = pagy(Post.with_attached_images.includes(:user, :spot, :comments, [comments: :user]).order(created_at: :desc), items: 3)
-    # @like = Like.new
     @pagy, @posts = pagy(Post.includes(:user).order(created_at: :desc))
   end
 
@@ -37,24 +35,7 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-
-    # 投稿確認画面用（作成保留）
-    # @post = Post.new(post_params)
-    # if params[:back]
-    #   render 'new'
-    # else
-    #   @post.save
-    #   flash[:notice] = '投稿しました'
-    #   redirect_to posts_path
-    # end
   end
-
-  # 投稿確認画面用（作成保留）
-  # def confirm
-  #   @post = Post.new(post_params)
-  #   binding.pry
-  #   render 'new' if @post.invalid?
-  # end
 
   def edit
     @post = Post.with_attached_images.find(params[:id])
@@ -68,6 +49,7 @@ class PostsController < ApplicationController
         image.purge
       end
     end
+
     if @post.update(post_params)
       flash[:success] = '更新しました'
       redirect_to @post
@@ -120,8 +102,4 @@ class PostsController < ApplicationController
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to root_url if @post.nil?
   end
-
-  # def post_confirm_params
-  #   params.require(:post).permit(:content, :spot_id, images: []).merge(user_id: current_user.id)
-  # end
 end
