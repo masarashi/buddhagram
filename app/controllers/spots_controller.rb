@@ -1,6 +1,7 @@
 class SpotsController < ApplicationController
   include Pagy::Backend
 
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :admin?, only: %i[new create edit update destroy geocoding_search]
 
   def index
