@@ -71,11 +71,12 @@ https://buddhagram.work/
 		- 仏像、スポット（地名や住所）、ハッシュタグ、ユーザを対象に検索
 		- 検索結果表示：Ajax
 
-- **全般**
+- **その他**
 	- ページネーション：pagy[gem]（ページネーション）
 	- スクロールに応じてデータを表示：jscroll（無限スクロール用プラグイン）
 	- 画像アップロード：Active Storage / AWS S3
 	- 画像処理：active_storage_validations[gem] / image_processing[gem] / mini_magick[gem]
+	- システムスペック30件
 
 # 構成図
 
