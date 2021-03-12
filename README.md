@@ -7,6 +7,7 @@
 ### Buddhagram 仏像とお寺と人が巡り合うことをコンセプトにしたSNS+情報サイト
 
 アクセスURL
+
 https://buddhagram.work/
 
 ログインせずにご利用になれます。
