@@ -80,7 +80,7 @@ https://buddhagram.work/
 
 # 構成図
 
-![network](https://user-images.githubusercontent.com/69148986/105991143-cba0f500-60e6-11eb-9802-c56f52c5bd89.jpg)
+![network](https://user-images.githubusercontent.com/69148986/111022916-4022bf80-8419-11eb-8746-e467fa973da4.png)
 
 # ER図
 
