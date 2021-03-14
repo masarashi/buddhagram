@@ -4,7 +4,7 @@
 
 # アプリ概要
 
-### Buddhagram 仏像とお寺と人が巡り合うことをコンセプトにしたSNS+情報サイト
+### Buddhagram
 
 アクセスURL<br>
 https://buddhagram.work/
